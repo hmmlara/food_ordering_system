@@ -64,7 +64,6 @@
                                 <label class="form-check-label small text-muted" for="exampleCheck1">Remember me</label>
                             </div>
                             <button type="submit" class="btn btn-dark btn-round btn-block">Sign in</button> <small class="d-block mt-4 text-center"><a class="text-gray" href="#">Forgot your password?</a></small>
-                            <button type="submit" class="btn btn-dark btn-round btn-block">Sign Out</button> <small class="d-block mt-4 text-center"><a class="text-gray" href="#">Forgot your password?</a></small>
 
                         </form>
                     </div>
