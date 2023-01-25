@@ -1,16 +1,13 @@
 <?php
-    include_once 'controller/user_controller.php';
     session_start();
     //session_destroy();
-$userController=new UserController();
-$getuser=$userController->getUser()[0];
-//var_dump($getuser);
+    include_once 'controller/user_controller.php';
+    $userController=new UserController();
+    $getuser=$userController->getUser()[0];
 
     if(isset($_POST['submit'])){
         $email=$getuser['email'];
         $password=$getuser["password"];
-echo $_POST['email'];
-echo $_POST['password'];
         if($email == $_POST['email'] && $password= $_POST['password']){
             echo "<script>
             window.location.href = 'http://localhost/FOS/admin/index.php';
@@ -25,27 +22,7 @@ echo $_POST['password'];
             echo "<script>alert('invalid username or password')</script>";
         }
     }
-//     session_start();
-//     //session_destroy();
-//    // include_once 'layouts/header.php';
 
-//     if(isset($_POST["submit"])){
-//         $email = "admin@gmail.com";
-//         $pass = "admin123";
-
-//         if($email == $_POST["email"] && $pass == $_POST["password"]){
-            
-           
-
-//             $_SESSION["login_user"] = [
-//                 "email" => $email,
-//                 "password" => $pass
-//             ];
-//         }
-//         else{
-//             echo "<script>alert('invalid user')</script>";
-//         }
-//     }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +50,7 @@ echo $_POST['password'];
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-6 col-lg-6 col-md-6">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
@@ -95,31 +72,11 @@ echo $_POST['password'];
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div> -->
                                         <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
                                             Login
                                         </button>
                                         <hr>
-                                        <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a> -->
                                     </form>
-                                    <!-- <hr> -->
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <!-- <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
