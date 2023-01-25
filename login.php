@@ -8,27 +8,25 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
-        <link rel="icon" href="./img/icon.png" />
-        <title>Food Delivery Landing Page</title>
+        <link rel="icon" href="./img/logo.jpg" />
+        <title>Darli Login</title>
     </head>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.png"></a>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
         <button
         class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"> <a class="nav-link" href="./index.php">Welcome<span class="sr-only">(current)</span></a>
+                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="./index.php#menu">Today's Menu</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="./login.php">Split Page</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="./article.php">Article</a>
-                    </li>
-                </ul> <a href="https://github.com/wowthemesnet/template-fooddelivery-bootstrap-html/archive/master.zip"
-                class="btn btn-outline-dark">Download Template</a>
+                </ul> 
             </div>
     </nav>
     
@@ -39,7 +37,7 @@
                     <div class="block hero2 my-auto" style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
                         <div class="container-fluid text-center">
                              <h1 class="display-2 text-white" data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-offset="0">Bistrot Français</h1>
+                            data-aos-offset="0">Darli SNACKS & DRINKS</h1>
                             <p class="lead text-white" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="300">We are closed for the moment, but we will still deliver food at your place!</p>
                         </div>
