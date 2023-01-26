@@ -81,9 +81,9 @@
                                         </div>
                                         <div class="card-footer">
                                             <button class="btn btn-primary float-end">Register</button>
-                                            <span>If you have account, you can directly login  
+                                            <p>If you have account, you can directly login  
                                                 <a href="login.php">here</a>
-                                            </span>
+                                            </p>
                                         </div>
 
                                     </div>

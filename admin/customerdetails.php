@@ -14,12 +14,16 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Customers</h1>
-                    <a href="customers.php" class="btn btn-primary">Back</a>
+                    <a href="customers.php" class="btn btn-outline-primary">Back</a>
                     <div class="row">
                         <div class="col-md-4"></div>
-                        <div class="col-md-4 d-flex justify-content-center bg-white">
+                        <div class="col-md-4  bg-white shadow">
                             <?php
-                                echo "<h4> Customer name:  ".$customer_details[0]['name']."</h4>";
+                                echo "<h4>".$customer_details[0]['name']."</h4>";
+                                echo "<p>email :".$customer_details[0]['email']."</p>";
+                                echo "<p>phone number : ".$customer_details[0]['phone_number']."</p>";
+                                echo "<p>created date : ".$customer_details[0]['created_date']."</p>";
+                                echo "<p>updated date : ".$customer_details[0]['updated_date']."</p>";
                             ?>
                         </div>
                         <div class="col-md-4"></div>
