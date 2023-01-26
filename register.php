@@ -1,3 +1,74 @@
+<?php
+
+include_once "includes/connect.php";
+
+if(isset($_POST['registerBtn']))
+{
+    
+    if(!empty($_POST['name']))
+    {
+        $name=$_POST['name'];
+    }
+    else{
+        $name_error="Please input name";
+    }
+    if(!empty($_POST['email']))
+    {
+        $email=$_POST['email'];
+    }
+    else{
+        $email_error="Please input email";
+    }
+    if(!empty($_POST['address']))
+    {
+        $address=$_POST['address'];
+    }
+    else{
+        $address_error="Please input address";
+    }
+    if(!empty($_POST['phnum']))
+    {
+        $phnum=$_POST['phnum'];
+    }
+    else{
+        $phnum_error="Please input phone number";
+    }
+    if(!empty($_POST['password']))
+    {
+        $password=$_POST['password'];
+    }
+    else{
+        $password_error="Please input password";
+    }
+    if(empty($_POST['confirm_password']) || ($_POST['password'] != $_POST['confirm_password']))
+    {
+        $password_wrong="Password does not match";
+    }
+
+    if(!isset($name_error) && !isset($email_error) && !isset($address_error) && !isset($password_error) && !isset($password_wrong))
+    {
+        $encryptPassword = md5($password);
+        $query= "INSERT INTO users(name,email,address,password) VALUES('$name','$email','$address','$encryptPassword')";
+        $result = mysqli_query($dbconnection,$query);
+        if($result)
+        {
+            // echo "<script>alert('Registration Successful');</script>";
+            header('location:login.php');    
+        }
+        else{
+            die('Error'.mysqli_error($query));
+        }
+    }
+    
+
+
+}
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     
@@ -50,42 +121,46 @@
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <div class="card-body">
-                                            <form action="">
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Name</label>
-                                                    <input type="text" name="name" id="" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Email</label>
-                                                    <input type="email" name="email" id="" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Address</label>
-                                                    <textarea type="text" name="address" id="" class="form-control" rows="1"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Phone Number</label>
-                                                    <input type="number" name="phnum" id="" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Password</label>
-                                                    <input type="password" name="pswd" id="" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="" class="form-label">Confirm Password</label>
-                                                    <input type="password" name="confirmpswd" id="" class="form-control">
-                                                </div>
-                                            </form>
-                                            
-                                        </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-primary float-end">Register</button>
-                                            <span>If you have account, you can directly login  
-                                                <a href="login.php">here</a>
-                                            </span>
-                                        </div>
-
+                                        <form action="" method="post">
+                                            <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Name</label>
+                                                        <input type="text" name="name" id="" class="form-control">
+                                                        <i class="text-danger"><?php if(isset($name_error)) echo $name_error;   ?></i class="text-danger">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Email</label>
+                                                        <input type="email" name="email" id="" class="form-control">
+                                                        <i class="text-danger"><?php if(isset($email_error)) echo $email_error;   ?></i class="text-danger">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Address</label>
+                                                        <textarea type="text" name="address" id="" class="form-control" rows="1"></textarea>
+                                                        <i class="text-danger"><?php if(isset($address_error)) echo $address_error;   ?></i class="text-danger">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Phone Number</label>
+                                                        <input type="number" name="phnum" id="" class="form-control">
+                                                        <i class="text-danger"><?php if(isset($phnum_error)) echo $phnum_error;   ?></i class="text-danger">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Password</label>
+                                                        <input type="password" name="password" id="" class="form-control">
+                                                        <i class="text-danger"><?php if(isset($password_error)) echo $password_error;   ?></i class="text-danger">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="" class="form-label">Confirm Password</label>
+                                                        <input type="password" name="confirm_password" id="" class="form-control">
+                                                        <i class="text-danger"><?php if(isset($password_wrong)) echo $password_wrong;   ?></i class="text-danger">
+                                                    </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-primary float-end" name="registerBtn">Register</button>
+                                                <span>If you have account, you can directly login  
+                                                    <a href="login.php">here</a>
+                                                </span>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-md-3"></div>

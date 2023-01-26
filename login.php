@@ -1,8 +1,68 @@
 <?php
+
+session_start();
+
 include_once 'layouts/header.php';
+include_once "includes/connect.php";
+
+if(isset($_POST['loginBtn']))
+{
+    $email=trim($_POST['email']);
+    $password=md5(trim($_POST['password']));
+
+    $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    $user_result = mysqli_query($dbconnection,$query);
+    $user_count = mysqli_num_rows($user_result);
+
+    if($user_count === 1)
+    {
+        $user_array = mysqli_fetch_assoc($user_result);
+        $_SESSION['user_array']=$user_array;
+        header('location:admin-dashboard.php');
+    }
+    else{
+        if(empty($email) || empty($password))
+        {
+            $error= "Invalid Email And Password!";
+        }
+    }
+}
+
+
+
 
 ?>
-  
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/customize.css" />
+        <script src="./js/jquery.min.js"></script>
+        <link rel="icon" href="./img/logo.jpg" />
+        <title>Darli Login</title>
+    </head>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
+        <button
+        class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
+                    </li>
+                </ul> 
+            </div>
+    </nav>
     
     <body>
         <div class="maincontent pt-0 pb-0">
@@ -20,24 +80,66 @@ include_once 'layouts/header.php';
                 </div>
                 <div class="col-md-6 p-0 h-md-100 loginarea">
                     <div class="d-md-flex align-items-center h-md-100 p-3 justify-content-center">
-                        <form>
-                             <h3 class="mb-4 text-center">Sign In</h3>
+                    <div class="container-fluid mt-2 text-dark">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header bg-dark">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card-title"><a href="login.php" class="text-white" style="text-decoration:none;"><h5>Welcome to Darli</h5></a></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;"><< Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-6">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <div class="card-title">Login</div>
+                                                        </div>
+                                                        <form action="login.php" method="post">
+                                                            <div class="card-body">
+                                                            <?php if(isset($error)): ?>
+                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                    <strong><?php echo $error;  ?></strong>
+                                                                </div>
+                                                            <?php endif ?>
+                                                                <div class="form-group">
+                                                                    <label for="" class="form-label">Email</label>
+                                                                    <input type="email" name="email" id="" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="" class="form-label">Password</label>
+                                                                    <input type="password" name="password" id="" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <button type="submit" name="loginBtn" class="btn btn-primary float-end my-3">Login</button>
+                                                                <div>
+                                                                    <span>If you have no account, you can register 
+                                                                        <a href="register.php">here</a>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </form>
 
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="E-mail" required="">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Password" required="">
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label small text-muted" for="exampleCheck1">Remember me</label>
-                            </div>
-                            <button type="submit" class="btn btn-dark btn-round btn-block">Sign in</button> <small class="d-block mt-4 text-center"><a class="text-gray" href="#">Forgot your password?</a></small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3"></div>
+                                                
+                                            </div>
 
-                        </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
