@@ -12,10 +12,9 @@ class DeliveryController extends Delivery{
         return $result;
     }
 
-    public function updateDelivery($id,$township,$name){
-        $results=$this->updateDeliInfo($id,$township,$name);
+    public function updateDelivery($id,$name){
+        $results=$this->updateDeliInfo($id,$name);
         return $results;
     }
 }
-
 ?>

@@ -35,7 +35,7 @@ $results=$categories->getcategories();
                                    
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="category_table">
                                 <form action="" method="post">
                                     <?php
                                     for ($row=0; $row < count($results); $row++) { 

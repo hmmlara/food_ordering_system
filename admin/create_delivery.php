@@ -31,10 +31,10 @@ $ship_controller=new ShippingController();
                                 <select name="name" id="" class="form-control">
                                     
                                     <?php
-                                    echo "<option> Name </option>";
+                                    echo "<option> Deli Type </option>";
                                     for ($index=0; $index <count($delivery) ; $index++) { 
                                         if($delivery[$index]['shipping_id']==$shipping[$index]['id']){
-                                            echo "<option>".$delivery[$index]['name']."</option>";
+                                            echo "<option>".$delivery[$index]['status']."</option>";
                                         }
                                     }
 
