@@ -32,7 +32,7 @@ include_once 'controller/shipping_controller.php';
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='shipping_table'>
                                         <?php
                                         for ($row=0; $row <count($shipping) ; $row++) { 
                                             echo "<tr>";
