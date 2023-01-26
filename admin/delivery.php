@@ -32,7 +32,7 @@ $shipping=$ship_controller->getShipping();
                                     <tr>
                                         <th>No</th>
                                         <th>Township</th>
-                                        <th>Name</th>
+                                        <th>Deli Type</th>
                                         <th>Actions</th>
                                         
                                         
@@ -48,7 +48,7 @@ $shipping=$ship_controller->getShipping();
                                              echo "<td>". $shipping[$index]['township'];
                                          }
                                          }
-                                        echo "<td>".$delivery[$row]['name']."</td>";
+                                        echo "<td>".$delivery[$row]['status']."</td>";
                                         echo "<td id='".$delivery[$row]['id']."'><a href='edit_delivery.php?id=".$delivery[$row]['id']."' class=' btn btn-warning mr-3'><i class='far fa-edit'></i></a><a class=' btn btn-danger delete'><i class='fas fa-trash-alt'></i></a></td>";
                                         echo "</tr>";
                                         

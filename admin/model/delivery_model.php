@@ -27,14 +27,15 @@ class Delivery{
 
     }
 
-    public function updateDeliInfo($id,$township,$name){
+public function updateDeliInfo($id,$name){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql='update deliveries set shipping_id=:township,name=:name where id=:id';
+        $sql='UPDATE `deliveries` SET `status`=:name WHERE id=:id';
         $statement=$this->pdo->prepare($sql);
-        $statement->bindParam(":id",$id);
-        $statement->bindParam(":township",$township);
+       
+       // $statement->bindParam(":township",$township);
         $statement->bindParam(":name",$name);
+        $statement->bindParam(":id",$id);
        return $statement->execute();
     }
 

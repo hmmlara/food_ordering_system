@@ -1,5 +1,10 @@
 <?php
 include_once 'layouts/header.php';
+include_once 'controller/product_controller.php';
+
+$products_controller=new ProductController();
+$products=$products_controller->getProducts();
+var_dump($products)
 
 ?>
 
