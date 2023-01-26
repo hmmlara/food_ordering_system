@@ -1,6 +1,8 @@
 <?php
+
 session_start();
 
+include_once 'layouts/header.php';
 include_once "includes/connect.php";
 
 if(isset($_POST['loginBtn']))
@@ -142,12 +144,7 @@ if(isset($_POST['loginBtn']))
                 </div>
             </div>
         </div>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
+       <?php
+       include_once 'layouts/footer.php';
 
-</html>
+       ?>
