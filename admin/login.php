@@ -1,28 +1,31 @@
 <?php
     session_start();
-    //session_destroy();
-    include_once 'controller/user_controller.php';
+    //  session_destroy();
+    include_once "controller/user_controller.php";
     $userController=new UserController();
-    $getuser=$userController->getUser()[0];
-
+    $result=$userController->getUser()[0];
+    // $test='admin123';
+    // var_dump(md5($test));
+    // var_dump($result);
+    $email=$result['email'];
+        $password=$result['password'];
+        // var_dump($password);
     if(isset($_POST['submit'])){
-        $email=$getuser['email'];
-        $password=$getuser["password"];
-        if($email == $_POST['email'] && $password= $_POST['password']){
+        
+        if($email == $_POST['email'] && $password == md5($_POST['password'])){
             echo "<script>
-            window.location.href = 'http://localhost/FOS/admin/index.php';
+            window.location.href='http://localhost/FOS/admin/index.php'
             </script>";
 
             $_SESSION['admin_login']=[
-                'email' => $email,
-                'password' => $password
+                'email'=>$email,
+                'password'=>$password
             ];
         }
         else{
-            echo "<script>alert('invalid username or password')</script>";
+            echo "<script>alert('Invalid username or password')</script>";
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +78,6 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
                                             Login
                                         </button>
-                                        <hr>
                                     </form>
                                 </div>
                             </div>

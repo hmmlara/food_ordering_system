@@ -23,7 +23,6 @@
                                 echo "<p>email :".$customer_details[0]['email']."</p>";
                                 echo "<p>phone number : ".$customer_details[0]['phone_number']."</p>";
                                 echo "<p>created date : ".$customer_details[0]['created_date']."</p>";
-                                echo "<p>updated date : ".$customer_details[0]['updated_date']."</p>";
                             ?>
                         </div>
                         <div class="col-md-4"></div>

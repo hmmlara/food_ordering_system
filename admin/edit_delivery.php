@@ -42,14 +42,8 @@ $id=$_GET['id'];
             <div class="form-group">
                 <label for="" class="form-label">Delivery Type</label>
                 <select name="status" id="" class="form-control">
-                    <?php 
-                        foreach($delivery as $deli){
-                    ?>
-                    <option value="<?php echo $deli["id"];?>" <?php echo ($deli["shipping_id"] == $result["ship_id"])?'selected': '';?>>
-                            <?php echo $deli["status"]; ?>
-                    </option>
                     <?php
-                        }
+                        echo "<option value='".."'>
                     ?>
                 </select>
             </div>
