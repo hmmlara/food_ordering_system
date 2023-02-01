@@ -1,5 +1,11 @@
 $(document).ready(function(){
-    $('#category_table .delete').click(function(){
+    $('#cate_table').DataTable();
+    $('#shipping_table').DataTable();
+    $('#product_table').DataTable();
+    $('#cus_table').DataTable();
+
+
+    $('#cate_table .delete').click(function(){
         let message=confirm('Are you sure to delete');
         if(message){
             let tr=$(this).closest('tr');
@@ -35,7 +41,7 @@ $(document).ready(function(){
             let id = $(this).closest('td').attr("id");
 
             $.ajax({
-                url:'delete_shipping.php',
+                url:'delete_product.php',
                 type:'post',
                 data:{id: id},
                 success:function(response){
@@ -54,10 +60,6 @@ $(document).ready(function(){
         }
     })
 })
-
-
-
-
 
 
 

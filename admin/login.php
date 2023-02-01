@@ -4,7 +4,7 @@
     include_once "controller/user_controller.php";
     $userController=new UserController();
     $result=$userController->getUser()[0];
-    // $test='admin123';
+    // $test='su123';
     // var_dump(md5($test));
     // var_dump($result);
     $email=$result['email'];
