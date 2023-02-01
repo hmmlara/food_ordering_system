@@ -1,31 +1,24 @@
 <?php
 session_start();
 
-include_once "includes/connect.php";
+include_once "controller/login_controller.php";
 
+//WHEN USER LOGIN
 if(isset($_POST['loginBtn']))
 {
     $email=trim($_POST['email']);
     $password=md5(trim($_POST['password']));
 
-    $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $user_result = mysqli_query($dbconnection,$query);
-    $user_count = mysqli_num_rows($user_result);
-
-    if($user_count === 1)
+    $loginController = new LoginController();
+    $user_result = $loginController->getUser($email,$password);
+    if($user_result['email'] == $email && $user_result['password'] == $password)
     {
-        $user_array = mysqli_fetch_assoc($user_result);
-        $_SESSION['user_array']=$user_array;
-        header('location:admin-dashboard.php');
+        $_SESSION['user_array']=$user_result;
+        header('location:user.php');
+        
     }
-    else{
-        if(empty($email) || empty($password))
-        {
-            $error= "Invalid Email And Password!";
-        }
-    }
-}
 
+}
 
 
 

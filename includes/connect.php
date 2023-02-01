@@ -1,12 +1,36 @@
 <?php
 
-$dbconnection = mysqli_connect('localhost','root','','login_registration_system');
-
-if(!$dbconnection)
+class Database
 {
-    die('Error'. mysqli_connect_error());
-}
+    private static $host="localhost";
+    private static $dbname="fos";
+    private static $username="root";
+    private static $password="";
+    private static $cont="";
 
+    public static function connect()
+    {
+        if(null == self:: $cont)
+        {
+        try
+        {
+            self::$cont=new PDO("mysql:host=".self::$host.";dbname=".self::$dbname,
+            self::$username,self::$password);
+        }
+        catch(PDOException $e)
+        {
+            die($e->getMessage());
+        }
+        }
+        // echo "Connect in db";
+        return self::$cont;
+    }   
+
+    public static function disconnect()
+    {
+        self::$cont=null;
+    }
+}
 
 
 

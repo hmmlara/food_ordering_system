@@ -1,3 +1,4 @@
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
     
@@ -74,4 +75,4 @@
         <script src="js/custom-general.js"></script>
     </body>
 
-</html>
+</html> --> -->
