@@ -1,6 +1,7 @@
 <?php
     if(isset($_POST['logout'])){
-        unset($_SESSION['admin_login']);
+        // unset($_SESSION['admin_login']);
+        session_destroy();
         echo "<script>
             window.location.href = 'http://localhost/FOS/admin/login.php';
             </script>";

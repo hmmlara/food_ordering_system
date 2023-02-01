@@ -33,7 +33,7 @@ include_once 'controller/shipping_controller.php';
                                             echo "<td>".($row+1)."</td>";
                                             echo "<td>".$shipping[$row]['township']."</td>";
                                             echo "<td>".$shipping[$row]['cost']."</td>";
-                                            echo "<td><a href='edit_shipping.php?id=".$shipping[$row]['id']."' class=' btn-sm btn-info mr-3'>Edit</a><a href='delete_shipping.php?id=".$shipping[$row]['id']."' class=' btn-sm btn-danger delete'>Delete</a></td>";                                           echo "</tr>";
+                                            echo "<td><a href='edit_shipping.php?id=".$shipping[$row]['id']."' class='btn btn-sm btn-info mr-3'>Edit</a><a href='delete_shipping.php?id=".$shipping[$row]['id']."' class='btn btn-sm btn-danger delete'>Delete</a></td>";                                           echo "</tr>";
                                         }
 
 
