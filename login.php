@@ -49,7 +49,7 @@ if(isset($_POST['loginBtn']))
                     </li>
                     <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About</a>
                     </li>
                 </ul> 
             </div>
@@ -81,7 +81,7 @@ if(isset($_POST['loginBtn']))
                                                     <div class="card-title"><a href="login.php" class="text-white" style="text-decoration:none;"><h5>Welcome to Darli</h5></a></div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;"><< Back</a>
+                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;">X</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,9 +143,9 @@ if(isset($_POST['loginBtn']))
         <script src="js/custom-general.js"></script>
     </body>
 
-    <footer class="block footer1 footer text-center">
-            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
-            <p>Ph no : 09 794278148</p>
-    </footer>
+<?php
 
-</html>
+include_once "layouts/footer.php";
+
+
+?>
