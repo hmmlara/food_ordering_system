@@ -4,6 +4,7 @@ $(document).ready(function(){
     $('#product_table').DataTable();
     $('#cus_table').DataTable();
 
+    console.log($('#product_table')); 
 
     $('#cate_table .delete').click(function(){
         let message=confirm('Are you sure to delete');

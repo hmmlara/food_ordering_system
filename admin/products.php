@@ -33,7 +33,7 @@ $results=$categories->getcategories();
                     
                <div class="row my-2">
                 <div class="col-md">
-                    <table class='table table-striped' id="product_table">
+                    <table class='table table-srriped' id="product_table">
                         <thead>
                             <tr>
                                 <th>No</th>
