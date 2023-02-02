@@ -21,8 +21,7 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Phone number</th>
-                                        <th>Created_date</th>
+                                        <th>Created Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,7 +31,6 @@
                                             echo "<td>".$i+1 ."</td>";
                                             echo "<td>".$results[$i]['name']."</td>";
                                             echo "<td>".$results[$i]['email']."</td>";
-                                            echo "<td>".$results[$i]['phone_number']."</td>";
                                             echo "<td>".$results[$i]['created_date']."</td>";
                                             echo "</tr>";
                                         }

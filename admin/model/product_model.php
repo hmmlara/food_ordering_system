@@ -13,7 +13,7 @@ class Products{
 
     }
 
-    public function addProduct($type,$size,$name,$filename,$price,$description){
+    public function addProduct($type,$name,$price,$description,$size,$filename){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $sql="INSERT INTO `products`(`category_id`, `name`, `price`, `description`, `status`, `image`, `created_date`, `updated_date`) VALUES (:cat_id,:name,:price,:description,:status,:image,:created_date,:updated_date)";
@@ -21,11 +21,11 @@ class Products{
         $statement=$this->pdo->prepare($sql);
         $statement->bindParam(":cat_id",$type);
         $statement->bindParam(":name",$name);
-        $statement->bindparam(":image",$filename);
         $statement->bindParam(":price",$price);
         $statement->bindParam(":description",$description);
         $statement->bindParam(":status",$size);
-
+        $statement->bindparam(":image",$filename);
+        
         date_default_timezone_set("Asia/Yangon");
         $date_now=date('Y-m-d H:m:s');
         $statement->bindParam(":created_date",$date_now);

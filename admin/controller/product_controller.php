@@ -7,8 +7,8 @@ class ProductController extends Products{
         return $results;
        }
 
-       public function addProducts($type,$size,$name,$filename,$price,$description){
-        $results=$this->addProduct($type,$size,$name,$filename,$price,$description);
+       public function addProducts($type,$name,$price,$description,$size,$filename){
+        $results=$this->addProduct($type,$name,$price,$description,$size,$filename);
         return $results;
        }
 
@@ -28,7 +28,7 @@ class ProductController extends Products{
        }
 
        public function deleteProduct($id){
-        $result=$this->deletProducts($id);
+        $result=$this->deleteProducts($id);
         return $result;
     }
 }
