@@ -7,8 +7,5 @@ class UserController extends UserModel{
     public function getCustomers(){
         return $this->get_customers();
     }
-    public function getCustomerDetails($id){
-        return $this->get_customer_details($id);
-    }
 }
 ?>

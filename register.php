@@ -1,6 +1,7 @@
 <?php
 
-include_once "includes/connect.php";
+include_once "controller/register_controller.php";
+
 
 if(isset($_POST['registerBtn']))
 {
@@ -26,16 +27,16 @@ if(isset($_POST['registerBtn']))
     else{
         $address_error="Please input address";
     }
-    if(!empty($_POST['phnum']))
+    if(!empty($_POST['phone_number']))
     {
-        $phnum=$_POST['phnum'];
+        $phone_number=$_POST['phone_number'];
     }
     else{
-        $phnum_error="Please input phone number";
+        $phone_number_error="Please input phone number";
     }
     if(!empty($_POST['password']))
     {
-        $password=$_POST['password'];
+        $password=md5($_POST['password']);
     }
     else{
         $password_error="Please input password";
@@ -45,18 +46,19 @@ if(isset($_POST['registerBtn']))
         $password_wrong="Password does not match";
     }
 
+    $registerController = new RegisterController();
+    $userRegister = $registerController->createUser($name,$phone_number,$address,$email,$password);
+
+
     if(!isset($name_error) && !isset($email_error) && !isset($address_error) && !isset($password_error) && !isset($password_wrong))
     {
-        $encryptPassword = md5($password);
-        $query= "INSERT INTO users(name,email,address,password) VALUES('$name','$email','$address','$encryptPassword')";
-        $result = mysqli_query($dbconnection,$query);
-        if($result)
+        
+        // $query= "INSERT INTO users_info(name,email,phone_number,address,password) VALUES('$name','$email','$phone_number','$address','$encryptPassword')";
+        // $result = mysqli_query($dbconnection,$query);
+        if($userRegister)
         {
             // echo "<script>alert('Registration Successful');</script>";
             header('location:login.php');    
-        }
-        else{
-            die('Error'.mysqli_error($query));
         }
     }
     
@@ -82,7 +84,7 @@ if(isset($_POST['registerBtn']))
         <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
-        <title>Darli Register</title>
+        <title>Darli's User</title>
     </head>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
         <button
@@ -140,8 +142,8 @@ if(isset($_POST['registerBtn']))
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Phone Number</label>
-                                                        <input type="number" name="phnum" id="" class="form-control">
-                                                        <i class="text-danger"><?php if(isset($phnum_error)) echo $phnum_error;   ?></i class="text-danger">
+                                                        <input type="number" name="phone_number" id="" class="form-control">
+                                                        <i class="text-danger"><?php if(isset($phone_number_error)) echo $phone_number_error;   ?></i class="text-danger">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="" class="form-label">Password</label>

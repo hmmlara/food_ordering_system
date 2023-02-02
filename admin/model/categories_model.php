@@ -28,10 +28,15 @@ class Categories{
     public function addCat($name,$parent){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql='insert into categories(name,parent) values(:name,:parent)';
+        $sql='insert into categories(name,parent,created_date,updated_date) values(:name,:parent,:created_date,:updated_date)';
         $statement=$this->pdo->prepare($sql);
         $statement->bindParam(":name",$name);
         $statement->bindParam(":parent",$parent);
+
+        date_default_timezone_set("Asia/Yangon");
+        $date_now=date('Y-m-d H:i:s');
+        $statement->bindParam(":created_date",$date_now);
+        $statement->bindParam(":updated_date",$date_now);
 
         if($statement->execute()){
             return true;
@@ -93,6 +98,22 @@ class Categories{
             
         
            }
+
+
+        //    public function getCategoriesPages($page){
+        //     $item_page=5;
+        //         $offset=($page-1) * $item_page;
+        //         $this->cont=Database::connect();
+        //         $this->cont->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            
+        //         $sql="select*from categories limit $offset, $item_page ";
+        //         $statement=$this->cont->prepare($sql);
+        //         $statement->execute();
+               
+        //         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+        //         return $result;
+        
+        //     }
        }
 
 

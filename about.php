@@ -1,7 +1,35 @@
-<?php
-include_once 'layouts/header.php';
-
-?>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/customize.css" />
+        <script src="./js/jquery.min.js"></script>
+        <link rel="icon" href="./img/logo.jpg" />
+        <title>About Darli</title>
+    </head>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
+        <button
+        class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>
     
     <body>
         <div class="maincontent">
@@ -35,6 +63,16 @@ include_once 'layouts/header.php';
                 </div>
             </div>
         </div>
-        <?php
-    include_once 'layouts/footer.php';
-        ?>
+        <footer class="block footer1 footer text-center">
+            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
+            <p>Ph no : 09 794278148</p>
+        </footer>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        <script src="js/custom-general.js"></script>
+    </body>
+
+</html> --> -->
