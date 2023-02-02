@@ -95,18 +95,18 @@ if(isset($_POST['updateBtn']))
         <link rel="icon" href="./img/logo.jpg" />
         <title>Darli SNACKS & DRINKS</title>
     </head>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php?user_id_to_update=<?php echo $_SESSION['user_array']['id'];        ?>"><img class="rounded" src="./img/logo.jpg"></a>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./user.php"><img class="rounded" src="./img/logo.jpg"></a>
         <button
         class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
+                    <li class="nav-item active"> <a class="nav-link text-white" href="./user.php"><h5>Darli</h5></a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./user.php#menu">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./user.php#about">About</a>
                     </li>
                 </ul>
                 <div class="d-flex">
