@@ -33,9 +33,9 @@ if(isset($_POST['loginBtn']))
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
+        <link rel="stylesheet" href="./css/customize.css" />
         <title>Darli Login</title>
     </head>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
@@ -142,5 +142,10 @@ if(isset($_POST['loginBtn']))
         </script>
         <script src="js/custom-general.js"></script>
     </body>
+
+    <footer class="block footer1 footer text-center">
+            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
+            <p>Ph no : 09 794278148</p>
+    </footer>
 
 </html>

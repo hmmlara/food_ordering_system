@@ -34,9 +34,9 @@ $user = $userController->getUser($id);
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
+        <link rel="stylesheet" href="./css/customize.css" />
         <title>Darli SNACKS & DRINKS</title>
     </head>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./user.php"><img class="rounded" src="./img/logo.jpg"></a>
@@ -303,10 +303,6 @@ $user = $userController->getUser($id);
         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </svg></i> <span class="badge badge-notify my-cart-badge"> </span>
         </div>
-        <footer class="block footer1 footer text-center">
-            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
-            <p>Ph no : 09 794278148</p>
-        </footer>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
             AOS.init();
@@ -315,5 +311,10 @@ $user = $userController->getUser($id);
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <script src="js/custom-general.js"></script>
     </body>
+
+    <footer class="block footer1 footer text-center">
+            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
+            <p>Ph no : 09 794278148</p>
+    </footer>
 
 </html>
