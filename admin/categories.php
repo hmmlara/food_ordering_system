@@ -1,10 +1,13 @@
 <?php
 include_once 'layouts/header.php';
+?>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  
+<?php
 include_once 'controller/categories_controller.php';
 
 $categories=new CategoriesController();
-$results=$categories->getcategories();
-
+$results=$categories->getCategories();
 
 ?>
 
@@ -13,19 +16,18 @@ $results=$categories->getcategories();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Add New Categories</h1>
                         
                     </div>
                     <div class="row">
-                        <div class="col-md-8"></div>
                         <div class="col-md-4">
-                            <a href="create_categories.php" class="btn btn-outline-info">Add New Categories</a>
+                            <a href="create_categories.php" class="btn btn-success">Add New Categories</a>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="cate_table">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -38,6 +40,7 @@ $results=$categories->getcategories();
                             <tbody id="category_table">
                                 <form action="" method="post">
                                     <?php
+                                     
                                     for ($row=0; $row < count($results); $row++) { 
                                         echo "<tr>";
                                         echo "<td>".($row+1)."</td>";
@@ -54,7 +57,7 @@ $results=$categories->getcategories();
                                         }
                                         // echo "<td>".$results[$row]['created_date']."</td>";
                                         // echo "<td>".$results[$row]['updated_date']."</td>";
-                                        echo "<td id='".$results[$row]['id']."'><a href='edit_categories.php?id=".$results[$row]['id']."' class=' btn btn-warning mr-3'><i class='far fa-edit'></i></a><a class=' btn btn-danger delete'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "<td id='".$results[$row]['id']."'><a href='edit_categories.php?id=".$results[$row]['id']."' class='btn btn-sm btn-info mr-3'>Edit</a><a class='btn btn-sm btn-danger delete'>Delete</a></td>";
 
                                         echo "</tr>";
                                     }
@@ -63,6 +66,7 @@ $results=$categories->getcategories();
                                     ?>
                                 </form>
                             </tbody>
+                            
 
                
 
@@ -71,7 +75,6 @@ $results=$categories->getcategories();
 
             </div>
             <!-- End of Main Content -->
-
         <?php
         include_once 'layouts/footer.php';
 

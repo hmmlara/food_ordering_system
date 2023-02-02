@@ -21,6 +21,11 @@ class ShippingController extends Shipping{
         $results=$this->addShippings($township,$cost);
         return $results;
     }
+
+    public function deleteShipping($id){
+        $result=$this->deleteShippings($id);
+        return $result;
+    }
 }
 
 

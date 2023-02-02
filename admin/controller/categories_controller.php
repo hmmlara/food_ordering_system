@@ -2,8 +2,8 @@
 include_once __DIR__.'/../model/categories_model.php';
 
 class CategoriesController extends Categories{
-    public function getcategories(){
-        $results=$this->getcategory();
+    public function getCategories(){
+        $results=$this->getCategory();
         return $results;
     }
 
@@ -29,6 +29,12 @@ class CategoriesController extends Categories{
             $result=$this->deleteCat($id);
             return $result;
         }
+
+        // public function getCategoriesPage($page){
+        //     $result=parent::getCategoriesPages($page);
+        //     return $result;
+        //  }
+           
 }
 
 ?>

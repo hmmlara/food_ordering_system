@@ -1,6 +1,11 @@
 <?php
+session_start();
 include_once 'layouts/header.php';
-
+include_once 'controller/user_controller.php';
+if(!isset($_SESSION['admin_login'])){
+    echo "<script>window.location.href='http://localhost/FOS/admin/login.php'</script>";
+}
+// var_dump($_SESSION['admin_login']);
 ?>
 
                 <!-- Begin Page Content -->
