@@ -20,7 +20,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Orders</h1>
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-md-4">
                             <select name="pickup_deli_filter" id="" class="form-control">
                                 <option value="">Select order type</option>
@@ -31,7 +31,7 @@
                         <div class="col-md-4">
                             
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                             
                         <div class="col-md">
