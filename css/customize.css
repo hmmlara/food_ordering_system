@@ -11,4 +11,9 @@ body{
 
 footer{
     margin-top: auto !important;
+<<<<<<< HEAD
+=======
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
 }

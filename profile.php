@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "controller/user_controller.php";
-include_once "includes/connect.php";
+include_once "include/connect.php";
 
 
 if(!isset($_SESSION['user_array']))
@@ -80,6 +80,7 @@ if(isset($_POST['updateBtn']))
 
 
 ?>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     
@@ -136,10 +137,14 @@ if(isset($_POST['updateBtn']))
                         </svg>
                     </div>           
                 </div>
+=======
+<?php
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
 
-            </div>
-    </nav>
-    
+include_once "layouts/header.php";
+
+
+?>    
     <body>
         <div class="container-fluid mt-2 text-dark">
             <div class="row">
@@ -151,7 +156,7 @@ if(isset($_POST['updateBtn']))
                                     <div class="card">
                                         <div class="card-body">
                                             <h6> User Info</h6>
-                                            <div>Name : <?php echo $user['name'];        ?></div>
+                                            <div>Name : <span class="px-1 py-1 bg-success"><?php echo $user['name'];        ?></span></div>
                                             <div>Email : <?php echo $user['email'];        ?></div>
                                             <div>Phone Number : <?php echo $user['phone_number'];        ?></div>
                                             <div>Address : <?php echo $user['address'];        ?></div>
@@ -211,6 +216,7 @@ if(isset($_POST['updateBtn']))
             </div>
         </div>
 
+<<<<<<< HEAD
         <script src="./js/mycart.js"></script>
         <script src="./js/mycart-custom.js"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -226,5 +232,13 @@ if(isset($_POST['updateBtn']))
             <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
             <p>Ph no : 09 794278148</p>
     </footer>
+=======
 
-</html>
+    
+<?php
+
+include_once "layouts/footer.php";
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
+
+
+?>
