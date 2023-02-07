@@ -55,7 +55,7 @@ if(isset($_POST['add'])){
         if(!empty($_POST['description'])){
             $description=$_POST['description'];
         }
-        $result=$products_controller->addProducts($type,$name,$price,$description,$size,$filename);
+        $result=$products_controller->addProducts($type,$size,$name,$filename,$price,$description);
         if($result){
             header('location:products.php');
         }

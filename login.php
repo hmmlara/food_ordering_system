@@ -14,7 +14,7 @@ if(isset($_POST['loginBtn']))
     if($user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
-        header('location:user.php');
+        header('location:index.php');
         
     }
 
@@ -33,9 +33,9 @@ if(isset($_POST['loginBtn']))
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
-        <link rel="stylesheet" href="./css/customize.css" />
         <title>Darli Login</title>
     </head>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
@@ -81,7 +81,7 @@ if(isset($_POST['loginBtn']))
                                                     <div class="card-title"><a href="login.php" class="text-white" style="text-decoration:none;"><h5>Welcome to Darli</h5></a></div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;"><< Back</a>
+                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;">X</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,17 +135,9 @@ if(isset($_POST['loginBtn']))
                 </div>
             </div>
         </div>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
+<?php
 
-    <footer class="block footer1 footer text-center">
-            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
-            <p>Ph no : 09 794278148</p>
-    </footer>
+include_once "layouts/footer.php";
 
-</html>
+
+?>

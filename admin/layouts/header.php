@@ -1,6 +1,7 @@
 <?php
     if(isset($_POST['logout'])){
-        unset($_SESSION['admin_login']);
+        // unset($_SESSION['admin_login']);
+        session_destroy();
         echo "<script>
             window.location.href = 'http://localhost/FOS/admin/login.php';
             </script>";
@@ -28,8 +29,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 
 </head>
 
