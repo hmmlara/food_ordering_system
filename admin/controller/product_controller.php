@@ -7,8 +7,8 @@ class ProductController extends Products{
         return $results;
        }
 
-       public function addProducts($type,$name,$price,$description,$size,$filename){
-        $results=$this->addProduct($type,$name,$price,$description,$size,$filename);
+       public function addProducts($type,$size,$name,$filename,$price,$description){
+        $results=$this->addProduct($type,$size,$name,$filename,$price,$description);
         return $results;
        }
 

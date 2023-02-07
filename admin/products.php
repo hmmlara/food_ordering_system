@@ -21,10 +21,10 @@ $results=$categories->getcategories();
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Products</h1>
                         
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-md-4">
                             <a href="create_product.php" class="btn btn-success">Add New Products</a>
@@ -33,7 +33,7 @@ $results=$categories->getcategories();
                     
                <div class="row my-2">
                 <div class="col-md">
-                    <table class='table table-srriped' id="product_table">
+                    <table class='table table-striped' id="product_table">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -46,7 +46,7 @@ $results=$categories->getcategories();
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="product_table">
                             <?php
                            
 
@@ -65,7 +65,7 @@ $results=$categories->getcategories();
                             echo "<td>".$products[$row]['price']."</td>";
                             echo "<td>".$products[$row]['description']."</td>";
                             echo "<td>".$products[$row]['status']."</td>";
-                            echo "<td><a href='edit_product.php?id=".$products[$row]['id']."' class=' btn btn-sm btn-info mr-3'>Edit</a><a href='delete_product.php?id=".$products[$row]['id']."' class=' btn btn-sm btn-danger delete'>Delete</a></td>";
+                            echo "<td id='".$products[$row]['id']."'><a href='edit_product.php?id=".$products[$row]['id']."' class=' btn btn-sm btn-info mr-3'>Edit</a><a class='btn btn-sm btn-danger' id='delete'>Delete</a></td>";
 
                                         
                             echo "</tr>";

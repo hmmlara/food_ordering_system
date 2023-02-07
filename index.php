@@ -1,47 +1,29 @@
 <?php
 session_start();
-include_once "includes/connect.php";
+include_once "layouts/header.php";
+include_once "controller/user_controller.php";
+include_once "admin/controller/categories_controller.php";
+include_once "admin/controller/product_controller.php";
+
+$categories=new CategoriesController();
+$results=$categories->getCategories();
+
+$products_controller=new ProductController();
+$products=$products_controller->getProducts();
 
 
+
+
+if(isset($_POST['logoutBtn']))
+{
+    session_destroy();
+    header('location:login.php');
+}
 
 
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/style.css" />
-        <script src="./js/jquery.min.js"></script>
-        <link rel="icon" href="./img/logo.jpg" />
-        <link rel="stylesheet" href="./css/customize.css" />
-        <title>Darli SNACKS & DRINKS</title>
-    </head>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img class="rounded" src="./img/logo.jpg"></a>
-        <button
-        class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About</a>
-                    </li>
-                </ul>
-                <div>
-                    <a href="login.php" class="mx-3">Login</a>
-                    <a href="register.php">Register</a>
-                </div>
-            </div>
-    </nav>
     
     <body>
         <div class="block hero1 my-auto" style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
@@ -63,30 +45,116 @@ include_once "includes/connect.php";
             <div class="container">
                 <section id="menu">
                     <div class="block menu1">
-                        <div class="buttons-container"> <a href="#" class="button button--is-active" data-target="pizzaMenu">Pizzas</a>
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">ALL</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">FOODS</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">DRINK</button>
+  </li>
+ 
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+  <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
+                            <div class="row">
+                                 <?php
+                            for($row=0;$row<count($products);$row++){
+                                echo ' <div class="col-md-3 text-center">
+                                    <div class="px-2 my-2">
+                                    <img src="admin/uploads/'.$products[$row]['image'].'"alt="" width="100px" height="150px">
+                                         <h3 class="item__title text-center" style="font-size:23px">'.$products[$row]['name'].'</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">'.$products[$row]['price'].'</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                    data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>
+                                    </div>
+                                </div>';
+                                
+                                } 
+                                                           
+                            
+
+
+                            ?>
+                        </div>
+                               
+                            </div>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+  <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
+                            <div class="row">
+                                 <?php
+                            for($row=0;$row<count($products);$row++){
+                                if($products[$row]["category_id"] == 1){
+                                echo ' <div class="col-md-3 text-center">
+                                    <div class="px-2 my-2">
+                                    <img src="admin/uploads/'.$products[$row]['image'].'"alt="" width="100px" height="150px">
+                                         <h3 class="item__title text-center" style="font-size:23px">'.$products[$row]['name'].'</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">'.$products[$row]['price'].'</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                    data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>
+                                    </div>
+                                </div>';
+                                
+                                } 
+                            }                           
+                            
+
+
+                            ?>
+                        </div>
+                               
+                            </div>
+  </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+  <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
+                            <div class="row">
+                                 <?php
+                            for($row=0;$row<count($products);$row++){
+                                if($products[$row]['category_id']==2){
+                                echo ' <div class="col-md-3 text-center">
+                                    <div class="px-2 my-2">
+                                    <img src="admin/uploads/'.$products[$row]['image'].'"alt="" width="100px" height="150px">
+                                         <h3 class="item__title text-center" style="font-size:23px">'.$products[$row]['name'].'</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">'.$products[$row]['price'].'</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                    data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>
+                                    </div>
+                                </div>';
+                                
+                                } 
+                                                           
+                            }
+
+
+                            ?>
+                        </div>
+                               
+                            </div>
+  </div>
+  
+</div>
+
+
+
+
+
+                        <!-- <div class="buttons-container"> <a href="#" class="button button--is-active" data-target="pizzaMenu">Pizzas</a>
                             <a
                             href="#" class="button" data-target="coffeeMenu">Drinks</a> <a href="#" class="button" data-target="noodlesMenu">Desserts</a>
-                        </div>
-                        <!-- Start Pizza Menu -->
-                        <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
-                            <div class="item row align-items-center">
-                                <div class="col-sm-3 pr-5">
-                                    <img class="product-img" src="./img/pizza-1.png">
-                                </div>
-                                <div class="details col-sm-9">
-                                    <div class="item__header">
-                                         <h3 class="item__title">Cheese Pizza</h3>
-                                        <span class="item__dots"></span>
-                                        <span class="item__price">$15</span>
-                                    </div>
-                                    <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum
-                                        officia eaque nobis ut.</p>
-                                    <button class="btn btn-sm btn-outline-primary my-cart-btn"
-                                    data-id="1" data-name="Cheese Pizza" data-price="15" data-quantity="1"
-                                    data-image="./img/pizza-1.png">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="item row align-items-center">
+                        </div> -->
+                            
+                            <!-- <div class="item row align-items-center">
                                 <div class="col-sm-3 pr-5">
                                     <img class="product-img" src="./img/pizza-2.png">
                                 </div>
@@ -118,9 +186,9 @@ include_once "includes/connect.php";
                                     <button class="btn btn-sm btn-outline-primary my-cart-btn"
                                     data-id="3" data-name="Classic Pizza" data-price="20" data-quantity="1"
                                     data-image="./img/pizza-3.png">Add to cart</button>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="item row align-items-center">
+                            <!-- <div class="item row align-items-center">
                                 <div class="col-sm-3 pr-5">
                                     <img class="product-img" src="./img/pizza-4.png">
                                 </div>
@@ -136,11 +204,11 @@ include_once "includes/connect.php";
                                     data-id="4" data-name="Country Pizza" data-price="17" data-quantity="1"
                                     data-image="./img/pizza-4.png">Add to cart</button>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- End Pizza Menu -->
                         <!-- Start Coffee Menu -->
-                        <div class="menu" id="coffeeMenu">
+                        <!-- <div class="menu" id="coffeeMenu">
                             <div class="item">
                                 <div class="item__header">
                                      <h3 class="item__title">Cappuccino</h3>
@@ -177,10 +245,10 @@ include_once "includes/connect.php";
                                 <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum
                                     officia eaque nobis ut.</p>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- End Coffee Menu -->
                         <!-- Start Noodles Menu -->
-                        <div class="menu" id="noodlesMenu">
+                        <!-- <div class="menu" id="noodlesMenu">
                             <div class="item">
                                 <div class="item__header">
                                      <h3 class="item__title">Chicken Noodles</h3>
@@ -217,7 +285,7 @@ include_once "includes/connect.php";
                                 <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum
                                     officia eaque nobis ut.</p>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- End Noodles Menu -->
                     </div>
                     <!-- End block -->
@@ -257,22 +325,12 @@ include_once "includes/connect.php";
                 </div>
             </div>
         </div>
-        <!-- <div class="nav-item my-cart-icon">
+        <div class="nav-item my-cart-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
         </svg></i> <span class="badge badge-notify my-cart-badge"> </span>
-        </div> -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
+        </div>
+       <?php
+       include_once 'layouts/footer.php';
 
-    <footer class="block footer1 footer text-center">
-            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
-            <p>Ph no : 09 794278148</p>
-    </footer>
-
-</html>
+       ?>

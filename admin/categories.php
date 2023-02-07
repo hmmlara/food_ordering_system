@@ -15,10 +15,10 @@ $results=$categories->getCategories();
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Add New Categories</h1>
                         
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-md-4">
                             <a href="create_categories.php" class="btn btn-success">Add New Categories</a>

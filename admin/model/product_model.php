@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__.'/../includes/db.php';
+include_once __DIR__.'/../../includes/connect.php';
 class Products{
     private $pdo;
     public function getProduct(){
@@ -13,7 +13,7 @@ class Products{
 
     }
 
-    public function addProduct($type,$name,$price,$description,$size,$filename){
+    public function addProduct($type,$size,$name,$filename,$price,$description){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $sql="INSERT INTO `products`(`category_id`, `name`, `price`, `description`, `status`, `image`, `created_date`, `updated_date`) VALUES (:cat_id,:name,:price,:description,:status,:image,:created_date,:updated_date)";
@@ -21,11 +21,11 @@ class Products{
         $statement=$this->pdo->prepare($sql);
         $statement->bindParam(":cat_id",$type);
         $statement->bindParam(":name",$name);
+        $statement->bindparam(":image",$filename);
         $statement->bindParam(":price",$price);
         $statement->bindParam(":description",$description);
         $statement->bindParam(":status",$size);
-        $statement->bindparam(":image",$filename);
-        
+
         date_default_timezone_set("Asia/Yangon");
         $date_now=date('Y-m-d H:m:s');
         $statement->bindParam(":created_date",$date_now);
@@ -84,16 +84,29 @@ class Products{
         try{
             $this->pdo=Database::connect();
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $sql_img = 'select image from products where id=:id';
+            $statement_img = $this->pdo->prepare($sql_img);
+            $statement_img->bindParam(":id",$id);
+            $statement_img->execute();
+            $imgfile = $statement_img->fetch(PDO::FETCH_ASSOC)['image'];
+            
             $sql="delete from products where id=:id";
             $statement=$this->pdo->prepare($sql);
             $statement->bindparam(":id",$id);
-            return $statement->execute();
+            
+            if(file_exists('uploads/'.$imgfile)){
+                if($statement->execute()){
+                    unlink('uploads/'.$imgfile);
+                    return true;
+                }
+            }
+
+            return false;
            }
            catch(PDOException $e){
             return false;
            }
     }
-
 
 
     }

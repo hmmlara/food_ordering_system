@@ -21,7 +21,7 @@ if(isset($_POST['update'])){
     $temfile=$_FILES['image']['tmp_name'];
     if($_FILES['image']['error']!=0)
     {
-        $filename['image']=$products['image'];
+       // $filename['image']=$products['image'];
     }
     else
     {
@@ -79,15 +79,15 @@ if(isset($_POST['update'])){
                            <div class="my-2">
                             <select name="type" id="" class="form-control">
                                 <?php
-                                for ($row=0; $row <count($products) ; $row++) { 
-                                    if($products[$row]['category_id']=$results[$row]['id']){
+                                for ($row=0; $row <count($results) ; $row++) { 
+                                    if($results[$row]['parent']==0){
                                         echo "<option vlaue='".$results[$row]['id']."' selected>".$results[$row]['name']."</option>";
                                     }
-                                    else{
-                                        echo "<option vlaue='".$results[$row]['id']."'>".$results[$row]['name']."</option>";
+                                    // else{
+                                    //     echo "<option vlaue='".$results[$row]['id']."'>".$results[$row]['name']."</option>";
                                     
 
-                                    }
+                                    // }
                                     
                                 }
                                 ?>

@@ -3,10 +3,10 @@
 include_once 'controller/product_controller.php';
 
 $products_controller=new ProductController();
-$id=$_GET['id'];
+$id=$_POST['id'];
 $result=$products_controller->deleteProduct($id);
 if($result){
-    header('location:products.php');
+    echo 'success';
 }
 else{
     echo 'fail';

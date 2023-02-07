@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__.'/../includes/db.php';
+include_once __DIR__.'/../../includes/connect.php';
 
 class Shipping{
     private $pdo;
