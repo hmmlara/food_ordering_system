@@ -14,7 +14,7 @@ if(isset($_POST['loginBtn']))
     if($user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
-        header('location:user.php');
+        header('location:index.php');
         
     }
 

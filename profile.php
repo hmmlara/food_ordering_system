@@ -49,7 +49,7 @@ if(isset($_POST['updateBtn']))
     {
         $_SESSION['expire_time'] = time() + (0.1 * 60);
         $_SESSION['success_msg'] = "<script>swal('Good job!', 'Successfully Updated!', 'success');</script>";
-        header('location:user.php');
+        header('location:profile.php');
 
     }
 
@@ -89,37 +89,25 @@ if(isset($_POST['updateBtn']))
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/customize.css" />
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
+        <link rel="stylesheet" href="./css/customize.css" />
         <title>Darli SNACKS & DRINKS</title>
     </head>
-<<<<<<< HEAD
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php?user_id_to_update=<?php echo $_SESSION['user_array']['id'];        ?>"><img class="rounded" src="./img/logo.jpg"></a>
-=======
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./user.php"><img class="rounded" src="./img/logo.jpg"></a>
->>>>>>> c0a11452164857ddee8f948f04d48a4e252dc1a0
         <button
         class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-<<<<<<< HEAD
-                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
-=======
                     <li class="nav-item active"> <a class="nav-link text-white" href="./user.php"><h5>Darli</h5></a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./user.php#menu">Today's Menu</a>
+                    <!-- <li class="nav-item"> <a class="nav-link text-white" href="./profile.php#about">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./user.php#about">About</a>
->>>>>>> c0a11452164857ddee8f948f04d48a4e252dc1a0
-                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./profile.php#about">About</a>
+                    </li> -->
                 </ul>
                 <div class="d-flex">
                     <div class="dropdown">
@@ -135,7 +123,7 @@ if(isset($_POST['updateBtn']))
                             <li><a class="dropdown-item" href="#">My Orders</a></li>
                             <li>
                                 <a class="dropdown-item" href="#">
-                                    <form action="admin-dashboard.php" method="post">
+                                    <form action="login.php" method="post">
                                         <button type="submit" class="btn btn-danger btn-sm float-end" name="logoutBtn" onclick="return confirm('Are you sure to logout?')">Logout</button>
                                     </form>  
                                 </a>
@@ -165,6 +153,7 @@ if(isset($_POST['updateBtn']))
                                             <h6> User Info</h6>
                                             <div>Name : <?php echo $user['name'];        ?></div>
                                             <div>Email : <?php echo $user['email'];        ?></div>
+                                            <div>Phone Number : <?php echo $user['phone_number'];        ?></div>
                                             <div>Address : <?php echo $user['address'];        ?></div>
                                             <div>Password : <?php echo $user['password'];        ?></div>
                                             <a href="profile.php?user_id_to_update=<?php echo $_SESSION['user_array']['id'];        ?>" class="btn btn-primary btn-sm" name="editBtn">Edit Your Profile</a>
@@ -222,12 +211,6 @@ if(isset($_POST['updateBtn']))
             </div>
         </div>
 
-
-
-        <footer class="block footer1 footer text-center">
-            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
-            <p>Ph no : 09 794278148</p>
-        </footer>
         <script src="./js/mycart.js"></script>
         <script src="./js/mycart-custom.js"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -238,5 +221,10 @@ if(isset($_POST['updateBtn']))
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <script src="js/custom-general.js"></script>
     </body>
+    
+    <footer class="block footer1 footer text-center">
+            <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
+            <p>Ph no : 09 794278148</p>
+    </footer>
 
 </html>

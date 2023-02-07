@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__."/../includes/db.php";
+require_once __DIR__."/../includes/connect.php";
 
 
 class OrderModel{
@@ -14,7 +14,15 @@ class OrderModel{
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC); 
     }
-    
+    public function get_order_details($id){
+        $this->pdo=Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $query="select * from order_details where order_id=:id";
+        $statement=$this->pdo->prepare($query);
+        $statement->bindParam(":id",$id);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
     
 
