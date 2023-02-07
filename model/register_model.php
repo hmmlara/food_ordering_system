@@ -1,5 +1,5 @@
 <?php
-include_once "includes/connect.php";
+include_once "include/connect.php";
 
 class Register
 {

@@ -3,7 +3,7 @@
     include_once "controller/order_controller.php";
     $id=$_GET['id'];
     $order=new OrderController();
-    // $order_details=$order->
+    $order_details=$order->getOrderDetails($id);
 ?>
 
 
@@ -25,11 +25,11 @@
                         </div>
                     </div> -->
                     <div class="row">
-                            
-                        <div class="col-md">
-                            
-                            
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+
                         </div>
+                        <div class="col-md-4"></div>
                     </div>
 
                 </div>

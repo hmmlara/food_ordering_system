@@ -14,7 +14,7 @@ if(isset($_POST['loginBtn']))
     if($user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
-        header('location:user.php');
+        header('location:index.php');
         
     }
 
@@ -81,7 +81,7 @@ if(isset($_POST['loginBtn']))
                                                     <div class="card-title"><a href="login.php" class="text-white" style="text-decoration:none;"><h5>Welcome to Darli</h5></a></div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;"><< Back</a>
+                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;">X</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,12 +135,9 @@ if(isset($_POST['loginBtn']))
                 </div>
             </div>
         </div>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
+<?php
 
-</html>
+include_once "layouts/footer.php";
+
+
+?>
