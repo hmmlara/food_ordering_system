@@ -3,7 +3,11 @@
     include_once "controller/order_controller.php";
     $id=$_GET['id'];
     $order=new OrderController();
+<<<<<<< HEAD
     // $order_details=$order->
+=======
+    $order_details=$order->getOrderDetails($id);
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
 ?>
 
 
@@ -25,11 +29,19 @@
                         </div>
                     </div> -->
                     <div class="row">
+<<<<<<< HEAD
                             
                         <div class="col-md">
                             
                             
                         </div>
+=======
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-4"></div>
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                     </div>
 
                 </div>

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 session_start();
 include_once "layouts/header.php";
 include_once "controller/user_controller.php";
@@ -25,6 +26,11 @@ if(isset($_POST['logoutBtn']))
 ?>
 
     
+=======
+    include_once "layouts/header.php";
+?>
+
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
     <body>
         <div class="block hero1 my-auto" style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
             <div class="container-fluid text-center">
@@ -152,8 +158,82 @@ if(isset($_POST['logoutBtn']))
                         <!-- <div class="buttons-container"> <a href="#" class="button button--is-active" data-target="pizzaMenu">Pizzas</a>
                             <a
                             href="#" class="button" data-target="coffeeMenu">Drinks</a> <a href="#" class="button" data-target="noodlesMenu">Desserts</a>
+<<<<<<< HEAD
                         </div> -->
                             
+=======
+                        </div>
+                        <!-- Start Pizza Menu -->
+                        <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
+                            <div class="row">
+                                <div class="col-md-2 text-center">
+                                    <div class="px-2">
+                                    <img class="product-img" src="./img/pizza-2.png">
+                                         <h3 class="item__title text-center">Hot Pastrami</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">$25</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
+                                    data-image="./img/pizza-2.png">Add to cart</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="px-2">
+                                    <img class="product-img" src="./img/pizza-2.png">
+                                         <h3 class="item__title text-center">Hot Pastrami</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">$25</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
+                                    data-image="./img/pizza-2.png">Add to cart</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="px-2">
+                                    <img class="product-img" src="./img/pizza-2.png">
+                                         <h3 class="item__title text-center">Hot Pastrami</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">$25</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
+                                    data-image="./img/pizza-2.png">Add to cart</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="px-2">
+                                    <img class="product-img" src="./img/pizza-2.png">
+                                         <h3 class="item__title text-center">Hot Pastrami</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">$25</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
+                                    data-image="./img/pizza-2.png">Add to cart</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="px-2">
+                                    <img class="product-img" src="./img/pizza-2.png">
+                                         <h3 class="item__title text-center">Hot Pastrami</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">$25</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
+                                    data-image="./img/pizza-2.png">Add to cart</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="px-2">
+                                    <img class="product-img" src="./img/pizza-2.png">
+                                         <h3 class="item__title text-center">Hot Pastrami</h3>
+                                        <!-- <span class="item__dots"></span> -->
+                                        <p class="item__price text-center">$25</p>
+                                        <button class=" btn btn-outline-primary my-cart-btn"
+                                    data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
+                                    data-image="./img/pizza-2.png">Add to cart</button>
+                                    </div>
+                                </div>
+                            </div>
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                             <!-- <div class="item row align-items-center">
                                 <div class="col-sm-3 pr-5">
                                     <img class="product-img" src="./img/pizza-2.png">
@@ -325,6 +405,7 @@ if(isset($_POST['logoutBtn']))
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="nav-item my-cart-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -334,3 +415,9 @@ if(isset($_POST['logoutBtn']))
        include_once 'layouts/footer.php';
 
        ?>
+=======
+
+        <?php
+            include_once "layouts/footer.php";
+        ?>
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0

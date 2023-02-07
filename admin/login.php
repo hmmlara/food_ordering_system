@@ -1,5 +1,25 @@
 <?php
+<<<<<<< HEAD
 session_start();
+=======
+    session_start();
+    //  session_destroy();
+    include_once "controller/user_controller.php";
+    $userController=new UserController();
+    $result=$userController->getUser()[0];
+    // $test='su123';
+    // var_dump(md5($test));
+    // var_dump($result);
+    $email=$result['email'];
+        $password=$result['password'];
+        // var_dump($password);
+    if(isset($_POST['submit'])){
+        
+        if($email == $_POST['email'] && $password == md5($_POST['password'])){
+            echo "<script>
+            window.location.href='http://localhost/FOS/admin/index.php'
+            </script>";
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
 
 include_once "controller/login_controller.php";
 

@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 include_once "includes/connect.php";
+=======
+include_once "include/connect.php";
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
 
 class Register
 {

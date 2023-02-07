@@ -28,7 +28,7 @@ class ProductController extends Products{
        }
 
        public function deleteProduct($id){
-        $result=$this->deleteProducts($id);
+        $result=$this->deletProducts($id);
         return $result;
     }
 }

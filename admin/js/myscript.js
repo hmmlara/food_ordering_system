@@ -4,6 +4,10 @@ $(document).ready(function(){
     $('#product_table').DataTable();
     $('#cus_table').DataTable();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
     $('#cate_table .delete').click(function(){
         let message=confirm('Are you sure to delete');
         if(message){
