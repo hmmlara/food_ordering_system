@@ -14,7 +14,7 @@ if(isset($_POST['loginBtn']))
     if($user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
-        header('location:user.php');
+        header('location:index.php');
         
     }
 
@@ -33,9 +33,9 @@ if(isset($_POST['loginBtn']))
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
-        <link rel="stylesheet" href="./css/customize.css" />
         <title>Darli Login</title>
     </head>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
@@ -49,7 +49,7 @@ if(isset($_POST['loginBtn']))
                     </li>
                     <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
                     </li>
                 </ul> 
             </div>
@@ -135,14 +135,6 @@ if(isset($_POST['loginBtn']))
                 </div>
             </div>
         </div>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
-
 <?php
 
 include_once "layouts/footer.php";

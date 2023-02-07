@@ -176,13 +176,6 @@ if(isset($_POST['registerBtn']))
             </div>
         </div>
 
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
 
 <?php
 
