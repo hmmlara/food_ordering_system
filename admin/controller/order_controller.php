@@ -8,5 +8,8 @@ class OrderController extends OrderModel{
     public function getOrderDetails($id){
         return $this->get_order_details($id);
     }
+    public function getOrderTypeFilter(){
+        return $this->get_order_type_filter();
+    }
 }
 ?>
