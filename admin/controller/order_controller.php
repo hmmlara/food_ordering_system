@@ -12,5 +12,8 @@ class OrderController extends OrderModel{
         $results=parent::countOrders();
         return $results;
     }
+    public function getOrderTypeFilter(){
+        return $this->get_order_type_filter();
+    }
 }
 ?>

@@ -1,9 +1,13 @@
 <?php
+<<<<<<< HEAD
+session_start();
+=======
     if(!isset($_SESSION)) 
     { 
         session_start(); 
     } 
 
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
 include_once "controller/user_controller.php";
 
 
@@ -63,7 +67,11 @@ if(isset($_POST['logoutBtn']))
                     </button>
                     <ul class='dropdown-menu'>
                             <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
+<<<<<<< HEAD
+                            <li><a class='dropdown-item' href='#'>My Orders</a></li>
+=======
                             <li><a class='dropdown-item' href='myorders.php'>My Orders</a></li>
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
                             <li>
                                 <a class='dropdown-item' href='#'>
                                     <form action='' method='post'>
@@ -72,6 +80,9 @@ if(isset($_POST['logoutBtn']))
                                 </a>
                             </li>
                         </ul>
+<<<<<<< HEAD
+                        </div>";
+=======
                         </div>
                         <div class='mt-2 mx-3'>
                         <a href='myorders.php'>
@@ -80,6 +91,7 @@ if(isset($_POST['logoutBtn']))
                             </svg>
                         </a>
                     </div>";
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
                     }
                     else{
                         echo "<div>
@@ -92,3 +104,22 @@ if(isset($_POST['logoutBtn']))
             </div>
     </nav>
     
+<<<<<<< HEAD
+    <body>
+        <div class="block hero1 my-auto" style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
+            <div class="container-fluid text-center">
+                 <h1 class="display-2 text-white" data-aos="fade-up" data-aos-duration="1000"
+                data-aos-offset="0">Darli SNACKS & DRINKS</h1>
+                <p class="lead text-white" data-aos="fade-up" data-aos-duration="1000"
+                data-aos-delay="600">We are closed for the moment, but we will still deliver food at your place!</p>
+                <a
+                href="#menu" class="btn-text lead d-inline-block text-white border-top border-bottom mt-4 pt-1 pb-1"
+                data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">View Today's Menu</a>
+                <a
+                href="#about" class="btn-text lead d-inline-block text-white border-top border-bottom mt-4 pt-1 pb-1"
+                data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">About</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+=======
+>>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
