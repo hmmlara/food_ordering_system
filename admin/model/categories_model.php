@@ -114,6 +114,16 @@ class Categories{
         //         return $result;
         
         //     }
+
+        public function countCategories(){
+            $this->pdo = Database::connect();
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT COUNT(*) FROM `categories` WHERE id!=1 AND id!=2;";
+            $statement=$this->pdo->prepare($sql);
+            $statement->execute();
+            $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+            return $results;
+        }
        }
 
 

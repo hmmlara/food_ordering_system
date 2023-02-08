@@ -8,5 +8,9 @@ class OrderController extends OrderModel{
     public function getOrderDetails($id){
         return $this->get_order_details($id);
     }
+    public function countOrders(){
+        $results=parent::countOrders();
+        return $results;
+    }
 }
 ?>
