@@ -7,5 +7,9 @@ class UserController extends UserModel{
     public function getCustomers(){
         return $this->get_customers();
     }
+    public function countCustomers(){
+        $results=parent::countCustomers();
+        return $results;
+    }
 }
 ?>

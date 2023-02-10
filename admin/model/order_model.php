@@ -14,7 +14,26 @@ class OrderModel{
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC); 
     }
+
+    public function countOrders(){
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT COUNT(*) FROM orders;";
+        $statement=$this->pdo->prepare($sql);
+        $statement->execute();
+        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
     
+    public function get_order_details($id){
+        $this->pdo=Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $query="select * from order_details where order_id=:id";
+        $statement=$this->pdo->prepare($query);
+        $statement->bindParam(":id",$id);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
     
 

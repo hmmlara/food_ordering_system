@@ -19,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Food Order Management System</title>
+    <title>Food Ordering System</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,9 +29,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 
 </head>
 
@@ -48,7 +48,7 @@
                 <div class="sidebar-brand-icon">
                     <img src="img/logo.jpg" alt="" class='w-100' height="50px">
                 </div>
-                <div class="sidebar-brand-text mx-3">FOMS</div>
+                <div class="sidebar-brand-text mx-3">FOS</div>
             </a>
 
             <!-- Divider -->

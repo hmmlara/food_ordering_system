@@ -21,5 +21,15 @@ class UserModel{
         $results=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+
+    public function countCustomers(){
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT COUNT(*) FROM users_info;";
+        $statement=$this->pdo->prepare($sql);
+        $statement->execute();
+        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
 }
 ?>
