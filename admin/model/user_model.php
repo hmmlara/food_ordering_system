@@ -6,7 +6,7 @@ class UserModel{
     public function get_user(){
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql = "select * from users";
+        $sql = "select * from users order by id DESC";
         $statement=$this->pdo->prepare($sql);
         $statement->execute();
         $results=$statement->fetchAll(PDO::FETCH_ASSOC);
@@ -15,7 +15,7 @@ class UserModel{
     public function get_customers(){
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql = "select * from users_info";
+        $sql = "select * from users_info order by id DESC";
         $statement=$this->pdo->prepare($sql);
         $statement->execute();
         $results=$statement->fetchAll(PDO::FETCH_ASSOC);

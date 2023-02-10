@@ -1,13 +1,9 @@
 <?php
-<<<<<<< HEAD
-session_start();
-=======
     if(!isset($_SESSION)) 
     { 
         session_start(); 
     } 
 
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
 include_once "controller/user_controller.php";
 
 
@@ -67,11 +63,7 @@ if(isset($_POST['logoutBtn']))
                     </button>
                     <ul class='dropdown-menu'>
                             <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
-<<<<<<< HEAD
-                            <li><a class='dropdown-item' href='#'>My Orders</a></li>
-=======
                             <li><a class='dropdown-item' href='myorders.php'>My Orders</a></li>
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
                             <li>
                                 <a class='dropdown-item' href='#'>
                                     <form action='' method='post'>
@@ -80,9 +72,6 @@ if(isset($_POST['logoutBtn']))
                                 </a>
                             </li>
                         </ul>
-<<<<<<< HEAD
-                        </div>";
-=======
                         </div>
                         <div class='mt-2 mx-3'>
                         <a href='myorders.php'>
@@ -90,8 +79,12 @@ if(isset($_POST['logoutBtn']))
                             <path d='M2.522 5H2a.5.5 0 0 0-.494.574l1.372 9.149A1.5 1.5 0 0 0 4.36 16h7.278a1.5 1.5 0 0 0 1.483-1.277l1.373-9.149A.5.5 0 0 0 14 5h-.522A5.5 5.5 0 0 0 2.522 5zm1.005 0a4.5 4.5 0 0 1 8.945 0H3.527zm9.892 1-1.286 8.574a.5.5 0 0 1-.494.426H4.36a.5.5 0 0 1-.494-.426L2.58 6h10.838z'/>
                             </svg>
                         </a>
+                    </div> 
+                    <div class='nav-item my-cart-icon'>
+                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-cart3' viewBox='0 0 16 16'>
+                    <path d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/>
+                    </svg></i> <span class='badge badge-notify my-cart-badge'> </span>
                     </div>";
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
                     }
                     else{
                         echo "<div>
@@ -104,22 +97,3 @@ if(isset($_POST['logoutBtn']))
             </div>
     </nav>
     
-<<<<<<< HEAD
-    <body>
-        <div class="block hero1 my-auto" style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
-            <div class="container-fluid text-center">
-                 <h1 class="display-2 text-white" data-aos="fade-up" data-aos-duration="1000"
-                data-aos-offset="0">Darli SNACKS & DRINKS</h1>
-                <p class="lead text-white" data-aos="fade-up" data-aos-duration="1000"
-                data-aos-delay="600">We are closed for the moment, but we will still deliver food at your place!</p>
-                <a
-                href="#menu" class="btn-text lead d-inline-block text-white border-top border-bottom mt-4 pt-1 pb-1"
-                data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">View Today's Menu</a>
-                <a
-                href="#about" class="btn-text lead d-inline-block text-white border-top border-bottom mt-4 pt-1 pb-1"
-                data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200">About</a>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-=======
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
