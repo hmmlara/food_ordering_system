@@ -20,11 +20,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Orders</h1>
-<<<<<<< HEAD
                     <!-- <div class="row">
-=======
-                    <div class="row">
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                         <div class="col-md-4">
                             <select name="pickup_deli_filter" id="" class="form-control">
                                 <option value="">Select order type</option>
@@ -35,11 +31,7 @@
                         <div class="col-md-4">
                             
                         </div>
-<<<<<<< HEAD
                     </div> -->
-=======
-                    </div>
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                     <div class="row">
                             
                         <div class="col-md">
@@ -50,12 +42,8 @@
                                         <th>No</th>
                                         <th>Order No</th>
                                         <th>Customer name</th>
-<<<<<<< HEAD
                                         <th>Pick up</th>
                                         <th>Delivery</th>
-=======
-                                        <th colspan="2" class="text-center">Order type</th>
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                                         <th>Order date</th>
                                         <th>Action</th>
                                     </tr>
@@ -68,20 +56,12 @@
                                             echo "<td>od-".$results[$i]['id']."</td>";
                                             echo "<td>".$results[$i]['cus_name']."</td>";
                                             if($results[$i]['delivery_id']==1){
-<<<<<<< HEAD
                                                 echo "<td><i class='fa fa-check'></i></td>";
-=======
-                                                echo "<td>Delivery man</td>";
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                                                 echo "<td>-</td>";
                                             }
                                             if($results[$i]['delivery_id']==2){
                                                 echo "<td>-</td>";
-<<<<<<< HEAD
                                                 echo "<td><i class='fa fa-check'></i></td>";
-=======
-                                                echo "<td>Pick up</td>";
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
                                             }
                                             // echo "<td>".$results[$i][end( explode('-',$results[$i]['status']))]."</td>";
                                             echo "<td>".$results[$i]['created_date']."</td>";

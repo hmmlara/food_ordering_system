@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-include_once __DIR__."/../includes/connect.php";
-=======
-include_once __DIR__."/../include/connect.php";
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
+include_once __DIR__."include/connect.php";
 
 class User
 {

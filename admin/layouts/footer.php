@@ -41,6 +41,7 @@
     
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script src="js/myscript.js"></script>
+    <script src="js/img.js"></script>
 
 </body>
 

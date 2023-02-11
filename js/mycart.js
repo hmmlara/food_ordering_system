@@ -27,7 +27,7 @@
       return options;
     }
 
-    objToReturn.getOptions = getOptions;
+    objToReturn.getOptions = getOptions;``
     return objToReturn;
   }());
 
@@ -167,15 +167,25 @@
         '<div class="modal fade" id="' + idCartModal + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
         '<div class="modal-dialog" role="document">' +
         '<div class="modal-content">' +
-        '<div class="modal-header">' +
+        '<div class="modal-header text-dark"> &nbsp; Darli' +
+        '<h5 class="modal-title" id="myModalLabel"> &nbsp; My Orders</h5>' +
         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-        '<h5 class="modal-title" id="myModalLabel"> &nbsp; My Cart</h5>' +
         '</div>' +
+        `<div class="text-dark mt-3 text-center">
+        <input type="radio" name="paytype" value="cash" id="" class="ml-3">
+        <label for="" class="form-label">Cash</label>
+        <input type="radio" name="paytype" value="mbanking" id="" class="ml-3">
+        <label for="" class="form-label">mBanking</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+        <input type="radio" name="deliverytype" value="pickup" id="" class="ml-3">
+        <label for="" class="form-label">Pickup</label>
+        <input type="radio" name="deliverytype" value="deliverymen" id="" class="ml-3">
+        <label for="" class="form-label">Delivery</label>
+        </div>` +
         '<div class="modal-body">' +
         '<table class="table table-hover table-responsive" id="' + idCartTable + '"></table>' +
         '</div>' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+        '<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>' +
         '<button type="button" class="btn btn-primary" id="' + idCheckoutCart + '">Checkout</button>' +
         '</div>' +
         '</div>' +
@@ -183,6 +193,15 @@
         '</div>'
       );
     }
+
+    // close modal
+    $('#close').click(function(){
+        $('#'+ idCartModal).modal('hide');
+    });
+    $('.close').click(function(){
+      $('#'+ idCartModal).modal('hide');
+    });
+    // close modal
 
     var drawTable = function(){
       var $cartTable = $("#" + idCartTable);
