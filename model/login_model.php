@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__."/../include/connect.php";
+include_once __DIR__."include/connect.php";
 
 class Login
 {

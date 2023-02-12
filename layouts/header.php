@@ -1,3 +1,4 @@
+
 <?php
     if(!isset($_SESSION)) 
     { 
@@ -17,7 +18,6 @@ if(isset($_POST['logoutBtn']))
 
 
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +63,7 @@ if(isset($_POST['logoutBtn']))
                     </button>
                     <ul class='dropdown-menu'>
                             <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
-                            <li><a class='dropdown-item' href='myorders.php'>My Orders</a></li>
+                            <li><a class='dropdown-item' href='#'>My Orders</a></li>
                             <li>
                                 <a class='dropdown-item' href='#'>
                                     <form action='' method='post'>
@@ -72,6 +72,7 @@ if(isset($_POST['logoutBtn']))
                                 </a>
                             </li>
                         </ul>
+
                         </div>
                         <div class='mt-2 mx-3'>
                         <a href='myorders.php'>
@@ -80,6 +81,7 @@ if(isset($_POST['logoutBtn']))
                             </svg>
                         </a>
                     </div>";
+
                     }
                     else{
                         echo "<div>
@@ -91,4 +93,3 @@ if(isset($_POST['logoutBtn']))
                 
             </div>
     </nav>
-    

@@ -27,7 +27,7 @@
       return options;
     }
 
-    objToReturn.getOptions = getOptions;
+    objToReturn.getOptions = getOptions;``
     return objToReturn;
   }());
 
@@ -185,7 +185,7 @@
         '<table class="table table-hover table-responsive" id="' + idCartTable + '"></table>' +
         '</div>' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+        '<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>' +
         '<button type="button" class="btn btn-primary" id="' + idCheckoutCart + '">Checkout</button>' +
         '</div>' +
         '</div>' +
@@ -193,6 +193,15 @@
         '</div>'
       );
     }
+
+    // close modal
+    $('#close').click(function(){
+        $('#'+ idCartModal).modal('hide');
+    });
+    $('.close').click(function(){
+      $('#'+ idCartModal).modal('hide');
+    });
+    // close modal
 
     var drawTable = function(){
       var $cartTable = $("#" + idCartTable);

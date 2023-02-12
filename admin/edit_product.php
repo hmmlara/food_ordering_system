@@ -21,7 +21,7 @@ if(isset($_POST['update'])){
     $temfile=$_FILES['image']['tmp_name'];
     if($_FILES['image']['error']!=0)
     {
-        $filename['image']=$products['image'];
+       $filename=$result['image'];
     }
     else
     {
@@ -79,8 +79,8 @@ if(isset($_POST['update'])){
                            <div class="my-2">
                             <select name="type" id="" class="form-control">
                                 <?php
-                                for ($row=0; $row <count($products) ; $row++) { 
-                                    if($products[$row]['category_id']=$results[$row]['id']){
+                                for ($row=0; $row <count($results) ; $row++) { 
+                                    if($results[$row]['parent']==0){
                                         echo "<option vlaue='".$results[$row]['id']."' selected>".$results[$row]['name']."</option>";
                                     }
                                     else{
@@ -96,13 +96,15 @@ if(isset($_POST['update'])){
                            </div>
                            <div class="my-2">
                             <label for="" class="form-label">Name</label>
-                            <input type="text" name="name" id="" class="form-control" value="<?php echo $result['name']; ?>">
+                            <input type="text" name="name" class="form-control" value="<?php echo $result['name']; ?>">
 
                            </div>
+                          
                            <div class="my-2">
+                           <img src="uploads/<?php echo $result['image'];?>" height="100" id="img">
                             <label for="" class="form-label">Image</label>
-                            <input type="file" name="image" id="" class="form-control" value="<?php echo $result['image']; ?>">
-                           </div>
+                            <input type="file" name="image" id="input" class="form-control" onchange="file_changed()" >                    
+                            </div>
                           
                            <div class="my-2">
                             <label for="" class="form-label">Price</label>
@@ -127,3 +129,7 @@ if(isset($_POST['update'])){
                     </div>
                     <div class="col-md-3"></div>
                 </div> 
+
+<?php
+    include_once 'layouts/footer.php';
+?>

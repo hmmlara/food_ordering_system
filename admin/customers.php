@@ -3,7 +3,7 @@
     include_once "controller/user_controller.php";
 
     $cus_controller=new UserController();
-    $results=$cus_controller->getCustomers();
+    $results=$cus_controller->getUsers();
 ?>
 
 

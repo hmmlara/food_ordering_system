@@ -5,6 +5,9 @@ class OrderController extends OrderModel{
     public function getOrderinfo(){
         return $this->get_order_info();
     }
+    // public function getOrderDetails($id){
+    //     return $this->
+    // }
     public function getOrderDetails($id){
         return $this->get_order_details($id);
     }
