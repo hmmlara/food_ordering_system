@@ -16,6 +16,7 @@ class UserController extends User
         return $result;
     }
 
+
     public function updateUser($id, $name, $email, $phone_number, $address, $new_password)
     {
         $result=parent::updateUser($id, $name, $email, $phone_number, $address, $new_password);
@@ -23,6 +24,12 @@ class UserController extends User
     }
 
 
+
+
+    public function countCustomers(){
+        $results=parent::countCustomers();
+        return $results;
+    }
 
 }
 

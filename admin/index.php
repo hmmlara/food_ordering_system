@@ -1,6 +1,37 @@
 <?php
 session_start();
-include_once "controller/user_controller.php";
+
+include_once 'layouts/header.php';
+include_once 'controller/user_controller.php';
+include_once 'controller/order_controller.php';
+include_once 'controller/product_controller.php';
+include_once 'controller/categories_controller.php';
+
+if(!isset($_SESSION['admin_login'])){
+    echo "<script>window.location.href='http://localhost/FOS/admin/login.php'</script>";
+}
+// var_dump($_SESSION['admin_login']);
+
+$userController=new UserController();
+$users=$userController->countCustomers();
+$countUsers = $users[0]["COUNT(*)"];
+
+$orderController=new OrderController();
+$orders=$orderController->countOrders();
+$countOrders = $orders[0]["COUNT(*)"];
+
+$productController=new ProductController();
+$products=$productController->countProducts();
+$countProducts = $products[0]["COUNT(*)"];
+
+$categoryController=new CategoriesController();
+$categories=$categoryController->countCategories();
+$countCategories=$categories[0]["COUNT(*)"];
+
+
+?>
+
+
 
 
 
@@ -128,6 +159,122 @@ if(isset($_POST['logoutBtn']))
                                         <button class=" btn btn-outline-primary my-cart-btn"
                                     data-id="2" data-name="Hot Pastrami" data-price="25" data-quantity="1"
                                     data-image="./img/pizza-2.png">Add to cart</button>
+
+                        <!-- Customers -->
+                        <div class="col-md-3 mb-4">
+                            <a href="customers.php" class="text-decoration-none">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Customers</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                        <span class="badge text-bg-primary"><?php echo $countUsers; ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="fas fa-solid fa-users fa-2x text-gray-300"></i>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Orders -->
+                        <div class="col-md-3 mb-4">
+                            <a href="orders.php" class="text-decoration-none">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Orders</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span class="badge text-bg-success"><?php echo $countOrders; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-solid fa-utensils fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Categories -->
+                        <div class="col-md-3 mb-4">
+                            <a href="categories.php" class="text-decoration-none">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Categories</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span class="badge text-bg-info"><?php echo $countCategories; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-solid fa-list fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Products -->
+                        <div class="col-md-3 mb-4">
+                            <a href="products.php" class="text-decoration-none">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Products</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <span class="badge text-bg-warning"><?php echo $countProducts; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-solid fa-cubes fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Orders Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="col-md-2 text-center">
