@@ -4,12 +4,15 @@
     include_once "controller/product_controller.php";
     $id=$_GET['id'];
     $order=new OrderController();
+
     $order_details=$order->getOrderDetails($id);
+
     $productController= new ProductController();
     $getproducts=$productController->getProducts();
     // echo '<pre>';
     // var_dump($order_details);
     // echo '</pre>';
+
 ?>
 
 
@@ -32,7 +35,9 @@
                     </div> -->
                     <a href="orders.php" class="btn btn-outline-primary">Back</a>
                     <div class="row">
+
                         <div class="col-md-4"></div>
+
                         <div class="col-md-4 shadow">
                             <?php
                                 echo "<div class='row mt-3'>
@@ -79,8 +84,10 @@
                                         </div>
                                     </div>";
                             ?>
+
                         </div>
                         <div class="col-md-4"></div>
+
                     </div>
 
                 </div>

@@ -30,7 +30,12 @@ class ProductController extends Products{
        public function deleteProduct($id){
         $result=$this->deletProducts($id);
         return $result;
-    }
+        }
+
+        public function countProducts(){
+        $results=parent::countProducts();
+        return $results;
+        }   
 }
 
 ?>

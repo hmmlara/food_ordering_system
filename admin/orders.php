@@ -30,6 +30,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
+
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-4 text-gray-800">Orders</h1>
                         <a href="create_order.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"> Add Order</a>
@@ -38,6 +39,7 @@
                     <form action="" method="post">
                     <div class="row">
                         <div class="col-md-3">
+
                             <select name="pickup_deli_filter" id="order_type" class="form-control">
                                 <option value="0" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 0)? 'selected' : '';?>>All</option>
                                 <option value="1" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 1)? 'selected': '';?>>Pick Up</option>
@@ -68,9 +70,11 @@
                             <button id="filter" class="btn btn-sm btn-info" name="filter">Filter</button>
                             <button id="reset" class="btn btn-sm btn-warning">Reset</button>
                         </div>
+
                     </div>
                     </form>
                     <div class="row mt-3">
+
                             
                         <div class="col-md">
                             
@@ -80,7 +84,12 @@
                                         <th>No</th>
                                         <th>Order No</th>
                                         <th>Customer name</th>
+
+                                        <th>Pick up</th>
+                                        <th>Delivery</th>
+
                                         <th>Order type</th>
+
                                         <th>Order date</th>
                                         <th>Action</th>
                                     </tr>
@@ -93,11 +102,14 @@
                                             echo "<td>od-".$results[$i]['id']."</td>";
                                             echo "<td>".$results[$i]['cus_name']."</td>";
                                             if($results[$i]['delivery_id']==1){
-                                                echo "<td>Pick up</td>";
 
+                                                echo "<td><i class='fa fa-check'></i></td>";
+                                                echo "<td>-</td>";
                                             }
                                             if($results[$i]['delivery_id']==2){
-                                                echo "<td>Delivery man</td>";
+                                                echo "<td>-</td>";
+                                                echo "<td><i class='fa fa-check'></i></td>";
+
                                             }
                                             // echo "<td>".$results[$i][end( explode('-',$results[$i]['status']))]."</td>";
                                             echo "<td>".explode(" ",$results[$i]['created_date'])[0]."</td>";

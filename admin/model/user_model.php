@@ -1,25 +1,91 @@
 <?php
 include_once __DIR__."/../includes/connect.php";
 
-class UserModel{
+class User
+{
     private $pdo;
+
     public function get_user(){
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $sql = "select * from users order by id DESC";
+
+
         $statement=$this->pdo->prepare($sql);
+
+        //excute statement
         $statement->execute();
-        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
+
+        //result
+        $users=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+        //return
+        return $users;
     }
-    public function get_customers(){
+
+    public function getUser($id)
+    {
+        //DB connection
+       $this->pdo=Database::connect();
+       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+       //write sql string
+       $sql="select * from users_info where id=:id";
+
+       //prepare sql, change sql string to statement
+       $statement=$this->pdo->prepare($sql);
+       $statement->bindParam(":id",$id);
+
+       //excute statement
+        $statement->execute();
+        //result
+        $user=$statement->fetch(PDO::FETCH_ASSOC);
+
+        //return
+        return $user;
+
+    }
+
+        
+    public function updateUser($id, $name, $email, $phone_number, $address, $new_password)
+    {
+        //DB connection
+       $this->pdo=Database::connect();
+       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+       //write sql string
+       $sql="UPDATE users_info SET name=:name,email=:email,phone_number=:phone_number,address=:address,password=:new_password WHERE id=:id";
+
+       //prepare sql, change sql string to statement
+       $statement=$this->pdo->prepare($sql);
+       $statement->bindParam(":id",$id);
+       $statement->bindParam(":name",$name);
+       $statement->bindParam(":email",$email);
+       $statement->bindParam(":phone_number",$phone_number);
+       $statement->bindParam(":address",$address);
+       $statement->bindParam(":new_password",$new_password);
+
+       //excute statement
+        return $statement->execute();
+
+
+    }
+
+
+    public function countCustomers(){
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
         $sql = "select * from users_info order by id DESC";
+
         $statement=$this->pdo->prepare($sql);
         $statement->execute();
         $results=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+
 }
+
+
+
 ?>

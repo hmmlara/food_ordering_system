@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
+include_once __DIR__."/../../includes/connect.php";
+=======
 require_once __DIR__."/../includes/connect.php";
+>>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
 
 
 class OrderModel{
@@ -14,6 +18,17 @@ class OrderModel{
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC); 
     }
+
+    public function countOrders(){
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT COUNT(*) FROM orders;";
+        $statement=$this->pdo->prepare($sql);
+        $statement->execute();
+        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+    
     public function get_order_details($id){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
