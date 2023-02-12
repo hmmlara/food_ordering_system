@@ -25,6 +25,22 @@ if(isset($_POST['add'])){
 
 ?>
 
+<<<<<<< HEAD
+=======
+                
+                <!-- <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+                        
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        
+                        <div class="col-md-4">
+                            <a href="categories.php" class="btn btn-outline-info">Back</a>
+                        </div>
+                    </div>
+>>>>>>> 0952750cbdbedb8f1f96990c0ce470a04b629b4f
 
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">

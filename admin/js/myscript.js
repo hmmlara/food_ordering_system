@@ -5,8 +5,8 @@ $(document).ready(function(){
     $('#cus_table').DataTable();
     $('#order_table').DataTable();
 
-
     $('#cate_table .delete').click(function(){
+        console.log('hello');
         let message=confirm('Are you sure to delete');
         if(message){
             let tr=$(this).closest('tr');
@@ -30,12 +30,9 @@ $(document).ready(function(){
                 }
             })
         }
-    })
-});
+    });
 
-
-$(document).ready(function(){
-    $('#shipping_table .delete').click(function(){
+    $('#product_table #delete').click(function(){
         let message=confirm('Are you sure to delete');
         if(message){
             let tr=$(this).closest('tr');
@@ -59,8 +56,11 @@ $(document).ready(function(){
                 }
             })
         }
-    })
-})
+    });
+});
+
+
+   
 
 
 

@@ -81,9 +81,11 @@ if(isset($_POST['add'])){
                     <select name="type" id="" class="form-control">
                       <?php
                          echo "<option hidden> Category Type </option>";
-                         for ($index=0; $index <count($products) ; $index++) { 
-                            echo "<option value='".$products[$index]['id']."'>".$parent[$index]['name']."</option>";
+                         for ($index=0; $index <count($results) ; $index++) { 
+                            if($results[$index]['parent']==0){
+                            echo "<option value='".$results[$index]['id']."'>".$results[$index]['name']."</option>";
                         }
+                    }
                                   ?>
 
                                 </select>

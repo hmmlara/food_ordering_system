@@ -43,7 +43,11 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     
     <script src="js/myscript.js"></script>
+
+    <script src="js/img.js"></script>
+
     <script src="js/script.js"></script>
+
 </body>
 
 </html>
