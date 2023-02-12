@@ -7,13 +7,13 @@
 
     $order_details=$order->getOrderDetails($id);
 
-
     $productController= new ProductController();
     $getproducts=$productController->getProducts();
     // echo '<pre>';
     // var_dump($order_details);
     // echo '</pre>';
 
+?>
 
 
                 <!-- Begin Page Content -->
@@ -35,6 +35,8 @@
                     </div> -->
                     <a href="orders.php" class="btn btn-outline-primary">Back</a>
                     <div class="row">
+
+                        <div class="col-md-4"></div>
 
                         <div class="col-md-4 shadow">
                             <?php
@@ -82,8 +84,6 @@
                                         </div>
                                     </div>";
                             ?>
-
-                        <div class="col-md-4">
 
                         </div>
                         <div class="col-md-4"></div>

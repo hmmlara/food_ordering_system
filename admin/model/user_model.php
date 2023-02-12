@@ -4,18 +4,13 @@ include_once __DIR__."/../includes/connect.php";
 class User
 {
     private $pdo;
-    public function getUsers()
-    {
+
+    public function get_user(){
+        $this->pdo = Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $sql = "select * from users order by id DESC";
 
 
-       //DB connection
-        $this->pdo=Database::connect();
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        //write sql string
-        $sql="select * from users_info";
-
-        //prepare sql, change sql string to statement
         $statement=$this->pdo->prepare($sql);
 
         //excute statement
@@ -80,7 +75,9 @@ class User
     public function countCustomers(){
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT COUNT(*) FROM users_info;";
+
+        $sql = "select * from users_info order by id DESC";
+
         $statement=$this->pdo->prepare($sql);
         $statement->execute();
         $results=$statement->fetchAll(PDO::FETCH_ASSOC);

@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('#shipping_table').DataTable();
     $('#product_table').DataTable();
     $('#cus_table').DataTable();
+    $('#order_table').DataTable();
 
     $('#cate_table .delete').click(function(){
         console.log('hello');
