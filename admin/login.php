@@ -1,10 +1,7 @@
 <?php
-<<<<<<< HEAD
-session_start();
-=======
     session_start();
     //  session_destroy();
-    include_once "controller/user_controller.php";
+    include_once "controller/admin_user_controller.php";
     $userController=new UserController();
     $result=$userController->getUser()[0];
     // $test='su123';
@@ -19,148 +16,91 @@ session_start();
             echo "<script>
             window.location.href='http://localhost/FOS/admin/index.php'
             </script>";
->>>>>>> 49ed24ae8e07bd11a6176d27720133e57bf4d5a0
 
-include_once "controller/login_controller.php";
-
-//WHEN USER LOGIN
-if(isset($_POST['loginBtn']))
-{
-    $email=trim($_POST['email']);
-    $password=md5(trim($_POST['password']));
-
-    $loginController = new LoginController();
-    $user_result = $loginController->getUser($email,$password);
-    if($user_result['email'] == $email && $user_result['password'] == $password)
-    {
-        $_SESSION['user_array']=$user_result;
-        header('location:index.php');
-        
+            $_SESSION['admin_login']=[
+                'email'=>$email,
+                'password'=>$password
+            ];
+        }
+        else{
+            echo "<script>alert('Invalid username or password')</script>";
+        }
     }
-
-}
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"
-        />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/style.css" />
-        <link rel="stylesheet" href="./css/customize.css" />
-        <script src="./js/jquery.min.js"></script>
-        <link rel="icon" href="./img/logo.jpg" />
-        <title>Darli Login</title>
-    </head>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>
-        <button
-        class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./about.php">About</a>
-                    </li>
-                </ul> 
-            </div>
-    </nav>
-    
-    <body>
-        <div class="maincontent pt-0 pb-0">
-            <div class="d-md-flex h-md-100 align-items-center">
-                <div class="col-md-6 p-0 h-md-100">
-                    <div class="block hero2 my-auto" style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
-                        <div class="container-fluid text-center">
-                             <h1 class="display-2 text-white" data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-offset="0">Darli SNACKS & DRINKS</h1>
-                            <p class="lead text-white" data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-delay="300">We are closed for the moment, but we will still deliver food at your place!</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-0 h-md-100 loginarea">
-                    <div class="d-md-flex align-items-center h-md-100 p-3 justify-content-center">
-                    <div class="container-fluid mt-2 text-dark">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header bg-dark">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="card-title"><a href="login.php" class="text-white" style="text-decoration:none;"><h5>Welcome to Darli</h5></a></div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <a href="index.php" class="float-right mx-3 text-white" style="text-decoration:none;"><< Back</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-6">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <div class="card-title">Login</div>
-                                                        </div>
-                                                        <form action="login.php" method="post">
-                                                            <div class="card-body">
-                                                            <?php if(isset($error)): ?>
-                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                    <strong><?php echo $error;  ?></strong>
-                                                                </div>
-                                                            <?php endif ?>
-                                                                <div class="form-group">
-                                                                    <label for="" class="form-label">Email</label>
-                                                                    <input type="email" name="email" id="" class="form-control">
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="" class="form-label">Password</label>
-                                                                    <input type="password" name="password" id="" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-footer">
-                                                                <button type="submit" name="loginBtn" class="btn btn-primary float-end my-3">Login</button>
-                                                                <div>
-                                                                    <span>If you have no account, you can register 
-                                                                        <a href="register.php">here</a>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </form>
 
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3"></div>
-                                                
-                                            </div>
+<head>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-                                        </div>
+    <title>SB Admin 2 - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-6 col-lg-6 col-md-6">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <!-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
+                            <div class="col-md">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+                                    <form class="user" action="" method="post">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" name="submit">
+                                            Login
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-        <script src="js/custom-general.js"></script>
-    </body>
+
+    </div>
+
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
 
 </html>

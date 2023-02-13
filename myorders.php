@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once "controller/user_controller.php";
-include_once "include/connect.php";
 
 
 

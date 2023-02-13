@@ -85,8 +85,6 @@
                                         <th>Order No</th>
                                         <th>Customer name</th>
 
-                                        <th>Pick up</th>
-                                        <th>Delivery</th>
 
                                         <th>Order type</th>
 
@@ -103,12 +101,10 @@
                                             echo "<td>".$results[$i]['cus_name']."</td>";
                                             if($results[$i]['delivery_id']==1){
 
-                                                echo "<td><i class='fa fa-check'></i></td>";
-                                                echo "<td>-</td>";
+                                                echo "<td>Pick Up</td>";
                                             }
                                             if($results[$i]['delivery_id']==2){
-                                                echo "<td>-</td>";
-                                                echo "<td><i class='fa fa-check'></i></td>";
+                                                echo "<td>Delivery men</td>";
 
                                             }
                                             // echo "<td>".$results[$i][end( explode('-',$results[$i]['status']))]."</td>";

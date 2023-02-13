@@ -1,9 +1,9 @@
 <?php
     include_once "layouts/header.php";
-    include_once "controller/user_controller.php";
+    include_once "controller/admin_user_controller.php";
 
     $cus_controller=new UserController();
-    $results=$cus_controller->getUsers();
+    $results=$cus_controller->getCustomers();
 ?>
 
 

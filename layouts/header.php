@@ -17,7 +17,7 @@ if(isset($_POST['logoutBtn']))
 }
 
 
-
+?>
 
 <!DOCTYPE html>
 <html lang="en">
