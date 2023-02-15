@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "controller/user_controller.php";
-include_once "include/connect.php";
+include_once __DIR__."/../admin/includes/connect.php";
 
 
 if(!isset($_SESSION['user_array']))

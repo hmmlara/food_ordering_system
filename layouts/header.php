@@ -53,7 +53,14 @@ if(isset($_POST['logoutBtn']))
                         $userController = new UserController();
                         $users  = $userController->getUsers();
                         $user = $userController->getUser($id);
-                        echo "<div class='dropdown'>
+                        echo "
+                        <ul class='navbar-nav mr-end'>
+                            <li class='nav-item'> <a class='nav-link text-white' href='./myorders.php'>Orders</a>
+                            </li>
+                            <li class='nav-item'> <a class='nav-link text-white' href='./viewCart.php'>Cart</a>
+                            </li>
+                        </ul>
+                        <div class='dropdown'>
                         <button class='btn btn-secondary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                         <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-person-circle' viewBox='0 0 16 16'>
                         <path d='M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z'/>

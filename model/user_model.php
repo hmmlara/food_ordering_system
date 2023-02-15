@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__."/../include/connect.php";
+include_once __DIR__."/../admin/includes/connect.php";
 
 class User
 {
