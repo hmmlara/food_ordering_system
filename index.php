@@ -85,28 +85,34 @@ if(isset($_POST['logoutBtn']))
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
                             <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
-                                <div class="row">
-                                                <?php
-                                                    for($row=0;$row<count($products);$row++){
-                                                    echo ' 
-                                                    <form action="manageCart.php" method="post">    
-                                                        <div class="col-md-3 text-center">
-                                                            <div class="px-2 my-2">
-                                                                <img src="admin/uploads/'.$products[$row]['image'].'"alt="" width="200px" height="200px">
-                                                                <h3 class="item__title text-center" style="font-size:23px">'.$products[$row]['name'].'</h3>
-                                                                <p class="item__price text-center">'.$products[$row]['price'].'</p>
-                                                                
-                                                                <button name="addToCart" class="btn btn-outline-primary my-cart-btn" type="submit" alt="">Add to cart</button>
-                                                                <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
-                                                                <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
-                                                                <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
-                                                            </div>
-                                                        </div>
-                                                    </form>  
+                                <div class="row mx-auto d-flex text-dark justify-content-start">
+                                    <?php
+                                        for($row=0;$row<count($products);$row++){
+                                        echo ' 
+                                        <form action="manageCart.php" method="post">    
+                                            <div class="col-md-2 my-3 text-center">
+                                                <div class="card" style="width: 15rem;">
+                                                    <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">'.$products[$row]['name'].'</h5>
+                                                        <p class="card-text">'.$products[$row]['price'].'</p>
+                                                        
+                                                    </div>
+                                                    <div class="card-footer d-flex justify-content-between">
+                                                        <button name="addToCart" class="btn btn-outline-primary my-cart-btn" type="submit" alt="">Add to cart</button>
+                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-primary">View</button></a> 
+                                                    </div>
                                                     
-                                                    ';
 
-                                                }?>
+                                                        <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
+                                                        <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
+                                                        <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
+                                                    
+                                                </div>
+                                            </div>
+                                        </form>';
+
+                                    }?>
                                             
 
                                 </div>
@@ -116,32 +122,44 @@ if(isset($_POST['logoutBtn']))
                         <?php 
                             for($i = 0; $i < count($parents); $i++){
                         ?>
-                        <div class="tab-pane fade" id="<?php echo $parents[$i]['name']; ?>" role="tabpanel"
-                            aria-labelledby="pills-profile-tab" tabindex="0">
-                            <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
-                                <div class="row">
-                                    <?php
-                            for($row=0;$row<count($products);$row++){
-                                if($products[$row]["category_id"] == $parents[$i]['id']){
-                                echo ' <div class="col-md-3 text-center">
-                                    <div class="px-2 my-2">
-                                    <img src="admin/uploads/'.$products[$row]['image'].'"alt="" width="200px" height="200px">
-                                         <h3 class="item__title text-center" style="font-size:23px">'.$products[$row]['name'].'</h3>
-                                        <!-- <span class="item__dots"></span> -->
-                                        <p class="item__price text-center">'.$products[$row]['price'].'</p>
-                                        <button class=" btn btn-outline-primary my-cart-btn"
-                                    data-id="2" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
-                                    data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>
-                                    </div>
-                                </div>';
-                                
-                                } 
-                            }                           
+                            <div class="tab-pane fade" id="<?php echo $parents[$i]['name']; ?>" role="tabpanel"
+                                aria-labelledby="pills-profile-tab" tabindex="0">
+                                <div class="menu menu--is-visible" id="pizzaMenu" data-aos="fade-up">
+                                    <div class="row mx-auto d-flex text-dark justify-content-start">
+                                        <?php
+                                            for($row=0;$row<count($products);$row++){
+                                                if($products[$row]["category_id"] == $parents[$i]['id']){
+                                                echo '
+                                        <form action="manageCart.php" method="post">    
+                                            <div class="col-md-2 my-3 text-center">
+                                                <div class="card" style="width: 15rem;">
+                                                    <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">'.$products[$row]['name'].'</h5>
+                                                        <p class="card-text">'.$products[$row]['price'].'</p>
+                                                        
+                                                    </div>
+                                                    <div class="card-footer d-flex justify-content-between">
+                                                        <button name="addToCart" class="btn btn-outline-primary my-cart-btn" type="submit" alt="">Add to cart</button>
+                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-primary">View</button></a> 
+                                                    </div>
+                                                    
 
-                            ?>
+                                                        <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
+                                                        <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
+                                                        <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
+                                                    
+                                                </div>
+                                            </div>
+                                        </form>';
+                                                
+                                                } 
+                                            }                           
+
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php 
                             }
                         ?>
