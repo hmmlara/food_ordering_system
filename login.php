@@ -6,6 +6,7 @@ include_once "controller/login_controller.php";
 //WHEN USER LOGIN
 if(isset($_POST['loginBtn']))
 {
+    $_SESSION['cart'] = array();
     $email=trim($_POST['email']);
     $password=md5(trim($_POST['password']));
 

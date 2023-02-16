@@ -1,19 +1,13 @@
 <?php
-session_start();
+include_once "layouts/header.php";
 include_once "controller/user_controller.php";
-include_once __DIR__."/../admin/includes/connect.php";
+
 
 
 
 
 ?>
-
-<?php
-
-include_once "layouts/header.php";
-
-
-?>    
+ 
     
     <body>
         <div class="container-fluid mt-2 text-dark text-center">

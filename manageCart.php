@@ -1,33 +1,77 @@
 <?php
-include_once __DIR__."/../admin/includes/connect.php";
 session_start();
+// include_once __DIR__."/../admin/includes/connect.php";
+include_once "controller/viewCart_controller.php";
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+
     $user_id =  $_SESSION['user_array']['id'];
     if(isset($_POST['addToCart'])) {
-        $product_id = $_POST["itemId"];
-        $itemPrice = $_POST["itemPrice"];
-        $detailCart = new ViewCartController();
-        $myrow = $detailCart->getDetailCart($user_id,$product_id); 
-        var_dump($myrow);  
+        
+        if(!isset($_SESSION['user_array']))
+        {
+            header("Location:login.php");
+        }
+        else{
+            $pId = $_POST["pId"];
+            $pName = $_POST["pName"];
+            $pQty = 1;
+            $pPrice = $_POST["pPrice"];
+            echo $pId;
+            echo $_POST['pName'];
+            echo $_POST['pPrice'];
+
+            // $_SESSION['cart'][] = array('id' => $pId, 'name' => $pName, 'price' => $pPrice, 'qty' => $pQty);
+
+            // echo '<pre>';
+            // var_dump($_SESSION['cart']);
+            // echo '</pre>';
+    
+            $productCheck = array_column($_SESSION['cart'],'name');
+            if(in_array($pName,$productCheck))
+            {
+                    echo "<script>alert('Item Already Added.');
+                    window.history.back(1);
+                    </script>";
+            }
+            else{
+                $_SESSION['cart'][]=array('id'=> $pId, 
+                                        'name'=> $pName,
+                                        'price'=> $pPrice,
+                                        'qty'=> $pQty);
+
+                // var_dump($_SESSION['cart']);
+                header("Location:index.php");
+
+    
+            }
+
+        }
+
+
+
+        // $detailCart = new ViewCartController();
+        // $myrow = $detailCart->getDetailCart($product_id); 
+        // var_dump($myrow);  
         // Check whether this item exists
         // $existSql = "SELECT * FROM `viewcart` WHERE productid = '$itemId' AND `userId`='$userId'";
         // $result = mysqli_query($conn, $existSql);
         // $numExistRows = mysqli_num_rows($result);
-        if($myrow > 0){
-            echo "<script>alert('Item Already Added.');
-                    window.history.back(1);
-                    </script>";
-        }
-        else{
-            $sql = "INSERT INTO `viewcart` (`pizzaId`, `itemQuantity`, `userId`, `addedDate`) VALUES ('$itemId', '1', '$userId', current_timestamp())";   
-            $result = mysqli_query($conn, $sql);
-            if ($result){
-                echo "<script>
-                    window.history.back(1);
-                    </script>";
-            }
-        }
+        // if($myrow > 0){
+        //     echo "<script>alert('Item Already Added.');
+        //             window.history.back(1);
+        //             </script>";
+        // }
+        // else{
+        //     $sql = "INSERT INTO `viewcart` (`pizzaId`, `itemQuantity`, `userId`, `addedDate`) VALUES ('$itemId', '1', '$userId', current_timestamp())";   
+        //     $result = mysqli_query($conn, $sql);
+        //     if ($result){
+        //         echo "<script>
+        //             window.history.back(1);
+        //             </script>";
+        //     }
+        // }
     }
     // if(isset($_POST['removeItem'])) {
     //     $itemId = $_POST["itemId"];
@@ -93,5 +137,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //     $updateresult = mysqli_query($conn, $updatesql);
     // }
     
-}
+
 ?>

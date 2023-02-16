@@ -1,7 +1,7 @@
 <?php
-session_start();
+include_once "layouts/header.php";
 include_once "controller/user_controller.php";
-include_once __DIR__."/../admin/includes/connect.php";
+
 
 
 if(!isset($_SESSION['user_array']))
@@ -80,12 +80,7 @@ if(isset($_POST['updateBtn']))
 
 
 ?>
-<?php
-
-include_once "layouts/header.php";
-
-
-?>    
+   
     <body>
         <div class="container-fluid mt-2 text-dark">
             <div class="row">

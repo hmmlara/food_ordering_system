@@ -10,12 +10,17 @@ class ViewCartController extends ViewCart
         return $results;
     }
 
-    public function getDetailCart($user_id,$product_id)
+    public function getDetailCart($product_id)
     {
-        $results=parent::getDetailCart($user_id,$product_id);
+        $results=parent::getDetailCart($product_id);
         return $results;
     }
     
+    public function getProductFromCategory($category_id)
+    {
+        $results=parent::getProductFromCategory($category_id);
+        return $results;
+    }
 
 
 
