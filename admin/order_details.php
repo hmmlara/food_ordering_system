@@ -4,15 +4,20 @@
     include_once "controller/product_controller.php";
     $id=$_GET['id'];
     $order=new OrderController();
+
     $order_details=$order->getOrderDetails($id);
-<<<<<<< HEAD
+    $orderinfo=$order->getSpecificOrder($id);
+
+    // $shipping=$order->getShipping();
+    // var_dump($shipping);
+    // var_dump($orderinfo['delivery_id']);
+
     $productController= new ProductController();
     $getproducts=$productController->getProducts();
     // echo '<pre>';
     // var_dump($order_details);
     // echo '</pre>';
-=======
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
+
 ?>
 
 
@@ -20,84 +25,158 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Order details</h1>
-                    <!-- <div class="row">
-                        <div class="col-md-4">
-                            <select name="pickup_deli_filter" id="" class="form-control">
-                                <option value="">Select order type</option>
-                                <option value="Pick_up">Pick Up</option>
-                                <option value="Delivery_men">Delivery Men</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            
-                        </div>
-                    </div> -->
-                    <a href="orders.php" class="btn btn-outline-primary">Back</a>
-                    <div class="row">
-                        <div class="col-md-4"></div>
-<<<<<<< HEAD
-                        <div class="col-md-4 shadow">
-                            <?php
-                                echo "<div class='row mt-3'>
-                                        <div class='col-md-6'>
-                                            <p>Order number:</p>
-                                        </div>
-                                        <div class='col-md-6'>".
-                                            $order_details[0]['order_id']."
-                                        </div>
-                                    </div>";
-                                echo "<div class='row'>
-                                        <div class='col-md-6'>
-                                            <p>Order date:</p>
-                                        </div>
-                                        <div class='col-md-6'>".
-                                            $order_details[0]['created_date']."
-                                        </div>
-                                    </div>";
-                                echo "<hr>";
-                                    $array=[];
-                                for($index=0;$index<count($order_details);$index++){
-                                    $itemtotal=$order_details[$index]['qty']*$order_details[$index]['price'];
-                                    array_push($array,$itemtotal);
-                                    for($i=0;$i<count($getproducts);$i++){
-                                        if($getproducts[$i]['id']==$order_details[$index]['product_id']){
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အော်ဒါအသေးစိတ်</h1>
+                        
+                    </div>
+                    <a href="orders.php" class="btn btn-primary">ထွက်မည်</a>
+                    <div class="container-md" id="bill">
+                    <div class="row"  >
+
+                        
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 shadow">
+                                    <?php
+                                        echo "<div class='row mt-3'>
+                                                <div class='col-md-6'>
+                                                    <p>Order number:</p>
+                                                </div>
+                                                <div class='col-md-6'><span>".
+                                                    $order_details[0]['order_id']."</span>
+                                                </div>
+                                            </div>";
+                                        echo "<div class='row'>
+                                                <div class='col-md-6'>
+                                                    <p>Order date:</p>
+                                                </div>
+                                                <div class='col-md-6'>".
+                                                    explode(" ",$order_details[0]['created_date'])[0]."
+                                                </div>
+                                            </div>";
+                                        echo "<div class='row'>
+                                                <div class='col-md-6'>
+                                                    <p>Customer name:</p>
+                                                </div>
+                                                <div class='col-md-6'>".
+                                                    $order_details[0]['cus_name']."
+                                                </div>
+                                            </div>";
+                                        if($orderinfo['delivery_id']==1){
                                             echo "<div class='row'>
                                                     <div class='col-md-6'>
-                                                        <p>".$getproducts[$i]['name'].":".$order_details[$index]['qty']."</p>
+                                                        <p>Order type</p>
                                                     </div>
                                                     <div class='col-md-6'>
-                                                        <p>".$itemtotal."</p>
+                                                        <p>Pick up</p>
+                                                    </div>
+                                                </div>";
+                                                echo "<hr>";
+                                            $array=[];
+                                            for($index=0;$index<count($order_details);$index++){
+                                                $itemtotal=$order_details[$index]['qty']*$order_details[$index]['price'];
+                                                array_push($array,$itemtotal);
+                                                echo "<div class='row'>
+                                                                <div class='col-md-6'>
+                                                                    <p>".$order_details[$index]['name'].":".$order_details[$index]['qty']."</p>
+                                                                </div>
+                                                                <div class='col-md-6'>
+                                                                    <p>".$itemtotal."</p>
+                                                                </div>
+                                                            </div>";
+                                            }
+                                        echo "<hr>";
+                                        
+                                        
+                                            echo "<div class='row'>
+                                                    <div class='col-md-6'>
+                                                        <p>Total:</p>
+                                                    </div>
+                                                    <div class='col-md-6'>".
+                                                        array_sum($array)."
                                                     </div>
                                                 </div>";
                                         }
-                                    }
-                                }
-                                echo "<hr>";
-                                echo "<div class='row'>
-                                        <div class='col-md-6'>
-                                            <p>Subtotal:</p>
-                                        </div>
-                                        <div class='col-md-6'>".
-                                            array_sum($array)."
-                                        </div>
-                                    </div>";
-                            ?>
-=======
-                        <div class="col-md-4">
+                                        if($orderinfo['delivery_id']==2){
+                                            echo "<div class='row'>
+                                                    <div class='col-md-6'>
+                                                        <p>Order type</p>
+                                                    </div>
+                                                    <div class='col-md-6'>
+                                                        <p>Delivery</p>
+                                                    </div>
+                                                </div>";
+                                            echo "<div class='row'>
+                                                    <div class='col-md-6'>
+                                                        <p>Township:</p>
+                                                    </div>
+                                                    <div class='col-md-6'>".
+                                                        $orderinfo['township']."
+                                                    </div>
+                                                </div>";
+                                                echo "<hr>";
+                                            $array=[];
+                                            for($index=0;$index<count($order_details);$index++){
+                                                $itemtotal=$order_details[$index]['qty']*$order_details[$index]['price'];
+                                                array_push($array,$itemtotal);
+                                                echo "<div class='row'>
+                                                                <div class='col-md-6'>
+                                                                    <p>".$order_details[$index]['name'].":".$order_details[$index]['qty']."</p>
+                                                                </div>
+                                                                <div class='col-md-6'>
+                                                                    <p>".$itemtotal."</p>
+                                                                </div>
+                                                            </div>";
+                                            }
+                                        echo "<hr>";
+                                        
+                                        
+                                            echo "<div class='row'>
+                                                    <div class='col-md-6'>
+                                                        <p>Subtotal:</p>
+                                                    </div>
+                                                    <div class='col-md-6'>".
+                                                        array_sum($array)."
+                                                    </div>
+                                                </div>";
+                                            echo "<div class='row'>
+                                                    <div class='col-md-6'>
+                                                        <p>Deli Fee:</p>
+                                                    </div>
+                                                    <div class='col-md-6'>".
+                                                        $orderinfo['cost']."
+                                                    </div>
+                                                </div>";
+                                            echo "<div class='row'>
+                                                    <div class='col-md-6'>
+                                                        <p>Total:</p>
+                                                    </div>
+                                                    <div class='col-md-6'>".
+                                                        $orderinfo['total_balance']."
+                                                    </div>
+                                                </div>";
+                                        }
+                                        
+                                            
+                                           
+                                        
+                                    ?>
 
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
-                        </div>
-                        <div class="col-md-4"></div>
+                                </div>
+                                <div class="col-md-2"></div>
+
+                                </div>
                     </div>
-
+                    
+                    <div class="col-md-4">
+                            <button class="btn btn-sm btn-primary" onclick="myprint()">ပရင့်ထုတ်မည်</button>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
-            
+
 
 
     <?php

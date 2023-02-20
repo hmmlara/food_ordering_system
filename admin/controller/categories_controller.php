@@ -34,11 +34,6 @@ class CategoriesController extends Categories{
         //     $result=parent::getCategoriesPages($page);
         //     return $result;
         //  }
-
-        public function countCategories(){
-            $results=parent::countCategories();
-            return $results;
-        }  
            
 }
 

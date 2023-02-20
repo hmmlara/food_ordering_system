@@ -39,7 +39,7 @@ if(isset($_POST['update'])){
                     <!-- Content Row -->
                     <div class="row">
                     <div class="col-md-6">
-                        <a href="shipping.php" class="btn btn-outline-info">Back</a>
+                        
                     </div>
                 </div>
 
@@ -47,18 +47,19 @@ if(isset($_POST['update'])){
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
+                        <a href="shipping.php" class="btn btn-primary my-2">ထွက်မည်</a>
                         <form action="" method="post">
                             <div class="my-3">
-                                <label for="" class="form-label" >Township</label>
+                                <label for="" class="form-label" >မြို့နယ်များ</label>
                                 <input type="text" name="township" id="" class="form-control" value="<?php echo $result['township'];?>">
                             </div>
                             <div class="my-3">
-                                <label for="" class="form-label" >Cost</label>
+                                <label for="" class="form-label" >ဈေးနှုန်း</label>
                                 <input type="text" name="cost" id="" class="form-control" value="<?php echo $result['cost'];?>">
                             </div>
                           
                             <div class="my-3">
-                                <button class="btn btn-primary" name="update">Update</button>
+                                <button class="btn btn-success" name="update">ထည့်မည်</button>
                             </div>
                         </form>
 

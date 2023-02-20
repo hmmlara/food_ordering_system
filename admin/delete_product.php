@@ -6,7 +6,7 @@ $products_controller=new ProductController();
 $id=$_POST['id'];
 $result=$products_controller->deleteProduct($id);
 if($result){
-    echo "success";
+    echo 'success';
 }
 else{
     echo 'fail';
