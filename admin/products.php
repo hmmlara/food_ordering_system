@@ -1,8 +1,5 @@
 <?php
 include_once 'layouts/header.php';
-?>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-<?php
 include_once 'controller/product_controller.php';
 include_once 'controller/categories_controller.php';
 
@@ -14,7 +11,6 @@ $results=$categories->getcategories();
 
 
 
-
 ?>
 
                 <!-- Begin Page Content -->
@@ -22,31 +18,31 @@ $results=$categories->getcategories();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Products</h1>
+                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အစားအသောက်များ</h1>
                         
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="create_product.php" class="btn btn-success">Add New Products</a>
+                            <a href="create_product.php" class="btn btn-success">အသစ်ထည့်မည်</a>
                         </div>
                     </div>
                     
                <div class="row my-2">
                 <div class="col-md">
-                    <table class='table table-striped' id="product_table">
+                    <table class='table table-striped table-bordered' id="product_table">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Category Type</th>
-                                <th>Name</th>
-                                <th>Image</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>နံပါတ်</th>
+                                <th>အမျိုးအစား</th>
+                                <th>အမည်</th>
+                                <th>ရုပ်ပုံ</th>
+                                <th>ဈေးနှုန်း</th>
+                                <th>ဖော်ပြချက်</th>
+                                <th>အရွယ်အစား</th>
+                                <th>လုပ်ဆောင်ချက်များ</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="product_table">
                             <?php
                            
 
@@ -64,8 +60,8 @@ $results=$categories->getcategories();
                                     </td>";
                             echo "<td>".$products[$row]['price']."</td>";
                             echo "<td>".$products[$row]['description']."</td>";
-                            echo "<td>".$products[$row]['status']."</td>";
-                            echo "<td><a href='edit_product.php?id=".$products[$row]['id']."' class=' btn btn-sm btn-info mr-3'>Edit</a><a href='delete_product.php?id=".$products[$row]['id']."' class=' btn btn-sm btn-danger delete'>Delete</a></td>";
+                            echo "<td>".explode("-",$products[$row]['status'])[1]."</td>";
+                            echo "<td id='".$products[$row]['id']."'><a href='edit_product.php?id=".$products[$row]['id']."' class=' btn btn-sm btn-info mx-3'>ပြုပြင်မည်</a><a class='btn btn-sm btn-danger' id='delete'>ဖျက်မည်</a></td>";
 
                                         
                             echo "</tr>";
@@ -84,6 +80,6 @@ $results=$categories->getcategories();
             <!-- End of Main Content -->
 
         <?php
-        include_once 'layouts/footer.php';
+        require 'layouts/footer.php';
 
         ?>

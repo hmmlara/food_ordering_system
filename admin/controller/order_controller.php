@@ -8,12 +8,11 @@ class OrderController extends OrderModel{
     public function getOrderDetails($id){
         return $this->get_order_details($id);
     }
-    public function countOrders(){
-        $results=parent::countOrders();
-        return $results;
+    public function getSpecificOrder($id){
+       return $this-> get_specific_order($id);
     }
-    public function getOrderTypeFilter(){
-        return $this->get_order_type_filter();
+    public function getDeliType(){
+        return $this-> get_deli_type();
     }
 }
 ?>

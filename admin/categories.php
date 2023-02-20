@@ -1,9 +1,5 @@
 <?php
 include_once 'layouts/header.php';
-?>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-  
-<?php
 include_once 'controller/categories_controller.php';
 
 $categories=new CategoriesController();
@@ -16,29 +12,25 @@ $results=$categories->getCategories();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Add New Categories</h1>
+                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အမျိုးအစားများ</h1>
                         
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="create_categories.php" class="btn btn-success">Add New Categories</a>
-                        </div>
-                    </div>
+                    
 
                     <div class="row">
-                        <div class="col-md-12">
-                        <table class="table table-striped" id="cate_table">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                        <a href="create_categories.php" class="btn btn-success my-2">အသစ်ထည့်မည်</a>
+                        <table class="table table-striped table-bordered" id="cate_table">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                 <th>Parent</th>
-                                 <th>Actions</th>
-                                   
+                                    <th>နံပါတ်</th>
+                                    <th>အမည်</th>
+                                    <th>မူရင်းအမျိုးအစား</th>
+                                    <th>လုပ်ဆောင်ချက်များ</th>
                                 </tr>
                             </thead>
                             <tbody id="category_table">
-                                <form action="" method="post">
                                     <?php
                                      
                                     for ($row=0; $row < count($results); $row++) { 
@@ -57,25 +49,25 @@ $results=$categories->getCategories();
                                         }
                                         // echo "<td>".$results[$row]['created_date']."</td>";
                                         // echo "<td>".$results[$row]['updated_date']."</td>";
-                                        echo "<td id='".$results[$row]['id']."'><a href='edit_categories.php?id=".$results[$row]['id']."' class='btn btn-sm btn-info mr-3'>Edit</a><a class='btn btn-sm btn-danger delete'>Delete</a></td>";
+                                        echo "<td id='".$results[$row]['id']."'><a href='edit_categories.php?id=".$results[$row]['id']."' class='btn btn-sm btn-info mx-3'>ပြုပြင်မည်</a><a class='btn btn-sm btn-danger delete'>ဖျက်မည်</a></td>";
 
                                         echo "</tr>";
                                     }
 
 
                                     ?>
-                                </form>
                             </tbody>
                             
 
                
 
                 </div>
+                <div class="col-md-1"></div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
         <?php
-        include_once 'layouts/footer.php';
+        require 'layouts/footer.php';
 
         ?>
