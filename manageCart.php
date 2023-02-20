@@ -3,9 +3,6 @@ session_start();
 // include_once __DIR__."/../admin/includes/connect.php";
 include_once "controller/viewCart_controller.php";
 
-
-
-
     $user_id =  $_SESSION['user_array']['id'];
     if(isset($_POST['addToCart'])) {
         
@@ -18,9 +15,9 @@ include_once "controller/viewCart_controller.php";
             $pName = $_POST["pName"];
             $pQty = 1;
             $pPrice = $_POST["pPrice"];
-            echo $pId;
-            echo $_POST['pName'];
-            echo $_POST['pPrice'];
+            // echo $pId;
+            // echo $_POST['pName'];
+            // echo $_POST['pPrice'];
 
             // $_SESSION['cart'][] = array('id' => $pId, 'name' => $pName, 'price' => $pPrice, 'qty' => $pQty);
 

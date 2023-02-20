@@ -89,28 +89,32 @@ if(isset($_POST['logoutBtn']))
                                     <?php
                                         for($row=0;$row<count($products);$row++){
                                         echo ' 
-                                        <form action="manageCart.php" method="post">    
-                                            <div class="col-md-2 my-3 text-center">
+                                            <div class="col-md-3 my-3 text-center">
                                                 <div class="card" style="width: 15rem;">
                                                     <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
                                                     <div class="card-body">
                                                         <h5 class="card-title">'.$products[$row]['name'].'</h5>
                                                         <p class="card-text">'.$products[$row]['price'].'</p>
-                                                        
                                                     </div>
                                                     <div class="card-footer d-flex justify-content-between">
-                                                        <button name="addToCart" class="btn btn-outline-primary my-cart-btn" type="submit" alt="">Add to cart</button>
-                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-primary">View</button></a> 
+                                                        <form action="manageCart.php" method="post">
+                                                            <button name="addToCart" class=" btn btn-outline-primary my-cart-btn"
+                                                            data-id="'.$products[$row]['id'].'" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                                            data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>    
+                                                            
+                                                            <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
+                                                            <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
+                                                            <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
+                                                        </form>
+                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-outline-primary">View</button></a> 
                                                     </div>
-                                                    
-
-                                                        <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
-                                                        <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
-                                                        <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
-                                                    
                                                 </div>
                                             </div>
-                                        </form>';
+                                        
+                                                    
+                                                
+                                            
+                                        ';
 
                                     }?>
                                             
@@ -208,11 +212,7 @@ if(isset($_POST['logoutBtn']))
         </div>
 
     </div>
-        <div class='nav-item my-cart-icon'>
-            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-cart3' viewBox='0 0 16 16'>
-            <path d='M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/>
-            </svg></i> <span class='badge badge-notify my-cart-badge'> </span>
-        </div>
+
     <?php
     include_once 'layouts/footer.php';
 
