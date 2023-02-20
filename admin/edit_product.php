@@ -65,19 +65,15 @@ if(isset($_POST['update'])){
 ?>
 
     <div class="container">
-    <div class="row">
-                    <div class="col-md-6">
-                        <a href="products.php" class="btn btn-outline-info">Back</a>
-                    </div>
-                </div>
-    </div>
+    
 
-    <div class="row">
+                <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
+                    <a href="products.php" class="btn btn-primary mt-4">ထွက်မည်</a>
                         <form action="" method="post" enctype="multipart/form-data">
                            <div class="my-2">
-                            <select name="type" id="" class="form-control">
+                            <select name="type" id="" class="form-select">
                                 <?php
                                 for ($row=0; $row <count($results) ; $row++) { 
                                     if($results[$row]['parent']==0){
@@ -95,34 +91,34 @@ if(isset($_POST['update'])){
                             </select>
                            </div>
                            <div class="my-2">
-                            <label for="" class="form-label">Name</label>
+                            <label for="" class="form-label">အမည်</label>
                             <input type="text" name="name" class="form-control" value="<?php echo $result['name']; ?>">
 
                            </div>
                           
                            <div class="my-2">
-                           <img src="uploads/<?php echo $result['image'];?>" height="100" id="img">
-                            <label for="" class="form-label">Image</label>
+                           <img src="uploads/<?php echo $result['image'];?>" height="100" id="img" class="my-2">
+                            <label for="" class="form-label">ရုပ်ပုံ</label>
                             <input type="file" name="image" id="input" class="form-control" onchange="file_changed()" >                    
                             </div>
                           
                            <div class="my-2">
-                            <label for="" class="form-label">Price</label>
+                            <label for="" class="form-label">ဈေးနှုန်း</label>
                             <input type="text" name="price" id="" class="form-control" value="<?php echo $result['price']; ?>">
                            </div>
                            <div class="my-2">
-                            <label for="" class="form-label">Description</label>
+                            <label for="" class="form-label">ဖော်ပြချက်</label>
                             <input type="text" name="description" id="" class="form-control" value="<?php echo $result['description']; ?>">
                            </div>
                           
                            <div class="my-2">
-                            <label for="" class="form-label">Size</label>
+                            <label for="" class="form-label">အရွယ်အစား</label>
                             <input type="text" name="status" id="" class="form-control" value="<?php echo $result['status']; ?>">
                            </div>
                           
                           
                             <div class="my-2">
-                                <button class="btn btn-primary" name="update" type="submit">Update</button>
+                                <button class="btn btn-success" name="update" type="submit">ထည့်မည်</button>
                             </div>
                         </form>
 

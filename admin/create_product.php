@@ -63,81 +63,61 @@ if(isset($_POST['add'])){
 
 ?>
         <div class="container">
-        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-             <h1 class="h3 mb-0 text-gray-800">Products</h1>
-                        
-         </div> -->
          <div class="row">           
              <div class="col-md-4">
-             <a href="products.php" class="btn btn-outline-info">Back</a>
+             <a href="products.php" class="btn btn-primary my-4">ထွက်မည်</a>
             </div>
          </div>
         <div class="row">
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="row">
-                   
-                    <div class="col-md-6 my-2">
-                    <select name="type" id="" class="form-control">
-                      <?php
-                         echo "<option hidden> Category Type </option>";
-                         for ($index=0; $index <count($results) ; $index++) { 
-                            if($results[$index]['parent']==0){
-                            echo "<option value='".$results[$index]['id']."'>".$results[$index]['name']."</option>";
-                        }
-                    }
-                                  ?>
-
-                                </select>
-
-                        </select>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                        <select name="type" id="" class="form-select">
+                        <?php
+                            echo "<option hidden> အမျိုးအစားများ </option>";
+                            for ($index=0; $index <count($results) ; $index++) { 
+                                if($results[$index]['parent']==0){
+                                echo "<option value='".$results[$index]['id']."'>".$results[$index]['name']."</option>";
+                                }
+                            }
+                            ?>
+                            </select>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="" class="form-label">စားသောက်ကုန်အမည်</label>
+                            <input type="text" name="name" id="" class="form-control">
+                        </div>
+                        <div class="mb-3" >
+                            <label for="" class="form-label">ဈေးနှုန်း</label>
+                            <input type="text" name="price" id="" class="form-control">
+                        </div> 
                     </div>
-
-                    <div class="col-md-6 my-2 ">
-                    <select name="size" id="" class="form-control">
-                        <option value="1-large">Large</option>
-                        <option value="0-small">Small</option>
-                    </select>
-                        
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <select name="size" id="" class="form-select">
+                                <option value="1-large">ပွဲကြီး</option>
+                                <option value="0-small">ပွဲသေး</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="" class="form-label">ရုပ်ပုံ</label>
+                            <input type="file" name="image" id="" class="form-control">
+                        </div>
+                        <div class="mb-3" >
+                            <label for="" class="form-label">ဖော်ပြချက်</label>
+                            <input type="text" name="description" id="" class="form-control">
+                        </div>
                     </div>
-
-                    <div class="col-md-6" >
-                        <label for="" class="form-label">Name</label>
-                        <input type="text" name="name" id="" class="form-control">
-                      </div>
-
-                      <div class="col-md-6" >
-                        <label for="" class="form-label">Image</label>
-                        <input type="file" name="image" id="" class="form-control">
-                      </div>
-
-                      <div class="col-md-6 " >
-                        <label for="" class="form-label">Price</label>
-                        <input type="text" name="price" id="" class="form-control">
-                      </div> 
-                      
-                      <div class="col-md-6" >
-                        <label for="" class="form-label">Description</label>
-                        <input type="text" name="description" id="" class="form-control">
-                      </div>
-
-                     
-
-                     
-                    
-                    <div class="col-md-4 my-2">
-                    <button class="btn btn-outline-info" name="add">Add</button>
+                    <div class="my-2">
+                        <button class="btn btn-success" name="add">ထည့်မည်</button>
                     </div> 
-                    
-                    </form>
-                  
-
                 </div>
             </div>
+            </form>
         </div>
 
-
-        
-
-
-        </div>
+        <?php
+        require "layouts/footer.php";
+        ?>

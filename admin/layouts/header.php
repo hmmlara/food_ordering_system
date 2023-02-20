@@ -3,236 +3,161 @@
         // unset($_SESSION['admin_login']);
         session_destroy();
         echo "<script>
-            window.location.href = 'http://localhost/FOS/admin/login.php';
+            window.location.href = 'http://localhost/FOS/admin/admin_login.php';
             </script>";
     }
-?>
 
+	$active_page =  $_SERVER["PHP_SELF"];
+	// echo $active_page;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-    <title>Food Ordering System</title>
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css"> -->
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-
+	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	
+	<link href="css/app.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="fonts/fontawesome-free-6.1.2-web/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<script src="js/jquery-3.6.1.min.js"></script>
+	<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script> -->
 </head>
 
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#1e1a29">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+<body  id="body">
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon">
                     <img src="img/logo.jpg" alt="" class='w-100' height="50px">
                 </div>
-                <div class="sidebar-brand-text mx-3">FOS</div>
+                <div class="sidebar-brand-text mx-3">FOS admin</div>
             </a>
+				<!-- <a class="sidebar-brand" href="index.php">
+          <span class="align-middle">Darli Snacks & Drinks</span>
+        </a> -->
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Pages
+					</li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/index.php')? 'active' : '' ;?>">
+						<a class="sidebar-link" href="index.php">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
 
+					<li class="sidebar-item <?php if($active_page == '/FOS/admin/categories.php' ||  $active_page == '/FOS/admin/create_categories.php' || $active_page == '/FOS/admin/edit_categories.php' ){echo "active";}?>">
+						<a class="sidebar-link" href="categories.php">
+						<i class="align-middle" data-feather="grid"></i> <span class="align-middle">အမျိုးအစားများ</span>
+            </a>
+					</li>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Modules
-            </div>
+					<li class="sidebar-item <?php if($active_page == '/FOS/admin/products.php' ||  $active_page == '/FOS/admin/create_products.php' || $active_page == '/FOS/admin/edit_products.php' ){echo "active";}?>">
+						<a class="sidebar-link" href="products.php">
+						<i class="align-middle" data-feather="coffee"></i> <span class="align-middle">အစားအသောက်များ</span>
+            </a>
+					</li>
 
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="login.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Login</span></a>
-            </li> -->
+					<li class="sidebar-item <?php if($active_page == '/FOS/admin/shipping.php' ||  $active_page == '/FOS/admin/create_shipping.php' || $active_page == '/FOS/admin/edit_shipping.php'){echo "active";}?>">
+						<a class="sidebar-link" href="shipping.php">
+						<i class="align-middle" data-feather="truck"></i> <span class="align-middle">မြို့နယ်များ</span>
+            </a>
+					</li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="categories.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Categories</span></a>
-            </li>
+					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/customers.php')? 'active' : '' ;?>">
+						<a class="sidebar-link" href="customers.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူများ</span>
+            </a>
+					</li>
 
+					<li class="sidebar-item <?php if($active_page == '/FOS/admin/orders.php' ||  $active_page == '/FOS/admin/order_details.php'){echo "active";}?>">
+						<a class="sidebar-link" href="orders.php">
+              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">အော်ဒါများ</span>
+            </a>
+					</li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="products.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Products</span></a>
-            </li>
+					<!-- <li class="sidebar-item">
+						<a class="sidebar-link" href="ui-forms.html">
+              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+            </a>
+					</li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="customers.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Customers</span></a>
-            </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-cards.html">
+              <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
+            </a>
+					</li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="shipping.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Shipping</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="orders.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Orders</span></a>
-            </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-typography.html">
+              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
+            </a>
+					</li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="icons-feather.html">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
+            </a>
+					</li>
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+					<li class="sidebar-header">
+						Plugins & Addons
+					</li>
 
-            <!-- Sidebar Message -->
-          
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="charts-chartjs.html">
+              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
+            </a>
+					</li>
 
-        </ul>
-        <!-- End of Sidebar -->
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="maps-google.html">
+              <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+            </a>
+					</li> -->
+				</ul>
+			</div>
+		</nav>
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle js-sidebar-toggle">
+          <i class="hamburger align-self-center"></i>
+        </a>
 
-            <!-- Main Content -->
-            <div id="content">
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                <i class="align-middle" data-feather="settings"></i>
+              </a>
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" style="background-color:#1e1a29">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <!-- <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a> -->
-                            <!-- Dropdown - Messages -->
-                            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li> -->
-
-                        <!-- Nav Item - Alerts -->
-                        
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo "Admin" ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                            <img src="img/avatars/avatar-6.png" class="avatar rounded" alt="Charles Hall" style="width:90px; height:60px;" /> <span class="text-dark">Admin</span>
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <!-- <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div> -->
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <form action="" method="post">
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" name="logout" type=submit>Logout</button>
-                </div>
-            </div>
-        </div>
-    </div>
-                </form>
-                <!-- End of Topbar -->
+							<form action="" method="post">
+								<div class="dropdown-menu dropdown-menu-end">
+									<button class="dropdown-item" name="logout">Log out</button>
+								</div>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</nav>
+            

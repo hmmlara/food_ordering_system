@@ -28,14 +28,9 @@ class ProductController extends Products{
        }
 
        public function deleteProduct($id){
-        $result=$this->deletProducts($id);
+        $result=$this->deleteProducts($id);
         return $result;
-        }
-
-        public function countProducts(){
-        $results=parent::countProducts();
-        return $results;
-        }   
+    }
 }
 
 ?>

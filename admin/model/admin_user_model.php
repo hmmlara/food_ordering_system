@@ -3,7 +3,7 @@ include_once __DIR__."/../includes/connect.php";
 
 class UserModel{
     private $pdo;
-    public function get_user(){
+    public function get_admin(){
         $this->pdo = Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $sql = "select * from users";

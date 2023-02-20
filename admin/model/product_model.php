@@ -84,40 +84,16 @@ class Products{
         try{
             $this->pdo=Database::connect();
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql_img = 'select image from products where id=:id';
-            $statement_img = $this->pdo->prepare($sql_img);
-            $statement_img->bindParam(":id",$id);
-            $statement_img->execute();
-            $imgfile = $statement_img->fetch(PDO::FETCH_ASSOC)['image'];
-            
             $sql="delete from products where id=:id";
             $statement=$this->pdo->prepare($sql);
             $statement->bindparam(":id",$id);
-            
-            if(file_exists('uploads/'.$imgfile)){
-                if($statement->execute()){
-                    unlink('uploads/'.$imgfile);
-                    return true;
-                }
-            }
-
-            return false;
+            return $statement->execute();
            }
            catch(PDOException $e){
             return false;
            }
     }
 
-
-    public function countProducts(){
-        $this->pdo = Database::connect();
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT COUNT(*) FROM products;";
-        $statement=$this->pdo->prepare($sql);
-        $statement->execute();
-        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
 
 
     }

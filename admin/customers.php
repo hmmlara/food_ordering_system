@@ -1,6 +1,6 @@
 <?php
     include_once "layouts/header.php";
-    include_once "controller/admin_user_controller.php";
+    include_once "controller/adminuser_controller.php";
 
     $cus_controller=new UserController();
     $results=$cus_controller->getCustomers();
@@ -11,18 +11,18 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Customers</h1>
+                    <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">စားသုံးသူများ</h1>
 
-                    <div class="row">
+                    <div class="row my-3 ">
                         <div class="col-md">
-                            <table class="table table-striped" id="cus_table">
+                            <table class="table table-striped table-bordered my-4" id="cus_table">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone number</th>
-                                        <th>Created_date</th>
+                                        <th>နံပါတ်</th>
+                                        <th>အမည်</th>
+                                        <th>အီးမေးလ်</th>
+                                        <th>ဖုန်းနံပါတ်</th>
+                                        <th>အကောင့်ဖွင့်သည့်ရက်</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,7 +33,7 @@
                                             echo "<td>".$results[$i]['name']."</td>";
                                             echo "<td>".$results[$i]['email']."</td>";
                                             echo "<td>".$results[$i]['phone_number']."</td>";
-                                            echo "<td>".$results[$i]['created_date']."</td>";
+                                            echo "<td>".explode(" ",$results[$i]['created_date'])[0]."</td>";
                                             echo "</tr>";
                                         }
                                     ?>

@@ -25,27 +25,23 @@ if(isset($_POST['update'])){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     
-                      
-                    </div>
 
                     <!-- Content Row -->
                     <div class="row">
-                    <div class="col-md-6">
-                        <a href="categories.php" class="btn btn-outline-info">Back</a>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
+                    <a href="categories.php" class="btn btn-primary mt-5">ထွက်မည်</a>
                         <form action="" method="post">
                             <div class="my-3">
-                                <label for="" class="form-label" >Name</label>
+                                <label for="" class="form-label" >အမည်</label>
                                 <input type="text" name="name" id="" class="form-control" value="<?php echo $result['name'];?>">
                             </div>
                            <div>
-                                <select name="parent" id="" class="form-control">
+                                <select name="parent" id="" class="form-select">
                                     <?php
                                     if($result['parent']==0){
                                         echo "<option value='0'>No Parent</option>";
@@ -82,7 +78,7 @@ if(isset($_POST['update'])){
                                 </select>
                             </div>
                             <div class="my-3">
-                                <button class="btn btn-primary" name="update">Update</button>
+                                <button class="btn btn-success" name="update">ထည့်မည်</button>
                             </div>
                         </form>
 
