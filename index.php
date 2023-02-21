@@ -96,8 +96,9 @@ if(isset($_POST['logoutBtn']))
                                                         <h5 class="card-title">'.$products[$row]['name'].'</h5>
                                                         <p class="card-text">'.$products[$row]['price'].'</p>
                                                     </div>
-                                                    <div class="card-footer d-flex justify-content-between">
-                                                        <form action="manageCart.php" method="post">
+                                                    <form action="manageCart.php" method="post">
+                                                        <input type="number" name="pQty" class="form-control w-100" value="1" min="1">
+                                                        <div class="card-footer d-flex justify-content-around">
                                                             <button name="addToCart" class=" btn btn-outline-primary my-cart-btn"
                                                             data-id="'.$products[$row]['id'].'" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
                                                             data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>    
@@ -105,6 +106,8 @@ if(isset($_POST['logoutBtn']))
                                                             <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
                                                             <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
                                                             <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
+
+
                                                         </form>
                                                         <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-outline-primary">View</button></a> 
                                                     </div>
@@ -134,28 +137,35 @@ if(isset($_POST['logoutBtn']))
                                             for($row=0;$row<count($products);$row++){
                                                 if($products[$row]["category_id"] == $parents[$i]['id']){
                                                 echo '
-                                        <form action="manageCart.php" method="post">    
-                                            <div class="col-md-2 my-3 text-center">
+                                                <div class="col-md-3 my-3 text-center">
                                                 <div class="card" style="width: 15rem;">
                                                     <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
                                                     <div class="card-body">
                                                         <h5 class="card-title">'.$products[$row]['name'].'</h5>
                                                         <p class="card-text">'.$products[$row]['price'].'</p>
-                                                        
                                                     </div>
-                                                    <div class="card-footer d-flex justify-content-between">
-                                                        <button name="addToCart" class="btn btn-outline-primary my-cart-btn" type="submit" alt="">Add to cart</button>
-                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-primary">View</button></a> 
-                                                    </div>
-                                                    
+                                                    <form action="manageCart.php" method="post">
+                                                        <input type="number" name="pQty" class="form-control w-100" value="1" min="1">
+                                                        <div class="card-footer d-flex justify-content-around">
+                                                            <button name="addToCart" class=" btn btn-outline-primary my-cart-btn"
+                                                            data-id="'.$products[$row]['id'].'" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                                            data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>    
+                                                            
+                                                            <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
+                                                            <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
+                                                            <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
 
-                                                        <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
-                                                        <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
-                                                        <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
-                                                    
+
+                                                        </form>
+                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-outline-primary">View</button></a> 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </form>';
+                                        
+                                                    
+                                                
+                                            
+                                        ';
                                                 
                                                 } 
                                             }                           

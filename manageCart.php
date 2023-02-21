@@ -1,11 +1,11 @@
 <?php
 session_start();
-// include_once __DIR__."/../admin/includes/connect.php";
+
 include_once "controller/viewCart_controller.php";
 
     $user_id =  $_SESSION['user_array']['id'];
     if(isset($_POST['addToCart'])) {
-        
+
         if(!isset($_SESSION['user_array']))
         {
             header("Location:login.php");
@@ -13,24 +13,15 @@ include_once "controller/viewCart_controller.php";
         else{
             $pId = $_POST["pId"];
             $pName = $_POST["pName"];
-            $pQty = 1;
+            $pQty = $_POST["pQty"];
             $pPrice = $_POST["pPrice"];
-            // echo $pId;
-            // echo $_POST['pName'];
-            // echo $_POST['pPrice'];
 
-            // $_SESSION['cart'][] = array('id' => $pId, 'name' => $pName, 'price' => $pPrice, 'qty' => $pQty);
-
-            // echo '<pre>';
-            // var_dump($_SESSION['cart']);
-            // echo '</pre>';
-    
             $productCheck = array_column($_SESSION['cart'],'name');
             if(in_array($pName,$productCheck))
             {
-                    echo "<script>alert('Item Already Added.');
-                    window.history.back(1);
-                    </script>";
+                echo "<script>window.history.back(1);</script>";
+                $_SESSION['cart_meg_err'] = "You already added this, Please see in cart!";
+
             }
             else{
                 $_SESSION['cart'][]=array('id'=> $pId, 
@@ -39,7 +30,9 @@ include_once "controller/viewCart_controller.php";
                                         'qty'=> $pQty);
 
                 // var_dump($_SESSION['cart']);
-                header("Location:index.php");
+                // header("Location:index.php#menu");
+                echo "<script>window.history.back(1);</script>";
+                $_SESSION['cart_meg_success'] = "Item added to cart!";
 
     
             }
@@ -70,21 +63,30 @@ include_once "controller/viewCart_controller.php";
         //     }
         // }
     }
-    // if(isset($_POST['removeItem'])) {
-    //     $itemId = $_POST["itemId"];
-    //     $sql = "DELETE FROM `viewcart` WHERE `productid`='$itemId' AND `userId`='$userId'";   
-    //     $result = mysqli_query($conn, $sql);
-    //     echo "<script>alert('Removed');
-    //             window.history.back(1);
-    //         </script>";
-    // }
-    // if(isset($_POST['removeAllItem'])) {
-    //     $sql = "DELETE FROM `viewcart` WHERE `userId`='$userId'";   
-    //     $result = mysqli_query($conn, $sql);
-    //     echo "<script>alert('Removed All');
-    //             window.history.back(1);
-    //         </script>";
-    // }
+    if(isset($_POST['removeItem'])) {
+        $itemId = $_POST["itemId"];
+        foreach($_SESSION['cart'] as $key=>$value)
+        {
+            if($value['id'] == $itemId)
+            {
+                unset($_SESSION['cart'][$key]);
+                $_SESSION['removeItem_msg'] = "Deleted Successfully!";
+
+    
+            }
+        }
+    
+        echo "<script>
+                window.history.back(1);
+            </script>";
+    }
+    if(isset($_POST['removeAllItem'])) {
+        unset($_SESSION['cart']);
+        echo "<script>window.history.back(1);</script>";
+        $_SESSION['removeAllItem_msg'] = "All items are Deleted Successfully!";
+
+    }
+    
     // if(isset($_POST['checkout'])) {
     //     $amount = $_POST["amount"];
     //     $address1 = $_POST["address"];
@@ -126,13 +128,17 @@ include_once "controller/viewCart_controller.php";
     //                 exit();
     //     }    
     // }
-    // if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-    // {
-    //     $pizzaId = $_POST['pizzaId'];
-    //     $qty = $_POST['quantity'];
-    //     $updatesql = "UPDATE `viewcart` SET `itemQuantity`='$qty' WHERE `pizzaId`='$pizzaId' AND `userId`='$userId'";
-    //     $updateresult = mysqli_query($conn, $updatesql);
-    // }
+
+
+
+            
+
+        
+
+
+
+
+
     
 
 ?>

@@ -18,16 +18,6 @@ $id = $_SESSION['user_array']['id'];
 // echo '</pre>';
 
 
-$val = isset($_POST['item']) ? $_POST['item'] : 1; //to be displayed
-
-if(isset($_POST['incqty'])){
-
-   $val += 1;
-}
-
-if(isset($_POST['decqty'])){
-   $val -= 1;                                            
-}
 
 
 ?>
@@ -58,7 +48,7 @@ if(isset($_POST['decqty'])){
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total Price</th>
                                 <th scope="col">
-                                    <form action="partials/_manageCart.php" method="POST">
+                                    <form action="manageCart.php" method="POST">
                                         <button name="removeAllItem" class="btn btn-sm btn-outline-danger">Remove All</button>
                                         <input type="hidden" name="userId" value="<?php echo $userId; ?>">
                                     </form>
@@ -71,7 +61,7 @@ if(isset($_POST['decqty'])){
                         // var_dump($productCheck);
 
                                 $counter = 0;
-                                $totalPrice = 0;
+                                $grandTotal = 0;
                                 // var_dump($_SESSION['cart']);
 
 
@@ -79,29 +69,31 @@ if(isset($_POST['decqty'])){
                                     echo '<form method="post" action="'.$_SERVER["PHP_SELF"].'">';
                                     foreach ($_SESSION['cart'] as $value) {
                                         // $id=$value['id'];
-                                        $quantity = 1;
-                                        $total = $value['price'] * $quantity;
+                                        $Quantity = $value['qty'];
+                                        $total = $value['price'] * $value['qty'];
                                         $counter++;
-                                        $totalPrice += $total;
+                                        $grandTotal += $total;
                                         echo '<tr>
                                         <td>' . $counter . '</td>
                                         <td>' . $value['name'] . '</td>
-                                        <td>' . $value['price']  . '</td>
+                                        <td>' . '<input type="hidden" class="unit_price" name="price" value="'.$value['price']. '">' . $value['price']  . '</td>
 
-
-                                            <td>
-                                                <input type="hidden" name="product_id" value="' . $value['id'] . '">
-                                                <button name="incqty">+</button>
-                                                <input type="text" size="1" name="item" value="'.$val.'"/>
-                                                <button name="decqty">-</button>
-                                            </td>
+                                        <td>
+                                            <form id="frm' .  $value['id'] . '">
+                                                <input type="number" name="quantity" id="' . $value['id'] . '" value="' .$Quantity.'" class="text-center quantity" onchange="subTotalPrice()" style="width:60px" min=1;">
+                                            </form>
+                                        </td>
                               
                                         
-                                        <td class="totalPrice">' . $total . '</td>
+                                        <td class="totalPrice">'.$total.'</td>
+                                        <input type="hidden" name="totalPrice" value="'.$total.'">
+                                        <input type="hidden" name=" " value="'. $grandTotal .'">
+
                                         <td>
                                             <form action="manageCart.php" method="POST">
                                                 <button name="removeItem" class="btn btn-sm btn-outline-danger">Remove</button>
                                                 <input type="hidden" name="itemId" value="'.$value['id']. '">
+                                                
                                             </form>
                                         </td>
                                         </tr>';
@@ -113,14 +105,16 @@ if(isset($_POST['decqty'])){
                                 if($counter==0){
                                 ?>
                                 <script> document.getElementById("cont").innerHTML = 
-                                `<div class="col-md-12 my-5">
+                                `<div class="col-md-12">
                                 <div class="card">
                                 <div class="card-body cart">
                                 <div class="col-sm-12 empty-cart-cls text-center"> 
-                                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
-                                <h3><strong>Your Cart is Empty</strong></h3>
-                                <h4>Add something to make me happy :)</h4> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,0L0,0Z"></path></svg>                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </svg>                                
+                                <h3 class="mt-4"><strong>Your Cart is Empty</strong></h3>
                                 <a href="index.php" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,320L0,320Z"></path></svg>                                
                                 </div></div></div></div>`</script>; 
                                 <?php
 
@@ -136,14 +130,12 @@ if(isset($_POST['decqty'])){
                     <div class="pt-4 border bg-light rounded p-3">
                         <h5 class="mb-3 text-uppercase font-weight-bold text-center">Order summary</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 bg-light">Total Price<span>Rs. <?php echo $totalPrice ?></span></li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 bg-light">Shipping<span>Rs. 0</span></li>
                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-light">
                                 <div>
                                     <strong>The total amount of</strong>
                                     <strong><p class="mb-0">(including Tax & Charge)</p></strong>
                                 </div>
-                                <span><strong>Rs. <?php echo $totalPrice ?></strong></span>
+                                <?php echo '<span><strong id="grandTotal">'. $grandTotal .' MMK</strong></span>'?>
                             </li>
                         </ul>
                         <div class="form-check">
@@ -197,53 +189,51 @@ if(isset($_POST['decqty'])){
     <!-- <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script> -->
 
     <script>
-        function check(input) {
-            if (input.value <= 0) {
-                input.value = 1;
+
+        let grandTotal = document.getElementById('grandTotal');
+        let totalPrice = document.getElementsByClassName('totalPrice');
+        let quantity = document.getElementsByClassName('quantity');
+        let unit_price = document.getElementsByClassName('unit_price');
+        function subTotalPrice()
+        {
+            let gtotal=0;
+            for(let index=0;index<unit_price.length;index++)
+            {
+                totalPrice[index].innerText = (unit_price[index].value) * (quantity[index].value);
+                gtotal += (unit_price[index].value) * (quantity[index].value);
+                // console.log(totalPrice[index]);
             }
-
+            grandTotal.innerText = gtotal;
+            location.reload();
         }
-        
-        var minVal = 1, maxVal = 100; // Set Max and Min values
-        // Increase product quantity on cart page
-        $(".increaseQty").on('click', function(){
-                var $parentElm = $(this).parents(".qtySelector");
-                $(this).addClass("clicked");
-                setTimeout(function(){
-                    $(".clicked").removeClass("clicked");
-                },100);
-                var value = $parentElm.find(".qtyValue").val();
-                if (value < maxVal) {
-                    value++;
-                }
-                $parentElm.find(".qtyValue").val(value);
-        });
-        // Decrease product quantity on cart page
-        $(".decreaseQty").on('click', function(){
-                var $parentElm = $(this).parents(".qtySelector");
-                $(this).addClass("clicked");
-                setTimeout(function(){
-                    $(".clicked").removeClass("clicked");
-                },100);
-                var value = $parentElm.find(".qtyValue").val();
-                if (value > 1) {
-                    value--;
-                }
-                $parentElm.find(".qtyValue").val(value);
-                $parentElm.find(".totalPrice").val(value);
 
-            });
-        // function updateCart(id) {
-        //     $.ajax({
-        //         url: 'manageCart.php',
-        //         type: 'POST',
-        //         data:$("#frm"+id).serialize(),
-        //         success:function(res) {
-        //             location.reload();
-        //         } 
-        //     })
-        // }
-    </script>   
+        $('.quantity').change(function() {
+            let id = this.id;
+            let qty = this.value;
+            console.log(id, qty);
+
+            $.ajax({
+                url: 'update_FinalData.php',
+                type: 'POST',
+                data:{id:id,qty:qty},
+                success: function(data) {
+                    if(data == 'success') {
+                        console.log('Success');
+                        
+                    }
+                    else {
+                        console.log(data);
+
+                    }
+
+                }
+
+
+
+            })
+        });
+       
+    </script>
     
 <?php
 require 'checkoutModal.php';
