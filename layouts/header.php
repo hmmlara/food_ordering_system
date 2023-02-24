@@ -33,6 +33,7 @@ if(isset($_POST['logoutBtn']))
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- Scroll W3School CSS -->
         <style>
             /* width */
             ::-webkit-scrollbar {
@@ -58,6 +59,11 @@ if(isset($_POST['logoutBtn']))
             box-shadow: inset 0 0 5px #000000; 
             }
         </style>
+        <!-- Animate.Style CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="stylesheet" href="./css/customize.css" />
@@ -80,7 +86,9 @@ if(isset($_POST['logoutBtn']))
                     </li>
                     <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About Us</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./contact.php">Contant Us</a>
                     </li>
                 </ul>
                 <?php

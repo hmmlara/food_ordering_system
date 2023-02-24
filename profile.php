@@ -47,10 +47,10 @@ if(isset($_POST['updateBtn']))
 
     if($result)
     {
+        // echo '<script> location.replace("profile.php"); </script>';
         $_SESSION['updated_info_message'] = "Updated your info successfully!";
 
     }
-    // echo '<script> location.replace("profile.php"); </script>';
 
     // if($result)
     // {
@@ -94,7 +94,7 @@ if(isset($_POST['updateBtn']))
 ?>
    
     <body>
-        <div class="container-fluid mt-2 text-dark">
+        <div class="container-fluid mt-4 text-dark">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">

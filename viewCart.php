@@ -5,6 +5,7 @@ include_once "controller/user_controller.php";
 
 include_once 'admin/controller/product_controller.php';
 // include_once 'controller/categories_controller.php';
+include_once "controller/viewCart_controller.php";
 
 $products_controller=new ProductController();
 $products=$products_controller->getProducts();
@@ -16,7 +17,10 @@ $id = $_SESSION['user_array']['id'];
 // echo '<pre>';
 // var_dump($_SESSION['cart']);
 // echo '</pre>';
-
+$user_id = $_SESSION['user_array']['id'];
+$order = new ViewCartController();
+$order_details_result = $order->getOrderMaxID($user_id);
+// var_dump($order_details_result);
 
 
 
@@ -29,13 +33,13 @@ $id = $_SESSION['user_array']['id'];
     if($_SESSION['user_array']){
     ?>
     
-    <div class="container text-dark bg-white" id="cont">
+    <div class="container mt-4 text-dark bg-white" id="cont">
         <div class="row">
             <!-- <div class="alert alert-info mb-0" style="width: -webkit-fill-available;">
               <strong>Info!</strong> online payment are currently disabled so please choose cash on delivery.
             </div> -->
             <div class="col-lg-12 text-center border rounded bg-dark text-white my-3">
-                <h1>My Cart</h1>
+                <h1 class="m-0">My Cart</h1>
             </div>
             <div class="col-lg-8">
                 <div class="card wish-list mb-3">
@@ -126,63 +130,122 @@ $id = $_SESSION['user_array']['id'];
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card wish-list mb-3">
-                    <div class="pt-4 border bg-light rounded p-3">
-                        <h5 class="mb-3 text-uppercase font-weight-bold text-center">Order summary</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-light">
-                                <div>
-                                    <strong>The total amount of</strong>
-                                    <strong><p class="mb-0">(including Tax & Charge)</p></strong>
-                                </div>
-                                <?php echo '<span><strong id="grandTotal">'. $grandTotal .' MMK</strong></span>'?>
-                            </li>
-                        </ul>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Cash On Delivery 
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Online Payment 
-                            </label>
-                        </div><br>
-                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#checkoutModal">go to checkout</button>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="pt-4">
-                        <a class="dark-grey-text d-flex justify-content-between" style="text-decoration: none; color: #050607;" data-toggle="collapse" href="#collapseExample"
-                            aria-expanded="false" aria-controls="collapseExample">
-                            Add a discount code (optional)
-                            <span><i class="fas fa-chevron-down pt-1"></i></span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <div class="mt-3">
-                                <div class="md-form md-outline mb-0">
-                                    <input type="text" id="discount-code" class="form-control font-weight-light"
-                                    placeholder="Enter discount code">
+                    <form action="manageCart.php" method="post">
+                                    <div class="card wish-list mb-3">
+                                        <div class="pt-4 border bg-light rounded p-3">
+                                            <h5 class="mb-3 text-uppercase font-weight-bold text-center">Order summary</h5>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-light">
+                                                    <div>
+                                                        <strong>The total amount of</strong>
+                                                        <strong><p class="mb-0">(including Tax & Charge)</p></strong>
+                                                    </div>
+                                                    <?php echo '<span><strong id="grandTotal">'. $grandTotal .' MMK</strong></span>'?>
+                                                </li>
+                                            </ul>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="0=cash_on_delivery" type="radio" name="paytype" id="flexRadioDefault1" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Cash On Delivery 
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="1=mBanking" type="radio" name="paytype" id="flexRadioDefault1">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Online Payment 
+                                                </label>
+                                            </div><br>
+                                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#checkoutModal">go to checkout</button>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="mb-3">
+                                        <div class="pt-4">
+                                            <a class="dark-grey-text d-flex justify-content-between" style="text-decoration: none; color: #050607;" data-toggle="collapse" href="#collapseExample"
+                                                aria-expanded="false" aria-controls="collapseExample">
+                                                Add a discount code (optional)
+                                                <span><i class="fas fa-chevron-down pt-1"></i></span>
+                                            </a>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="mt-3">
+                                                    <div class="md-form md-outline mb-0">
+                                                        <input type="text" id="discount-code" class="form-control font-weight-light"
+                                                        placeholder="Enter discount code">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
+                        <?php 
+                        }
+                        else {
+                            echo '<div class="container" style="min-height : 610px;">
+                            <div class="alert alert-info my-3">
+                                <font style="font-size:22px"><center>Before checkout you need to <strong><a class="alert-link" data-toggle="modal" data-target="#loginModal">Login</a></strong></center></font>
+                            </div></div>';
+                        }
+                        ?>
+
+                        <!-- Checkout Modal -->
+                        <div class="modal fade text-dark" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="checkoutModal">Enter Your Details:</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                <div class="form-group">
+                                    <b><label class="form-label" for="deliType">Delivery Type: </label></b></br> 
+                                    <!-- <input class="form-control" id="password" name="password" placeholder="Enter Password" type="password" required minlength="4" maxlength="21" data-toggle="password"> -->
+                                    <span class="mx-5">
+                                        <input type="radio" class="form-check-input" value="1" name="delitype" id="deli1">
+                                        <label class="form-label" for=""> Pick Up </label>
+                                    </span>
+                                    <span class="mx-5 float-right">
+                                        <input type="radio" class="form-check-input" value="2" name="delitype" id="deli2" checked>
+                                        <label class="form-label" for=""> via Delivery Man </label>   
+                                    </span>
+            
+                                </div>
+                                <div id="addressDiv">
+                                    <div class="form-group">
+                                        <b><label for="address">Address:</label></b>
+                                        <input class="form-control" id="address" name="address" placeholder="1234 Main St" type="text" required minlength="3" maxlength="500">
+                                    </div>
+                                    <div class="form-group">
+                                        <b><label for="address1">Address Line 2:</label></b>
+                                        <input class="form-control" id="address1" name="address1" placeholder="near st, Surat, Gujarat" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-0">
+                                        <b><label for="phone">Phone No:</label></b>
+                                        <div class="input-group mb-3">
+                                        <!-- <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon"></span>
+                                        </div> -->
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="09xxxxxxxxx" required pattern="[0-9]{11}" maxlength="11">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <input type="hidden" name="amount" value="<?php echo $grandTotal ?>">
+                                    <button type="submit" name="checkout" class="btn btn-success">Order</button>
+                                </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-         
-    <?php 
-    }
-    else {
-        echo '<div class="container" style="min-height : 610px;">
-        <div class="alert alert-info my-3">
-            <font style="font-size:22px"><center>Before checkout you need to <strong><a class="alert-link" data-toggle="modal" data-target="#loginModal">Login</a></strong></center></font>
-        </div></div>';
-    }
-    ?>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>         
@@ -232,11 +295,20 @@ $id = $_SESSION['user_array']['id'];
 
             })
         });
+
+        var firstRadio = document.getElementById('deli1');
+        var secRadio = document.getElementById('deli2');
+        var addressDiv = document.getElementById('addressDiv');
+        firstRadio.addEventListener('click', function() {
+            addressDiv.style.display = 'none';
+        })
+        secRadio.addEventListener('click', function() {
+            addressDiv.style.display = 'block';
+        })
        
     </script>
     
 <?php
-require 'checkoutModal.php';
 include_once "layouts/footer.php";
 
 
