@@ -84,7 +84,7 @@ $order_details_result = $order->getOrderMaxID($user_id);
 
                                         <td>
                                             <form id="frm' .  $value['id'] . '">
-                                                <input type="number" name="quantity" id="' . $value['id'] . '" value="' .$Quantity.'" class="text-center quantity" onchange="subTotalPrice()" style="width:60px" min=1;">
+                                                <input type="number" name="quantity" id="' . $value['id'] . '" value="' .$Quantity.'" class="text-center quantity" onchange="subTotalPrice()" style="width:60px" min="1";">
                                             </form>
                                         </td>
                               

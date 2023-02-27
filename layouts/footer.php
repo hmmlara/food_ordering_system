@@ -1,4 +1,4 @@
-<footer class="block footer1 footer text-center">
+<footer class="text-center">
             <p>No 14, Nandar St, Conor of KhanTawLay'circle, Infront of Gannamar Park, YatKatGyi 6, Pyin Oo Lwin</p>
             <p>Ph no : 09 794278148</p>
         </footer>
@@ -124,6 +124,31 @@
             } 
         ?>
         </script>
+
+        
+    <script>
+
+        function check_session_id()
+        {
+            var session_id = "<?php echo $_SESSION['user_session_id']; ?>";
+            fetch ('index.php').then(function(response) {
+                return response.json();
+
+            }).then(function(responseData) {
+                if(responseData.output == 'logout') {
+                    // window.location.href = 'localhost/fos/login.php';
+                    <?php header("Location:login.php") ?>;
+                }
+                else{
+                    window.location.href = 'register.php';
+                }
+            })
+        }
+
+        setInterval(function() => {
+            check_session_id();
+        }, 10000);
+    </script>
 
     </body>
 

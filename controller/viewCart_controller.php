@@ -17,9 +17,9 @@ class ViewCartController extends ViewCart
         return  $results;
     }
 
-    public function add_order_details($order_id, $product_id, $product_price, $product_qty)
+    public function add_order_details($order_id, $product_id, $product_qty)
     {
-        $results = parent::add_order_details($order_id, $product_id, $product_price, $product_qty);
+        $results = parent::add_order_details($order_id, $product_id, $product_qty);
         return $results;
     }
 
@@ -35,9 +35,15 @@ class ViewCartController extends ViewCart
         return $results;
     }
 
-    public function get_products($productID)
+    public function get_products()
     {
-        $results  = parent::get_products($productID);
+        $results  = parent::get_products();
+        return $results;
+    }
+
+    public function get_OrderStatus($order_id)
+    {
+        $results = parent::get_OrderStatus($order_id);
         return $results;
     }
 

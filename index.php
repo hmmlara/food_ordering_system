@@ -5,6 +5,8 @@ include_once "controller/user_controller.php";
 include_once "admin/controller/categories_controller.php";
 include_once "admin/controller/product_controller.php";
 include_once "controller/viewCart_controller.php";
+include_once "controller/login_controller.php";
+
 
 $categories=new CategoriesController();
 $results=$categories->getCategories();
@@ -14,21 +16,28 @@ $parents = array_filter($results,function($value){
         return $value;
 });
 
-
-
-
 $products_controller=new ProductController();
 $products=$products_controller->getProducts();
 
-
-
-
-if(isset($_POST['logoutBtn']))
+if(isset($_SESSION['user_array']))
 {
-    session_destroy();
-    header('location:login.php');
-}
+    $user_id = $_SESSION['user_array']['id'];
+    $loginController = new LoginController();
+    $userSessionId = $loginController->getUser_SessionId($user_id);
+    var_dump($userSessionId);   
+    // echo $_SESSION['user_session_id'].'<br>';
+    // echo $_SESSION['user_array']['id'];
 
+    if($_SESSION['user_session_id'] != $userSessionId['user_session_id'])
+    {
+        $data['output'] = 'logout';
+    }
+    else{
+        $data['output'] = 'login';
+    }
+
+    echo json_encode($data);
+}
 
 
 ?>
@@ -223,8 +232,9 @@ if(isset($_POST['logoutBtn']))
 
     </div>
 
+
     <?php
     include_once 'layouts/footer.php';
 
 
-       ?>
+    ?>

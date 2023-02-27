@@ -1,3 +1,43 @@
+<?php
+include_once "layouts/header.php";
+
+include_once 'admin/controller/product_controller.php';
+
+include_once "controller/viewCart_controller.php";
+
+
+$order_id= $_GET['id'];
+// var_dump($order_id);
+$orders = new ViewCartController();
+$orderDetails = $orders->get_orderDetails($order_id);
+$product = $orders->get_products();            
+
+$orderStatus = $orders->get_OrderStatus($order_id);
+// var_dump($orderStatus['status']);
+$status = $orderStatus['status'];
+if ($status == 0) 
+$tstatus = "Order Placed.";
+elseif ($status == 1) 
+$tstatus = "Order Confirmed.";
+elseif ($status == 2)
+$tstatus = "Preparing your Order.";
+elseif ($status == 3)
+$tstatus = "Your order is on the way!";
+elseif ($status == 4) 
+$tstatus = "Order Delivered.";
+elseif ($status == 5) 
+$tstatus = "Order Denied.";
+else
+$tstatus = "Order Cancelled.";
+
+
+
+// var_dump($orderDetails[0]['order_id']);
+// var_dump($orderDetails[1]['product_id']);
+// var_dump($product);
+
+?>
+
 <style>
     /* .modal-body {
         background-color: #eeeeee;
@@ -54,7 +94,7 @@
     }
 
     .track .step.active:before {
-        background: #FF5722
+        background: #be8040
     }
 
     .track .step::before {
@@ -67,7 +107,7 @@
     }
 
     .track .step.active .icon {
-        background: #ee5435;
+        background: #be8040;
         color: #fff
     }
 
@@ -102,80 +142,90 @@
 
     .btn-warning {
         color: #ffffff;
-        background-color: #ee5435;
-        border-color: #ee5435;
+        background-color: #be8040;
+        border-color: #be8040;
         border-radius: 1px
     }
 
     .btn-warning:hover {
         color: #ffffff;
-        background-color: #ff2b00;
-        border-color: #ff2b00;
+        background-color: #be8050;
+        border-color: #be8050;
         border-radius: 1px
     }
     
 </style>
-<?php 
-    $statusmodalsql = "SELECT * FROM `orders` WHERE `userId`= $userId";
-    $statusmodalresult = mysqli_query($conn, $statusmodalsql);
-    while($statusmodalrow = mysqli_fetch_assoc($statusmodalresult)){
-        $orderid = $statusmodalrow['orderId'];
-        $status = $statusmodalrow['orderStatus'];
-        if ($status == 0) 
-            $tstatus = "Order Placed.";
-        elseif ($status == 1) 
-            $tstatus = "Order Confirmed.";
-        elseif ($status == 2)
-            $tstatus = "Preparing your Order.";
-        elseif ($status == 3)
-            $tstatus = "Your order is on the way!";
-        elseif ($status == 4) 
-            $tstatus = "Order Delivered.";
-        elseif ($status == 5) 
-            $tstatus = "Order Denied.";
-        else
-            $tstatus = "Order Cancelled.";
 
-        if($status >= 1 && $status <= 4) {
-            $deliveryDetailSql = "SELECT * FROM `deliverydetails` WHERE `orderId`= $orderid";
-            $deliveryDetailResult = mysqli_query($conn, $deliveryDetailSql);
-            $deliveryDetailRow = mysqli_fetch_assoc($deliveryDetailResult);
-            $trackId = $deliveryDetailRow['id'];
-            $deliveryBoyName = $deliveryDetailRow['deliveryBoyName'];
-            $deliveryBoyPhoneNo = $deliveryDetailRow['deliveryBoyPhoneNo'];
-            $deliveryTime = $deliveryDetailRow['deliveryTime'];
-            if($status == 4)
-                $deliveryTime = 'xx';
-        }
-        else {
-            $trackId = 'xxxxx';
-            $deliveryBoyName = '';
-            $deliveryBoyPhoneNo = '';
-            $deliveryTime = 'xx';
-        }
+<div class="container my-3 py-3" style="background-color:#6c757d">
+    <div class="row">
+        <!-- Shopping cart table -->
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table text">
+                <thead>
+                    <tr>
+                    <th scope="col" class="border-0 bg-light">
+                        <div class="px-3 text-center">No</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                        <div class="px-3 text-center">Item</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                        <div class="text-center">Quantity</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                        <div class="text-center">Price</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                        <div class="text-center">Sub Total</div>
+                    </th>
+                    </tr>
+                </thead>
+                <tbody class="text-white text-center">
+                    <?php
+                    $count=1;
 
-?>
-<!-- Modal -->
-<div class="modal fade" id="orderStatus<?php echo $orderid; ?>" tabindex="-1" role="dialog" aria-labelledby="orderStatus<?php echo $orderid; ?>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="orderStatus<?php echo $orderid; ?>">Order Status</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    foreach ($orderDetails as $key => $value) {
+                        echo "<tr>";
+                        foreach ($product as $item) {
+                            if($value['product_id'] == $item['id']) {
+                                echo "<td>".$count."</td>";
+                                echo "<td>".$item['name']."</td>";
+                                echo "<td>".$value['qty']."</td>";
+                                echo "<td>".$item['price']."</td>";
+                                echo "<td>".$item['price']*$value['qty']."</td>";
+                                $count++;
+
+                            }
+
+                        }
+                        echo "</tr>";
+                    }
+
+
+                    echo "<tr>";
+                    echo "<td colspan='4'>Total Balance</td>";
+                    echo "<td>".$orderStatus['total_balance']."</td>";
+                    echo "</tr>";
+
+                    ?>
+
+                </tbody>
+                </table>
             </div>
-            <div class="modal-body" id="printThis">
-                <div class="container" style="padding-right: 0px;padding-left: 0px;">
+        </div>
+        <!-- End -->
+    </div>
+
+    <div class="row text-dark">
+        <div class="col-md-12">
+        <div class="container" style="padding-right: 0px;padding-left: 0px;">
                     <article class="card">
                         <div class="card-body">
-                            <h6><strong>Order ID:</strong> #<?php echo $orderid; ?></h6>
+                            <h6><strong>Order ID:</strong> #<?php echo $order_id; ?></h6>
                             <article class="card">
                                 <div class="card-body row">
-                                    <div class="col"> <strong>Estimated Delivery time:</strong> <br><?php echo $deliveryTime; ?> minute </div>
-                                    <div class="col"> <strong>Shipping By:</strong> <br> <?php echo $deliveryBoyName; ?> | <i class="fa fa-phone"></i> <?php echo $deliveryBoyPhoneNo; ?> </div>
                                     <div class="col"> <strong>Status:</strong> <br> <?php echo $tstatus; ?> </div>
-                                    <div class="col"> <strong>Tracking #:</strong> <br> <?php echo $trackId; ?> </div>
                                 </div>
                             </article>
                             <div class="track">
@@ -228,11 +278,15 @@
                         </div>
                     </article>
                 </div>
-            </div>
         </div>
     </div>
 </div>
-<?php
-    }
-?>
 
+
+
+
+<?php
+include_once "layouts/footer.php";
+
+
+?>

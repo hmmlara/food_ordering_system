@@ -18,23 +18,23 @@ include_once "layouts/header.php";
                         <div class="col-lg-8">
                           <h4 class="title">Contact Us</h4>
                         </div>
-                        <!-- <?php if($loggedin){ ?>
+                        <?php if(isset($_SESSION['user_array'])){ ?>
                           <div class="col-lg-4">
                             <div class="icon-badge-container mx-1" style="padding-left: 167px;">
                               <a href="#" data-toggle="modal" data-target="#adminReply"><i class="far fa-envelope icon-badge-icon"></i></a>
                               <div class="icon-badge"><b><span id="totalMessage">0</span></b></div>
                             </div>
                           </div>
-                        <?php } ?> -->
+                        <?php } ?>
                       </div>
-                      <!-- <?php
-                          $passSql = "SELECT * FROM users WHERE id='$userId'"; 
-                          $passResult = mysqli_query($conn, $passSql);
-                          $passRow=mysqli_fetch_assoc($passResult);
-                          $email = $passRow['email'];
-                          $phone = $passRow['phone'];
+                      <?php
+                          $id=$_SESSION['user_array']['id'];
+                          $userController = new UserController();
+                          $user = $userController->getUser($id);
+                          $email = $user['email'];
+                          $phone = $user['phone_number'];
                           
-                      ?> -->
+                      ?>
                       <form action="partials/_manageContactUs.php" method="POST">
                         <div class="row">
                           <div class="col-lg-6">
@@ -72,7 +72,7 @@ include_once "layouts/header.php";
                                 <textarea class="form-control" id="message" name="message" rows="2" required minlength="6" placeholder="How May We Help You ?"></textarea>
                             </div>
                           </div>
-                          <!-- <?php if($loggedin){ ?>
+                          <?php if(isset($_SESSION['user_array'])){ ?>
                             <div class="col-lg-12">
                               <button type="submit" class="btn btn-danger-gradiant mt-3 mb-3 text-white border-0 py-2 px-3"><span> SUBMIT NOW <i class="ti-arrow-right"></i></span></button>
                               <button type="button" class="btn btn-danger-gradiant mt-3 mb-3 text-white border-0 py-2 px-3 mx-2" data-toggle="modal" data-target="#history"><span> HISTORY <i class="ti-arrow-right"></i></span></button>
@@ -82,7 +82,7 @@ include_once "layouts/header.php";
                               <button type="submit" class="btn btn-danger-gradiant mt-3 text-white border-0 py-2 px-3" disabled><span> SUBMIT NOW <i class="ti-arrow-right"></i></span></button>
                               <small class="form-text text-muted">First login to Contct with Us.</small>
                             </div>
-                          <?php } ?> -->
+                          <?php } ?>
                         </div>
                       </form>
                     </div>
@@ -114,12 +114,13 @@ include_once "layouts/header.php";
                     </tr>
                 </thead>
                 <tbody>
-                <!-- <?php 
-                    $sql = "SELECT * FROM `contactreply` WHERE `userId`='$userId'"; 
-                    $result = mysqli_query($conn, $sql);
+                <?php 
+                    $user_id=$_SESSION['user_array']['id'];
+                    $contactreply = new ContactReplyController();
+                    $result = $contactreply->getContactReply($user_id);
                     $count = 0;
-                    while($row=mysqli_fetch_assoc($result)) {
-                        $contactId = $row['contactId'];
+                    foreach ($result as $row) {
+                        $contactId = $row['contact_id'];
                         $message = $row['message'];
                         $datetime = $row['datetime'];
                         $count++;
@@ -133,7 +134,7 @@ include_once "layouts/header.php";
                     if($count==0) {
                       ?><script> document.getElementById("messagebd").innerHTML = '<div class="my-1">you have not recieve any message.</div>';</script> <?php
                     }
-                ?> -->
+                ?>
                 </tbody>
 		          </table>
             </div>
@@ -162,13 +163,12 @@ include_once "layouts/header.php";
                     </tr>
                 </thead>
                 <tbody>
-                <!-- <?php 
-                    $sql = "SELECT * FROM `contact` WHERE `userId`='$userId'"; 
-                    $result = mysqli_query($conn, $sql);
+                <?php 
+                    $result = $contactreply->getContact($user_id);
                     $count = 0;
-                    while($row=mysqli_fetch_assoc($result)) {
-                        $contactId = $row['contactId'];
-                        $orderId = $row['orderId'];
+                    foreach ($result as $row){
+                        $contactId = $row['contact_id'];
+                        $orderId = $row['order_id'];
                         $message = $row['message'];
                         $datetime = $row['time'];
                         $count++;
@@ -182,7 +182,7 @@ include_once "layouts/header.php";
                     if($count==0) {
                       ?><script> document.getElementById("bd").innerHTML = '<div class="my-1">you have not contacted us.</div>';</script> <?php
                     }    
-                ?> -->
+                ?>
                 </tbody>
 		          </table>
             </div>

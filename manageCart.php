@@ -99,17 +99,19 @@ include_once "controller/viewCart_controller.php";
 
                 $order_details_result = $order->getOrderMaxID($user_id);
                 $order_id = $order_details_result['max(id)'];
-                $add_order_details = $order->add_order_details($order_id, $product_id, $product_price, $product_qty);
+                $add_order_details = $order->add_order_details($order_id, $product_id, $product_qty);
                 if($add_order_details)
                 {
                     // echo "<script>window.history.back(1);</script>";
-                    $_SESSION['order_meg_success'] = "Ordered Successfully!";
                     unset($_SESSION['cart']);
                 }
     
     
             }
-            header("Location:myorders.php");
+            $_SESSION['order_meg_success'] = "Ordered Successfully!";
+            header("Location:viewCart.php");
+
+
         }
 
 

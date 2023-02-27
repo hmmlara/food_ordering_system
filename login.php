@@ -6,6 +6,8 @@ include_once "controller/login_controller.php";
 //WHEN USER LOGIN
 if(isset($_POST['loginBtn']))
 {
+
+
     $_SESSION['cart'] = array();
     $email=trim($_POST['email']);
     $password=md5(trim($_POST['password']));
@@ -15,13 +17,17 @@ if(isset($_POST['loginBtn']))
     if($user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
+        session_regenerate_id();
+        $user_session_id = session_id();
+        $user_id = $_SESSION['user_array']['id'];
+        $_SESSION['user_session_id'] = $user_session_id;
+        $setUser = $loginController->setUser_SessionId($user_session_id,$user_id);
+
         header('location:index.php');
         
     }
 
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -161,6 +167,8 @@ if(isset($_POST['loginBtn']))
                 </div>
             </div>
         </div>
+
+
 <?php
 
 include_once "layouts/footer.php";

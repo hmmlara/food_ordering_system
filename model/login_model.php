@@ -29,6 +29,61 @@ class Login
 
     }
 
+    public function setUser_SessionId($user_session_id,$user_id)
+    {
+               //DB connection
+       $this->pdo=Database::connect();
+       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+       //write sql string
+       $sql="UPDATE users_info SET user_session_id = :user_session_id WHERE id = :user_id";
+
+        //prepare sql, change sql string to statement
+        $statement=$this->pdo->prepare($sql);
+
+        //bind parameters
+        $statement->bindParam(":user_session_id",$user_session_id);
+        $statement->bindParam(":user_id",$user_id);
+
+        //excute statement
+        // $statement->execute();
+
+        if($statement->execute())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }
+
+    public function getUser_SessionId($user_id)
+    {
+        //DB connection
+       $this->pdo=Database::connect();
+       $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+       //write sql string
+       $sql="SELECT user_session_id FROM users_info WHERE id=:user_id";
+
+       //prepare sql, change sql string to statement
+       $statement=$this->pdo->prepare($sql);
+    //    $statement->bindParam(":id",$id);
+       $statement->bindParam(":user_id",$user_id);
+
+       //excute statement
+        $statement->execute();
+        //result
+        $user=$statement->fetch(PDO::FETCH_ASSOC);
+
+        //return
+        return $user;
+
+    }
+
 }
 
 

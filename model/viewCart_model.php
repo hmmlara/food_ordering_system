@@ -22,11 +22,11 @@ class ViewCart
         $statement->bindParam(':phone_number',$phone);
         $statement->bindParam(':user_info_id',$user_id);
 
-        $status = "0-Order Placed";
+        $status = "0";
         $statement->bindParam(':status',$status);
 
         date_default_timezone_set("Asia/Yangon");
-        $date_now = date("Y-m-d H:m:s");
+        $date_now = date('d-m-y h:i:s');
         $statement->bindParam(':created_date',$date_now);
         $statement->bindParam(':updated_date',$date_now);
 
@@ -60,21 +60,20 @@ class ViewCart
         return $orderID;
     }
 
-    public function add_order_details($order_id, $product_id, $product_price, $product_qty)
+    public function add_order_details($order_id, $product_id, $product_qty)
     {
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql="INSERT INTO `order_details`(`order_id`, `product_id`, `qty`, `price`, `created_date`, `updated_date`) 
-        VALUES (:order_id, :product_id, :qty, :price, :created_date, :updated_date)";
+        $sql="INSERT INTO `order_details`(`order_id`, `product_id`, `qty`, `created_date`, `updated_date`) 
+        VALUES (:order_id, :product_id, :qty, :created_date, :updated_date)";
 
         $statement=$this->pdo->prepare($sql);
         $statement->bindParam(':order_id',$order_id);
         $statement->bindParam(':product_id',$product_id);
         $statement->bindParam(':qty',$product_qty);
-        $statement->bindParam(':price',$product_price);
 
         date_default_timezone_set("Asia/Yangon");
-        $date_now = date("Y-m-d H:m:s");
+        $date_now = date('d-m-y h:i:s');
         $statement->bindParam(':created_date',$date_now);
         $statement->bindParam(':updated_date',$date_now);
 
@@ -116,20 +115,32 @@ class ViewCart
         $statement=$this->pdo->prepare($sql);
         $statement->bindParam(":order_id",$order_id);
         $statement->execute();
-        $results=$statement->fetch(PDO::FETCH_ASSOC);
+        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
 
-    public function get_products($productID)
+    public function get_products()
     {
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql='select * from products where id=:id';
+        $sql='select * from products';
         $statement=$this->pdo->prepare($sql);
-        $statement->bindParam(":id",$productID);
+        // $statement->bindParam(":id",$productID);
         $statement->execute();
-        $products=$statement->fetch(PDO::FETCH_ASSOC);
+        $products=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $products;
+    }
+
+    public function get_OrderStatus($order_id)
+    {
+        $this->pdo=Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $sql='select * from orders where id=:order_id';
+        $statement=$this->pdo->prepare($sql);
+        $statement->bindParam(":order_id",$order_id);
+        $statement->execute();
+        $results=$statement->fetch(PDO::FETCH_ASSOC);
+        return $results;
     }
 
 
