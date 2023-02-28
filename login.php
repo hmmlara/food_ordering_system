@@ -20,8 +20,14 @@ if(isset($_POST['loginBtn']))
         session_regenerate_id();
         $user_session_id = session_id();
         $user_id = $_SESSION['user_array']['id'];
-        $_SESSION['user_session_id'] = $user_session_id;
+        // $_SESSION['user_session_id'] = $user_session_id;
         $setUser = $loginController->setUser_SessionId($user_session_id,$user_id);
+
+        $_SESSION['auth_user'] = [
+            'name' => $user_result['name'],
+            'id' => $user_result['id'],
+            '_token' => $user_session_id
+        ];
 
         header('location:index.php');
         

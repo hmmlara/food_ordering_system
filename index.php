@@ -19,25 +19,28 @@ $parents = array_filter($results,function($value){
 $products_controller=new ProductController();
 $products=$products_controller->getProducts();
 
-if(isset($_SESSION['user_array']))
-{
-    $user_id = $_SESSION['user_array']['id'];
-    $loginController = new LoginController();
-    $userSessionId = $loginController->getUser_SessionId($user_id);
-    var_dump($userSessionId);   
-    // echo $_SESSION['user_session_id'].'<br>';
-    // echo $_SESSION['user_array']['id'];
+// if(isset($_SESSION['user_array']))
+// {
+//     $user_id = $_SESSION['user_array']['id'];
+//     $loginController = new LoginController();
+//     $userSessionId = $loginController->getUser_SessionId($user_id);
+//     var_dump($userSessionId);   
+//     // echo $_SESSION['user_session_id'].'<br>';
+//     // echo $_SESSION['user_array']['id'];
 
-    if($_SESSION['user_session_id'] != $userSessionId['user_session_id'])
-    {
-        $data['output'] = 'logout';
-    }
-    else{
-        $data['output'] = 'login';
-    }
+//     if($_SESSION['user_session_id'] != $userSessionId['user_session_id'])
+//     {
+//         $data['output'] = 'logout';
+//     }
+//     else{
+//         $data['output'] = 'login';
+//     }
 
-    echo json_encode($data);
-}
+//     echo json_encode($data);
+// }
+// var_dump($_SESSION['auth_user']['_token']);
+
+
 
 
 ?>

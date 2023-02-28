@@ -46,16 +46,7 @@ class Login
         $statement->bindParam(":user_id",$user_id);
 
         //excute statement
-        // $statement->execute();
-
-        if($statement->execute())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        $statement->execute();
 
 
     }

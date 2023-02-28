@@ -126,29 +126,6 @@
         </script>
 
         
-    <script>
-
-        function check_session_id()
-        {
-            var session_id = "<?php echo $_SESSION['user_session_id']; ?>";
-            fetch ('index.php').then(function(response) {
-                return response.json();
-
-            }).then(function(responseData) {
-                if(responseData.output == 'logout') {
-                    // window.location.href = 'localhost/fos/login.php';
-                    <?php header("Location:login.php") ?>;
-                }
-                else{
-                    window.location.href = 'register.php';
-                }
-            })
-        }
-
-        setInterval(function() => {
-            check_session_id();
-        }, 10000);
-    </script>
 
     </body>
 

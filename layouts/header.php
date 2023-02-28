@@ -1,6 +1,8 @@
 <?php
-
+    
     include_once "controller/user_controller.php";
+    include_once "controller/login_controller.php";
+
 
 
     if(!isset($_SESSION)) 
@@ -13,11 +15,36 @@
         $_SESSION['cart'] = array();
     }
 
+    if(!isset($_SESSION['auth_user']))
+    {
+        $_SESSION['auth_user'] = [];
+    }
+
+    // var_dump($_SESSION['auth_user']);
+    if(count($_SESSION['auth_user']) > 0)
+    {
+        // $userController = new UserController();
+        $user_id = $_SESSION['auth_user']['id'];
+        // var_dump($_SESSION['auth_user']['id']);
+        $loginController = new LoginController();
+        $db_session = $loginController->getUser_SessionId($user_id);
+        // var_dump($db_session['user_session_id']);
+        // var_dump($_SESSION['auth_user']['_token']);
+        if($db_session['user_session_id'] != $_SESSION['auth_user']['_token']){
+            session_destroy();
+            // unset($_SESSION['user_array']);
+            // unset($_SESSION['cart']);
+            header('Location: login.php');
+        }
+    }
+
     if(isset($_POST['logoutBtn']))
     {
-        session_id($_SESSION['user_session_id']);
-        session_destroy();
+        // session_id($_SESSION['user_session_id']);
+        // session_destroy();
         unset($_SESSION['user_array']);
+        unset($_SESSION['auth_user']);
+        unset($_SESSION['cart']);
         header('location:login.php');
     }
 
