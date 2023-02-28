@@ -4,17 +4,59 @@
 
     $orders=new OrderController();
     $results=$orders->getOrderinfo();
-
     if(isset($_POST["filter"])){
-        
-        $results = array_values(array_filter($results,function($value){
+            $results = array_values(array_filter($results,function($value){
                 $date =  explode(' ',$value["created_date"])[0];
-                if(($value['delivery_id'] == $_POST["pickup_deli_filter"] || $_POST["pickup_deli_filter"] == 0)
-                    && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                if($_POST['order_method_filter']==0 && $_POST['pickup_deli_filter'] == 0){
+                    if($_POST["start_date"] < $date && $date < $_POST["end_date"]){
                         return $value;
+                    }
                 }
-        }));
+                else if($_POST['order_method_filter']==0 && $_POST['pickup_deli_filter'] == 1){
+                    if($value['delivery_id'] == 1 && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==0 && $_POST['pickup_deli_filter'] == 2){
+                    if($value['delivery_id'] == 2 && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==1 && $_POST['pickup_deli_filter'] == 0){
+                    if($value['email'] == "userdefault@gmail.com" && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==1 && $_POST['pickup_deli_filter'] == 1){
+                    if($value['email'] == "userdefault@gmail.com" && $value['delivery_id'] == 1  && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==1 && $_POST['pickup_deli_filter'] == 2){
+                    if($value['email'] == "userdefault@gmail.com" && $value['delivery_id'] == 2  && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==2 && $_POST['pickup_deli_filter'] == 0){
+                    if($value['email'] != "userdefault@gmail.com" && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==2 && $_POST['pickup_deli_filter'] == 1){
+                    if($value['email'] != "userdefault@gmail.com" && $value['delivery_id'] == 1  && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+                else if($_POST['order_method_filter']==2 && $_POST['pickup_deli_filter'] == 2){
+                    if($value['email'] != "userdefault@gmail.com" && $value['delivery_id'] == 2  && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
+                        return $value;
+                    }
+                }
+            }));
     }
+
+
+    
     
 ?>
 
@@ -23,44 +65,88 @@
 
                     <!-- Page Heading -->
 
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
                         <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အော်ဒါများ</h1>
-                        
+                        <div class="col-md-6 me-4">
+                            <p id="order_type_name"></p>
+                            <?php
+                                if(isset($_POST['filter'])){
+                                    if($_POST['order_method_filter']==0 && $_POST['pickup_deli_filter'] == 0){
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==0 && $_POST['pickup_deli_filter'] == 1){
+                                        echo "<p>Filter : Pick up</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==0 && $_POST['pickup_deli_filter'] == 2){
+                                        echo "<p>Filter : Dleivery</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==1 && $_POST['pickup_deli_filter'] == 0){
+                                        echo "<p>Filter : Order by Phone</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==1 && $_POST['pickup_deli_filter'] == 1){
+                                        echo "<p>Filter : Order by Phone && Pick up</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==1 && $_POST['pickup_deli_filter'] == 2){
+                                        echo "<p>Filter : Order by Phone && Delivery</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==2 && $_POST['pickup_deli_filter'] == 0){
+                                        echo "<p>Filter : Order by Account</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==2 && $_POST['pickup_deli_filter'] == 1){
+                                        echo "<p>Filter : Order by Account && Pick up</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                    else if($_POST['order_method_filter']==2 && $_POST['pickup_deli_filter'] == 2){
+                                        echo "<p>Filter : Order by Account && Delivery</p>";
+                                        echo "<p>Filter date Range : from ".$_POST['start_date']." to ".$_POST['end_date']."</p>";
+                                    }
+                                }
+                            ?>
+                        </div>
                     </div>
-                    <a href="create_orders.php" class="btn btn-success my-2">အသစ်ထည့်မည်</a>
                     
-                    <form action="" method="post">
-                    <div class="row">
-                        <div class="col-md-3">
-
-                            <select name="pickup_deli_filter" id="order_type" class="form-select">
-                                <option value="0" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 0)? 'selected' : '';?>>All</option>
-                                <option value="1" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 1)? 'selected': '';?>>Pick Up</option>
-                                <option value="2" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 2)? 'selected': '' ;?>>Delivery Men</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
+                    <form action="" method="post" id="myForm">
+                        <div class="row">
                             <div class="col-md-6">
-                                <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date">
+                                <label for="" class="form-label">ဖုန်းအော်ဒါ(သို့မဟုတ်)အကောင့်အော်ဒါ</label>
+                                <select name="order_method_filter" id="order_method" class="form-select">
+                                    <!-- <option hidden>ဖုန်းအော်ဒါ(သို့မဟုတ်)အကောင့်အော်ဒါ</option> -->
+                                    <option value="0" <?php echo (isset($_POST["order_method_filter"])&& $_POST["order_method_filter"] == 0)? 'selected': '';?>>All</option>
+                                    <option value="1" <?php echo (isset($_POST["order_method_filter"])&& $_POST["order_method_filter"] == 1)? 'selected': '';?>>Order by Phone</option>
+                                    <option value="2" <?php echo (isset($_POST["order_method_filter"])&& $_POST["order_method_filter"] == 2)? 'selected': '' ;?>>Order by Account</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
-                                <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date">
-                            </div>
+                                <label for="" class="form-label">အော်ဒါအမျိုးအစား</label>
+                                <select name="pickup_deli_filter" id="order_type" class="form-select">
+                                <!-- <option hidden>အော်ဒါအမျိုးအစား</option> -->
+                                    <option value="0" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 0)? 'selected' : '';?>>All</option>
+                                    <option value="1" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 1)? 'selected': '';?>>Pick Up</option>
+                                    <option value="2" <?php echo (isset($_POST["pickup_deli_filter"])&& $_POST["pickup_deli_filter"] == 2)? 'selected': '' ;?>>Delivery Men</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
-                            <button id="reset" class="btn btn-sm btn-danger">ပြန်စမည်</button>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date" value="<?php if(isset($_POST['filter'])){echo $_POST['start_date'];}?>">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date" value="<?php if(isset($_POST['filter'])){echo $_POST['end_date'];}  ?>">
+                            </div>
+                            <div class="col-md-4">
+                                <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
+                                <button id="reset" class="btn btn-sm btn-danger" name="reset">ပြန်စမည်</button>
+                            </div>
                         </div>
-
-                    </div>
                     </form>
-                    <div class="row mt-3">
-
-                            
+                    <div class="row mt-3" id="order_by_account">
                         <div class="col-md">
-                            
                             <table class="table table-striped table-bordered" id="order_table">
                                 <thead>
                                     <tr>

@@ -7,7 +7,7 @@ class OrderModel{
     public function get_order_info(){
         $this->pdo=DataBase::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $query="select orders.*,users_info.name as cus_name
+        $query="select orders.*,users_info.name as cus_name,users_info.email 
         FROM orders JOIN users_info 
         WHERE users_info.id=orders.user_info_id order by id DESC";
         $statement=$this->pdo->prepare($query);
@@ -18,8 +18,7 @@ class OrderModel{
     public function get_specific_order($id){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $query="select * from orders join shipping
-        ON shipping.id=orders.shipping_id
+        $query="select * from orders 
         where orders.id=:id";
         $statement=$this->pdo->prepare($query);
         $statement->bindParam(":id",$id);

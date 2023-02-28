@@ -74,23 +74,19 @@
             </a>
 					</li>
 
-					<li class="sidebar-item <?php if($active_page == '/FOS/admin/shipping.php' ||  $active_page == '/FOS/admin/create_shipping.php' || $active_page == '/FOS/admin/edit_shipping.php'){echo "active";}?>">
-						<a class="sidebar-link" href="shipping.php">
-						<i class="align-middle" data-feather="truck"></i> <span class="align-middle">မြို့နယ်များ</span>
-            </a>
-					</li>
-
 					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/customers.php')? 'active' : '' ;?>">
 						<a class="sidebar-link" href="customers.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူများ</span>
             </a>
 					</li>
-
-					<li class="sidebar-item <?php if($active_page == '/FOS/admin/orders.php' ||  $active_page == '/FOS/admin/order_details.php'){echo "active";}?>">
+					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/orders.php' ||  $active_page == '/FOS/admin/order_details.php'){echo "active";}?> ">
 						<a class="sidebar-link" href="orders.php">
-              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">အော်ဒါများ</span>
-            </a>
+              				<i class="align-middle" data-feather="align-left"></i> <span class="align-middle">အော်ဒါများ</span>
+							  
+            			</a>
+						
 					</li>
+					
 
 					<!-- <li class="sidebar-item">
 						<a class="sidebar-link" href="ui-forms.html">
