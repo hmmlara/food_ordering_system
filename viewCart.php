@@ -202,6 +202,7 @@ $order_details_result = $order->getOrderMaxID($user_id);
                                 <div class="modal-body">
 
                                 <div class="form-group">
+
                                     <b><label class="form-label" for="deliType">Delivery Type: </label></b></br> 
                                     <!-- <input class="form-control" id="password" name="password" placeholder="Enter Password" type="password" required minlength="4" maxlength="21" data-toggle="password"> -->
                                     <span class="mx-5">
@@ -214,14 +215,14 @@ $order_details_result = $order->getOrderMaxID($user_id);
                                     </span>
             
                                 </div>
-                                <div id="addressDiv">
+                                <div>
                                     <div class="form-group">
                                         <b><label for="address">Address:</label></b>
-                                        <input class="form-control" id="address" name="address" placeholder="1234 Main St" type="text" required minlength="3" maxlength="500">
+                                        <input class="form-control" id="address" name="address" placeholder="xxxxxSt" type="text" required minlength="3" maxlength="500">
                                     </div>
                                     <div class="form-group">
                                         <b><label for="address1">Address Line 2:</label></b>
-                                        <input class="form-control" id="address1" name="address1" placeholder="near st, Surat, Gujarat" type="text">
+                                        <input class="form-control" id="address1" name="address1" placeholder="xxxxxTsp" type="text">
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -240,6 +241,7 @@ $order_details_result = $order->getOrderMaxID($user_id);
                                     <input type="hidden" name="amount" value="<?php echo $grandTotal ?>">
                                     <button type="submit" name="checkout" class="btn btn-success">Order</button>
                                 </div>
+                                
                     </form>
                 </div>
             </div>
@@ -298,12 +300,16 @@ $order_details_result = $order->getOrderMaxID($user_id);
 
         var firstRadio = document.getElementById('deli1');
         var secRadio = document.getElementById('deli2');
-        var addressDiv = document.getElementById('addressDiv');
+
+        var address = document.getElementById('address');
+        var address1 = document.getElementById('address1');
         firstRadio.addEventListener('click', function() {
-            addressDiv.style.display = 'none';
+            address.disabled = true;
+            address1.disabled = true;
         })
         secRadio.addEventListener('click', function() {
-            addressDiv.style.display = 'block';
+            address.disabled = false;
+            address1.disabled = false;
         })
        
     </script>
