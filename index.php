@@ -5,6 +5,8 @@ include_once "controller/user_controller.php";
 include_once "admin/controller/categories_controller.php";
 include_once "admin/controller/product_controller.php";
 include_once "controller/viewCart_controller.php";
+include_once "controller/login_controller.php";
+
 
 $categories=new CategoriesController();
 $results=$categories->getCategories();
@@ -14,29 +16,39 @@ $parents = array_filter($results,function($value){
         return $value;
 });
 
-
-
-
 $products_controller=new ProductController();
 $products=$products_controller->getProducts();
 
+// if(isset($_SESSION['user_array']))
+// {
+//     $user_id = $_SESSION['user_array']['id'];
+//     $loginController = new LoginController();
+//     $userSessionId = $loginController->getUser_SessionId($user_id);
+//     var_dump($userSessionId);   
+//     // echo $_SESSION['user_session_id'].'<br>';
+//     // echo $_SESSION['user_array']['id'];
 
+//     if($_SESSION['user_session_id'] != $userSessionId['user_session_id'])
+//     {
+//         $data['output'] = 'logout';
+//     }
+//     else{
+//         $data['output'] = 'login';
+//     }
 
+//     echo json_encode($data);
+// }
+// var_dump($_SESSION['auth_user']['_token']);
 
-if(isset($_POST['logoutBtn']))
-{
-    session_destroy();
-    header('location:login.php');
-}
 
 
 
 ?>
-
+<!-- https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80 -->
 
     <body>
     <div class="block hero1 my-auto"
-        style="background-image:url(https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);">
+        style="background-image:url(img/darli_banner.jpg);">
             <div class="container-fluid text-center">
             <h1 class="display-2 text-white" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="0">Darli
                 SNACKS & DRINKS</h1>
@@ -89,32 +101,35 @@ if(isset($_POST['logoutBtn']))
                                     <?php
                                         for($row=0;$row<count($products);$row++){
                                         echo ' 
-                                            <div class="col-md-3 my-3 text-center">
-                                                <div class="card" style="width: 15rem;">
-                                                    <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">'.$products[$row]['name'].'</h5>
-                                                        <p class="card-text">'.$products[$row]['price'].'</p>
-                                                    </div>
-                                                    <div class="card-footer d-flex justify-content-between">
-                                                        <form action="manageCart.php" method="post">
-                                                            <button name="addToCart" class=" btn btn-outline-primary my-cart-btn"
-                                                            data-id="'.$products[$row]['id'].'" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
-                                                            data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add to cart</button>    
-                                                            
-                                                            <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
-                                                            <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
-                                                            <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
-                                                        </form>
-                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-outline-primary">View</button></a> 
-                                                    </div>
-                                                </div>
+                                    <div class="col-md-3 my-3 text-center">
+                                        <div class="card" style="width: 15rem;">
+                                            <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
+                                            <div class="card-body">
+                                                <h5 class="card-title">'.$products[$row]['name'].'</h5>
+                                                <p class="card-text">'.$products[$row]['price'].'</p>
                                             </div>
-                                        
-                                                    
-                                                
-                                            
-                                        ';
+                                            <div class="card-footer d-flex justify-content-center">
+                                                <form action="manageCart.php" method="post">
+
+                                                    <div class="d-flex">
+                                                        <input type="number" name="pQty" class="form-control w-100 mr-2" value="1" min="1">
+
+                                                        <button name="addToCart" class=" btn btn-outline-primary my-cart-btn w-100"
+                                                        data-id="'.$products[$row]['id'].'" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                                        data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add</button>  
+                                                    </div>
+                                                    <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
+                                                    <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
+                                                    <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
+                                                </form>
+                                                <div class="d-flex">
+                                                    <a href="viewProduct.php?item_id=' .$products[$row]['id'] . '" class="mx-2"><button class="btn btn-outline-primary">View</button></a> 
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>';
+
 
                                     }?>
                                             
@@ -134,29 +149,36 @@ if(isset($_POST['logoutBtn']))
                                             for($row=0;$row<count($products);$row++){
                                                 if($products[$row]["category_id"] == $parents[$i]['id']){
                                                 echo '
-                                        <form action="manageCart.php" method="post">    
-                                            <div class="col-md-2 my-3 text-center">
+                                                <div class="col-md-3 my-3 text-center">
                                                 <div class="card" style="width: 15rem;">
                                                     <img class="card-img-top" src="admin/uploads/'.$products[$row]['image'].'"alt=""  width="200px" height="200px">
                                                     <div class="card-body">
                                                         <h5 class="card-title">'.$products[$row]['name'].'</h5>
                                                         <p class="card-text">'.$products[$row]['price'].'</p>
-                                                        
                                                     </div>
-                                                    <div class="card-footer d-flex justify-content-between">
-                                                        <button name="addToCart" class="btn btn-outline-primary my-cart-btn" type="submit" alt="">Add to cart</button>
-                                                        <a href="viewItem.php?item_id=' . $products[$row]['id'] . '" class="mx-2"><button class="btn btn-primary">View</button></a> 
+                                                    <div class="card-footer d-flex justify-content-center">
+                                                        <form action="manageCart.php" method="post">
+        
+                                                            <div class="d-flex">
+                                                                <input type="number" name="pQty" class="form-control w-100 mr-2" value="1" min="1">
+        
+                                                                <button name="addToCart" class=" btn btn-outline-primary my-cart-btn w-100"
+                                                                data-id="'.$products[$row]['id'].'" data-name="'.$products[$row]['name'].'" data-price="'.$products[$row]['price'].'" data-quantity="1"
+                                                                data-image="admin/uploads/'.$products[$row]['image'].'"alt="">Add</button>  
+                                                            </div>
+                                                            
+                                                            <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
+                                                            <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
+                                                            <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
+                                                        </form>
+                                                        <div class="d-flex">
+                                                            <a href="viewProduct.php?item_id=' .$products[$row]['id'] . '" class="mx-2"><button class="btn btn-outline-primary">View</button></a> 
+                                                        </div>
+        
                                                     </div>
-                                                    
-
-                                                        <input type="hidden" name="pId" value="'.$products[$row]['id']. '">
-                                                        <input type="hidden" name="pName" value="'.$products[$row]['name']. '">
-                                                        <input type="hidden" name="pPrice" value="'.$products[$row]['price']. '">
-                                                    
                                                 </div>
-                                            </div>
-                                        </form>';
-                                                
+                                            </div>';
+                                                        
                                                 } 
                                             }                           
 
@@ -213,8 +235,9 @@ if(isset($_POST['logoutBtn']))
 
     </div>
 
+
     <?php
     include_once 'layouts/footer.php';
 
 
-       ?>
+    ?>

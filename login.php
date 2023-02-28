@@ -6,6 +6,8 @@ include_once "controller/login_controller.php";
 //WHEN USER LOGIN
 if(isset($_POST['loginBtn']))
 {
+
+
     $_SESSION['cart'] = array();
     $email=trim($_POST['email']);
     $password=md5(trim($_POST['password']));
@@ -15,13 +17,23 @@ if(isset($_POST['loginBtn']))
     if($user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
+        session_regenerate_id();
+        $user_session_id = session_id();
+        $user_id = $_SESSION['user_array']['id'];
+        // $_SESSION['user_session_id'] = $user_session_id;
+        $setUser = $loginController->setUser_SessionId($user_session_id,$user_id);
+
+        $_SESSION['auth_user'] = [
+            'name' => $user_result['name'],
+            'id' => $user_result['id'],
+            '_token' => $user_session_id
+        ];
+
         header('location:index.php');
         
     }
 
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -36,6 +48,31 @@ if(isset($_POST['loginBtn']))
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
+        <style>
+            /* width */
+            ::-webkit-scrollbar {
+            width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px gold; 
+            border-radius: 6px;
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: #000000;
+            box-shadow: inset 0 0 5px #ffffff; 
+            border-radius: 6px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: #ffffff; 
+            box-shadow: inset 0 0 5px #000000; 
+            }
+        </style>
         <link rel="icon" href="./img/logo.jpg" />
         <title>Darli Login</title>
     </head>
@@ -136,6 +173,8 @@ if(isset($_POST['loginBtn']))
                 </div>
             </div>
         </div>
+
+
 <?php
 
 include_once "layouts/footer.php";

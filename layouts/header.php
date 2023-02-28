@@ -1,6 +1,9 @@
 <?php
-
+    
     include_once "controller/user_controller.php";
+    include_once "controller/login_controller.php";
+
+
 
     if(!isset($_SESSION)) 
     { 
@@ -12,15 +15,42 @@
         $_SESSION['cart'] = array();
     }
 
+    if(!isset($_SESSION['auth_user']))
+    {
+        $_SESSION['auth_user'] = [];
+    }
+
+    // var_dump($_SESSION['auth_user']);
+    if(count($_SESSION['auth_user']) > 0)
+    {
+        // $userController = new UserController();
+        $user_id = $_SESSION['auth_user']['id'];
+        // var_dump($_SESSION['auth_user']['id']);
+        $loginController = new LoginController();
+        $db_session = $loginController->getUser_SessionId($user_id);
+        // var_dump($db_session['user_session_id']);
+        // var_dump($_SESSION['auth_user']['_token']);
+        if($db_session['user_session_id'] != $_SESSION['auth_user']['_token']){
+            session_destroy();
+            // unset($_SESSION['user_array']);
+            // unset($_SESSION['cart']);
+            header('Location: login.php');
+        }
+    }
+
+    if(isset($_POST['logoutBtn']))
+    {
+        // session_id($_SESSION['user_session_id']);
+        // session_destroy();
+        unset($_SESSION['user_array']);
+        unset($_SESSION['auth_user']);
+        unset($_SESSION['cart']);
+        header('location:login.php');
+    }
 
 
 
 
-if(isset($_POST['logoutBtn']))
-{
-    unset($_SESSION['user_array']);
-    header('location:login.php');
-}
 
 
 
@@ -33,25 +63,64 @@ if(isset($_POST['logoutBtn']))
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- Scroll W3School CSS -->
+        <style>
+            /* width */
+            ::-webkit-scrollbar {
+            width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px gold; 
+            border-radius: 6px;
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: #000000;
+            box-shadow: inset 0 0 5px #ffffff; 
+            border-radius: 6px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: #ffffff; 
+            box-shadow: inset 0 0 5px #000000; 
+            }
+        </style>
+        <!-- Animate.Style CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="stylesheet" href="./css/customize.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">  
         <script src="./js/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <!-- Alertify CSS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
         <link rel="icon" href="./img/logo.jpg" />
         <title>Darli SNACKS & DRINKS</title>
     </head>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img class="rounded" src="./img/logo.jpg"></a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img class="rounded" src="./img/logo.jpg"></a>
         <button
-        class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+        class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active"> <a class="nav-link text-white" href="./index.php"><h5>Darli</h5></a>
                     </li>
                     <li class="nav-item"> <a class="nav-link text-white" href="./index.php#menu">Today's Menu</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About</a>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About Us</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link text-white" href="./contact.php">Contant Us</a>
                     </li>
                 </ul>
                 <?php

@@ -1,11 +1,15 @@
 <?php
 session_start();
-// include_once __DIR__."/../admin/includes/connect.php";
+
 include_once "controller/viewCart_controller.php";
 
+
+    $order = new ViewCartController();
+
+    // Add To Cart
     $user_id =  $_SESSION['user_array']['id'];
     if(isset($_POST['addToCart'])) {
-        
+
         if(!isset($_SESSION['user_array']))
         {
             header("Location:login.php");
@@ -13,24 +17,16 @@ include_once "controller/viewCart_controller.php";
         else{
             $pId = $_POST["pId"];
             $pName = $_POST["pName"];
-            $pQty = 1;
+            $_SESSION['pName'] = $pName;
+            $pQty = $_POST["pQty"];
             $pPrice = $_POST["pPrice"];
-            // echo $pId;
-            // echo $_POST['pName'];
-            // echo $_POST['pPrice'];
 
-            // $_SESSION['cart'][] = array('id' => $pId, 'name' => $pName, 'price' => $pPrice, 'qty' => $pQty);
-
-            // echo '<pre>';
-            // var_dump($_SESSION['cart']);
-            // echo '</pre>';
-    
             $productCheck = array_column($_SESSION['cart'],'name');
             if(in_array($pName,$productCheck))
             {
-                    echo "<script>alert('Item Already Added.');
-                    window.history.back(1);
-                    </script>";
+                echo "<script>window.history.back(1);</script>";
+                $_SESSION['cart_meg_err'] = "You already added this, Please see in cart!";
+
             }
             else{
                 $_SESSION['cart'][]=array('id'=> $pId, 
@@ -39,7 +35,9 @@ include_once "controller/viewCart_controller.php";
                                         'qty'=> $pQty);
 
                 // var_dump($_SESSION['cart']);
-                header("Location:index.php");
+                // header("Location:index.php#menu");
+                echo "<script>window.history.back(1);</script>";
+                $_SESSION['cart_meg_success'] = "Item added to cart!";
 
     
             }
@@ -47,92 +45,81 @@ include_once "controller/viewCart_controller.php";
         }
 
 
-
-        // $detailCart = new ViewCartController();
-        // $myrow = $detailCart->getDetailCart($product_id); 
-        // var_dump($myrow);  
-        // Check whether this item exists
-        // $existSql = "SELECT * FROM `viewcart` WHERE productid = '$itemId' AND `userId`='$userId'";
-        // $result = mysqli_query($conn, $existSql);
-        // $numExistRows = mysqli_num_rows($result);
-        // if($myrow > 0){
-        //     echo "<script>alert('Item Already Added.');
-        //             window.history.back(1);
-        //             </script>";
-        // }
-        // else{
-        //     $sql = "INSERT INTO `viewcart` (`pizzaId`, `itemQuantity`, `userId`, `addedDate`) VALUES ('$itemId', '1', '$userId', current_timestamp())";   
-        //     $result = mysqli_query($conn, $sql);
-        //     if ($result){
-        //         echo "<script>
-        //             window.history.back(1);
-        //             </script>";
-        //     }
-        // }
     }
-    // if(isset($_POST['removeItem'])) {
-    //     $itemId = $_POST["itemId"];
-    //     $sql = "DELETE FROM `viewcart` WHERE `productid`='$itemId' AND `userId`='$userId'";   
-    //     $result = mysqli_query($conn, $sql);
-    //     echo "<script>alert('Removed');
-    //             window.history.back(1);
-    //         </script>";
-    // }
-    // if(isset($_POST['removeAllItem'])) {
-    //     $sql = "DELETE FROM `viewcart` WHERE `userId`='$userId'";   
-    //     $result = mysqli_query($conn, $sql);
-    //     echo "<script>alert('Removed All');
-    //             window.history.back(1);
-    //         </script>";
-    // }
-    // if(isset($_POST['checkout'])) {
-    //     $amount = $_POST["amount"];
-    //     $address1 = $_POST["address"];
-    //     $address2 = $_POST["address1"];
-    //     $phone = $_POST["phone"];
-    //     $zipcode = $_POST["zipcode"];
-    //     $password = $_POST["password"];
-    //     $address = $address1.", ".$address2;
+
+    //Remove Item
+    if(isset($_POST['removeItem'])) {
+        $itemId = $_POST["itemId"];
+        foreach($_SESSION['cart'] as $key=>$value)
+        {
+            if($value['id'] == $itemId)
+            {
+                unset($_SESSION['cart'][$key]);
+                $_SESSION['removeItem_msg'] = "Deleted Successfully!";
+
+    
+            }
+        }
+    
+        echo "<script>
+                window.history.back(1);
+            </script>";
+    }
+
+    //Remove all items
+    if(isset($_POST['removeAllItem'])) {
+        unset($_SESSION['cart']);
+        echo "<script>window.history.back(1);</script>";
+        $_SESSION['removeAllItem_msg'] = "All items are Deleted Successfully!";
+
+    }
+
+    //Checkout
+    if(isset($_POST['checkout']))
+    {
+        $user_id = $_SESSION['user_array']['id'];
+        $delitype = $_POST['delitype'];
+        $paytype = $_POST['paytype'];
+        $total_balance = $_POST['amount'];
+        $address1 = $_POST["address"];
+        $address2 = $_POST["address1"];
+        $address = $address1.", ".$address2;
+        $phone = $_POST["phone"];
+
+        $order_result = $order-> addOrder($user_id, $delitype, $paytype, $total_balance, $address, $phone);
+
+        if($order_result)
+        {
+            foreach($_SESSION['cart'] as $key=>$value)
+            {
+                $product_id = $value['id'];
+                // $product_name = $value['name'];
+                $product_price = $value['price'];
+                $product_qty = $value['qty'];
+
+                $order_details_result = $order->getOrderMaxID($user_id);
+                $order_id = $order_details_result['max(id)'];
+                $add_order_details = $order->add_order_details($order_id, $product_id, $product_qty);
+                if($add_order_details)
+                {
+                    // echo "<script>window.history.back(1);</script>";
+                    unset($_SESSION['cart']);
+                }
+    
+    
+            }
+            $_SESSION['order_meg_success'] = "Ordered Successfully!";
+            header("Location:viewCart.php");
+
+
+        }
+
+
+    }
+
         
-    //     $passSql = "SELECT * FROM users WHERE id='$userId'"; 
-    //     $passResult = mysqli_query($conn, $passSql);
-    //     $passRow=mysqli_fetch_assoc($passResult);
-    //     $userName = $passRow['username'];
-    //     if (password_verify($password, $passRow['password'])){ 
-    //         $sql = "INSERT INTO `orders` (`userId`, `address`, `zipCode`, `phoneNo`, `amount`, `paymentMode`, `orderStatus`, `orderDate`) VALUES ('$userId', '$address', '$zipcode', '$phone', '$amount', '0', '0', current_timestamp())";
-    //         $result = mysqli_query($conn, $sql);
-    //         $orderId = $conn->insert_id;
-    //         if ($result){
-    //             $addSql = "SELECT * FROM `viewcart` WHERE userId='$userId'"; 
-    //             $addResult = mysqli_query($conn, $addSql);
-    //             while($addrow = mysqli_fetch_assoc($addResult)){
-    //                 $pizzaId = $addrow['pizzaId'];
-    //                 $itemQuantity = $addrow['itemQuantity'];
-    //                 $itemSql = "INSERT INTO `orderitems` (`orderId`, `pizzaId`, `itemQuantity`) VALUES ('$orderId', '$pizzaId', '$itemQuantity')";
-    //                 $itemResult = mysqli_query($conn, $itemSql);
-    //             }
-    //             $deletesql = "DELETE FROM `viewcart` WHERE `userId`='$userId'";   
-    //             $deleteresult = mysqli_query($conn, $deletesql);
-    //             echo '<script>alert("Thanks for ordering with us. Your order id is ' .$orderId. '.");
-    //                 window.location.href="http://localhost/OnlinePizzaDelivery/index.php";  
-    //                 </script>';
-    //                 exit();
-    //         }
-    //     } 
-    //     else{
-    //         echo '<script>alert("Incorrect Password! Please enter correct Password.");
-    //                 window.history.back(1);
-    //                 </script>';
-    //                 exit();
-    //     }    
-    // }
-    // if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-    // {
-    //     $pizzaId = $_POST['pizzaId'];
-    //     $qty = $_POST['quantity'];
-    //     $updatesql = "UPDATE `viewcart` SET `itemQuantity`='$qty' WHERE `pizzaId`='$pizzaId' AND `userId`='$userId'";
-    //     $updateresult = mysqli_query($conn, $updatesql);
-    // }
+
+
     
 
 ?>

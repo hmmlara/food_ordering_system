@@ -84,6 +84,31 @@ if(isset($_POST['registerBtn']))
         <script src="./js/jquery.min.js"></script>
         <link rel="icon" href="./img/logo.jpg" />
         <link rel="stylesheet" href="./css/customize.css" />
+        <style>
+            /* width */
+            ::-webkit-scrollbar {
+            width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px gold; 
+            border-radius: 6px;
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: #000000;
+            box-shadow: inset 0 0 5px #ffffff; 
+            border-radius: 6px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: #ffffff; 
+            box-shadow: inset 0 0 5px #000000; 
+            }
+        </style>
         <title>Darli's User</title>
     </head>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img src="./img/logo.jpg"></a>

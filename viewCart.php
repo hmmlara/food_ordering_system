@@ -5,6 +5,7 @@ include_once "controller/user_controller.php";
 
 include_once 'admin/controller/product_controller.php';
 // include_once 'controller/categories_controller.php';
+include_once "controller/viewCart_controller.php";
 
 $products_controller=new ProductController();
 $products=$products_controller->getProducts();
@@ -16,18 +17,11 @@ $id = $_SESSION['user_array']['id'];
 // echo '<pre>';
 // var_dump($_SESSION['cart']);
 // echo '</pre>';
+$user_id = $_SESSION['user_array']['id'];
+$order = new ViewCartController();
+$order_details_result = $order->getOrderMaxID($user_id);
+// var_dump($order_details_result);
 
-
-$val = isset($_POST['item']) ? $_POST['item'] : 1; //to be displayed
-
-if(isset($_POST['incqty'])){
-
-   $val += 1;
-}
-
-if(isset($_POST['decqty'])){
-   $val -= 1;                                            
-}
 
 
 ?>
@@ -39,13 +33,13 @@ if(isset($_POST['decqty'])){
     if($_SESSION['user_array']){
     ?>
     
-    <div class="container text-dark bg-white" id="cont">
+    <div class="container mt-4 text-dark bg-white" id="cont">
         <div class="row">
             <!-- <div class="alert alert-info mb-0" style="width: -webkit-fill-available;">
               <strong>Info!</strong> online payment are currently disabled so please choose cash on delivery.
             </div> -->
             <div class="col-lg-12 text-center border rounded bg-dark text-white my-3">
-                <h1>My Cart</h1>
+                <h1 class="m-0">My Cart</h1>
             </div>
             <div class="col-lg-8">
                 <div class="card wish-list mb-3">
@@ -58,7 +52,7 @@ if(isset($_POST['decqty'])){
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total Price</th>
                                 <th scope="col">
-                                    <form action="partials/_manageCart.php" method="POST">
+                                    <form action="manageCart.php" method="POST">
                                         <button name="removeAllItem" class="btn btn-sm btn-outline-danger">Remove All</button>
                                         <input type="hidden" name="userId" value="<?php echo $userId; ?>">
                                     </form>
@@ -71,7 +65,7 @@ if(isset($_POST['decqty'])){
                         // var_dump($productCheck);
 
                                 $counter = 0;
-                                $totalPrice = 0;
+                                $grandTotal = 0;
                                 // var_dump($_SESSION['cart']);
 
 
@@ -79,29 +73,31 @@ if(isset($_POST['decqty'])){
                                     echo '<form method="post" action="'.$_SERVER["PHP_SELF"].'">';
                                     foreach ($_SESSION['cart'] as $value) {
                                         // $id=$value['id'];
-                                        $quantity = 1;
-                                        $total = $value['price'] * $quantity;
+                                        $Quantity = $value['qty'];
+                                        $total = $value['price'] * $value['qty'];
                                         $counter++;
-                                        $totalPrice += $total;
+                                        $grandTotal += $total;
                                         echo '<tr>
                                         <td>' . $counter . '</td>
                                         <td>' . $value['name'] . '</td>
-                                        <td>' . $value['price']  . '</td>
+                                        <td>' . '<input type="hidden" class="unit_price" name="price" value="'.$value['price']. '">' . $value['price']  . '</td>
 
-
-                                            <td>
-                                                <input type="hidden" name="product_id" value="' . $value['id'] . '">
-                                                <button name="incqty">+</button>
-                                                <input type="text" size="1" name="item" value="'.$val.'"/>
-                                                <button name="decqty">-</button>
-                                            </td>
+                                        <td>
+                                            <form id="frm' .  $value['id'] . '">
+                                                <input type="number" name="quantity" id="' . $value['id'] . '" value="' .$Quantity.'" class="text-center quantity" onchange="subTotalPrice()" style="width:60px" min="1";">
+                                            </form>
+                                        </td>
                               
                                         
-                                        <td class="totalPrice">' . $total . '</td>
+                                        <td class="totalPrice">'.$total.'</td>
+                                        <input type="hidden" name="totalPrice" value="'.$total.'">
+                                        <input type="hidden" name=" " value="'. $grandTotal .'">
+
                                         <td>
                                             <form action="manageCart.php" method="POST">
                                                 <button name="removeItem" class="btn btn-sm btn-outline-danger">Remove</button>
                                                 <input type="hidden" name="itemId" value="'.$value['id']. '">
+                                                
                                             </form>
                                         </td>
                                         </tr>';
@@ -113,14 +109,16 @@ if(isset($_POST['decqty'])){
                                 if($counter==0){
                                 ?>
                                 <script> document.getElementById("cont").innerHTML = 
-                                `<div class="col-md-12 my-5">
+                                `<div class="col-md-12">
                                 <div class="card">
                                 <div class="card-body cart">
                                 <div class="col-sm-12 empty-cart-cls text-center"> 
-                                <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
-                                <h3><strong>Your Cart is Empty</strong></h3>
-                                <h4>Add something to make me happy :)</h4> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,0L0,0Z"></path></svg>                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </svg>                                
+                                <h3 class="mt-4"><strong>Your Cart is Empty</strong></h3>
                                 <a href="index.php" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,320L0,320Z"></path></svg>                                
                                 </div></div></div></div>`</script>; 
                                 <?php
 
@@ -132,121 +130,185 @@ if(isset($_POST['decqty'])){
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card wish-list mb-3">
-                    <div class="pt-4 border bg-light rounded p-3">
-                        <h5 class="mb-3 text-uppercase font-weight-bold text-center">Order summary</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 bg-light">Total Price<span>Rs. <?php echo $totalPrice ?></span></li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 bg-light">Shipping<span>Rs. 0</span></li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-light">
-                                <div>
-                                    <strong>The total amount of</strong>
-                                    <strong><p class="mb-0">(including Tax & Charge)</p></strong>
-                                </div>
-                                <span><strong>Rs. <?php echo $totalPrice ?></strong></span>
-                            </li>
-                        </ul>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Cash On Delivery 
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Online Payment 
-                            </label>
-                        </div><br>
-                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#checkoutModal">go to checkout</button>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="pt-4">
-                        <a class="dark-grey-text d-flex justify-content-between" style="text-decoration: none; color: #050607;" data-toggle="collapse" href="#collapseExample"
-                            aria-expanded="false" aria-controls="collapseExample">
-                            Add a discount code (optional)
-                            <span><i class="fas fa-chevron-down pt-1"></i></span>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <div class="mt-3">
-                                <div class="md-form md-outline mb-0">
-                                    <input type="text" id="discount-code" class="form-control font-weight-light"
-                                    placeholder="Enter discount code">
+                    <form action="manageCart.php" method="post">
+                                    <div class="card wish-list mb-3">
+                                        <div class="pt-4 border bg-light rounded p-3">
+                                            <h5 class="mb-3 text-uppercase font-weight-bold text-center">Order summary</h5>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-light">
+                                                    <div>
+                                                        <strong>The total amount of</strong>
+                                                        <strong><p class="mb-0">(including Tax & Charge)</p></strong>
+                                                    </div>
+                                                    <?php echo '<span><strong id="grandTotal">'. $grandTotal .' MMK</strong></span>'?>
+                                                </li>
+                                            </ul>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="0=cash_on_delivery" type="radio" name="paytype" id="flexRadioDefault1" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Cash On Delivery 
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="1=mBanking" type="radio" name="paytype" id="flexRadioDefault1">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Online Payment 
+                                                </label>
+                                            </div><br>
+                                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#checkoutModal">go to checkout</button>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="mb-3">
+                                        <div class="pt-4">
+                                            <a class="dark-grey-text d-flex justify-content-between" style="text-decoration: none; color: #050607;" data-toggle="collapse" href="#collapseExample"
+                                                aria-expanded="false" aria-controls="collapseExample">
+                                                Add a discount code (optional)
+                                                <span><i class="fas fa-chevron-down pt-1"></i></span>
+                                            </a>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="mt-3">
+                                                    <div class="md-form md-outline mb-0">
+                                                        <input type="text" id="discount-code" class="form-control font-weight-light"
+                                                        placeholder="Enter discount code">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
+                        <?php 
+                        }
+                        else {
+                            echo '<div class="container" style="min-height : 610px;">
+                            <div class="alert alert-info my-3">
+                                <font style="font-size:22px"><center>Before checkout you need to <strong><a class="alert-link" data-toggle="modal" data-target="#loginModal">Login</a></strong></center></font>
+                            </div></div>';
+                        }
+                        ?>
+
+                        <!-- Checkout Modal -->
+                        <div class="modal fade text-dark" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="checkoutModal">Enter Your Details:</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                <div class="form-group">
+                                    <b><label class="form-label" for="deliType">Delivery Type: </label></b></br> 
+                                    <!-- <input class="form-control" id="password" name="password" placeholder="Enter Password" type="password" required minlength="4" maxlength="21" data-toggle="password"> -->
+                                    <span class="mx-5">
+                                        <input type="radio" class="form-check-input" value="1" name="delitype" id="deli1">
+                                        <label class="form-label" for=""> Pick Up </label>
+                                    </span>
+                                    <span class="mx-5 float-right">
+                                        <input type="radio" class="form-check-input" value="2" name="delitype" id="deli2" checked>
+                                        <label class="form-label" for=""> via Delivery Man </label>   
+                                    </span>
+            
+                                </div>
+                                <div id="addressDiv">
+                                    <div class="form-group">
+                                        <b><label for="address">Address:</label></b>
+                                        <input class="form-control" id="address" name="address" placeholder="1234 Main St" type="text" required minlength="3" maxlength="500">
+                                    </div>
+                                    <div class="form-group">
+                                        <b><label for="address1">Address Line 2:</label></b>
+                                        <input class="form-control" id="address1" name="address1" placeholder="near st, Surat, Gujarat" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-0">
+                                        <b><label for="phone">Phone No:</label></b>
+                                        <div class="input-group mb-3">
+                                        <!-- <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon"></span>
+                                        </div> -->
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="09xxxxxxxxx" required pattern="[0-9]{11}" maxlength="11">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <input type="hidden" name="amount" value="<?php echo $grandTotal ?>">
+                                    <button type="submit" name="checkout" class="btn btn-success">Order</button>
+                                </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-         
-    <?php 
-    }
-    else {
-        echo '<div class="container" style="min-height : 610px;">
-        <div class="alert alert-info my-3">
-            <font style="font-size:22px"><center>Before checkout you need to <strong><a class="alert-link" data-toggle="modal" data-target="#loginModal">Login</a></strong></center></font>
-        </div></div>';
-    }
-    ?>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>         
     <!-- <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script> -->
 
     <script>
-        function check(input) {
-            if (input.value <= 0) {
-                input.value = 1;
+
+        let grandTotal = document.getElementById('grandTotal');
+        let totalPrice = document.getElementsByClassName('totalPrice');
+        let quantity = document.getElementsByClassName('quantity');
+        let unit_price = document.getElementsByClassName('unit_price');
+        function subTotalPrice()
+        {
+            let gtotal=0;
+            for(let index=0;index<unit_price.length;index++)
+            {
+                totalPrice[index].innerText = (unit_price[index].value) * (quantity[index].value);
+                gtotal += (unit_price[index].value) * (quantity[index].value);
+                // console.log(totalPrice[index]);
             }
-
+            grandTotal.innerText = gtotal;
+            location.reload();
         }
-        
-        var minVal = 1, maxVal = 100; // Set Max and Min values
-        // Increase product quantity on cart page
-        $(".increaseQty").on('click', function(){
-                var $parentElm = $(this).parents(".qtySelector");
-                $(this).addClass("clicked");
-                setTimeout(function(){
-                    $(".clicked").removeClass("clicked");
-                },100);
-                var value = $parentElm.find(".qtyValue").val();
-                if (value < maxVal) {
-                    value++;
-                }
-                $parentElm.find(".qtyValue").val(value);
-        });
-        // Decrease product quantity on cart page
-        $(".decreaseQty").on('click', function(){
-                var $parentElm = $(this).parents(".qtySelector");
-                $(this).addClass("clicked");
-                setTimeout(function(){
-                    $(".clicked").removeClass("clicked");
-                },100);
-                var value = $parentElm.find(".qtyValue").val();
-                if (value > 1) {
-                    value--;
-                }
-                $parentElm.find(".qtyValue").val(value);
-                $parentElm.find(".totalPrice").val(value);
 
-            });
-        // function updateCart(id) {
-        //     $.ajax({
-        //         url: 'manageCart.php',
-        //         type: 'POST',
-        //         data:$("#frm"+id).serialize(),
-        //         success:function(res) {
-        //             location.reload();
-        //         } 
-        //     })
-        // }
-    </script>   
+        $('.quantity').change(function() {
+            let id = this.id;
+            let qty = this.value;
+            console.log(id, qty);
+
+            $.ajax({
+                url: 'update_FinalData.php',
+                type: 'POST',
+                data:{id:id,qty:qty},
+                success: function(data) {
+                    if(data == 'success') {
+                        console.log('Success');
+                        
+                    }
+                    else {
+                        console.log(data);
+
+                    }
+
+                }
+
+
+
+            })
+        });
+
+        var firstRadio = document.getElementById('deli1');
+        var secRadio = document.getElementById('deli2');
+        var addressDiv = document.getElementById('addressDiv');
+        firstRadio.addEventListener('click', function() {
+            addressDiv.style.display = 'none';
+        })
+        secRadio.addEventListener('click', function() {
+            addressDiv.style.display = 'block';
+        })
+       
+    </script>
     
 <?php
-require 'checkoutModal.php';
 include_once "layouts/footer.php";
 
 
