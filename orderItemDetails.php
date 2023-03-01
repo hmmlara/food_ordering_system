@@ -38,125 +38,19 @@ $tstatus = "Order Cancelled.";
 
 ?>
 
-<style>
-    /* .modal-body {
-        background-color: #eeeeee;
-        font-family: 'Open Sans', serif
-    } */
-
-    .card {
-        position: relative;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 0.10rem
-    }
-
-    .card-header:first-child {
-        border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
-    }
-
-    .card-header {
-        padding: 0.75rem 1.25rem;
-        margin-bottom: 0;
-        background-color: #fff;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-    }
-
-    .track {
-        position: relative;
-        background-color: #ddd;
-        height: 7px;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        margin-bottom: 60px;
-        margin-top: 50px
-    }
-
-    .track .step {
-        -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-        flex-grow: 1;
-        width: 25%;
-        margin-top: -18px;
-        text-align: center;
-        position: relative
-    }
-
-    .track .step.active:before {
-        background: #be8040
-    }
-
-    .track .step::before {
-        height: 7px;
-        position: absolute;
-        content: "";
-        width: 100%;
-        left: 0;
-        top: 18px
-    }
-
-    .track .step.active .icon {
-        background: #be8040;
-        color: #fff
-    }
-
-    .track .step.deactive:before {
-        background: #030303;
-    }
-
-    .track .step.deactive .icon {
-        background: #030303;
-        color: #fff
-    }
-
-    .track .icon {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        position: relative;
-        border-radius: 100%;
-        background: #ddd
-    }
-
-    .track .step.active .text {
-        font-weight: 400;
-        color: #000
-    }
-
-    .track .text {
-        display: block;
-        margin-top: 7px
-    }
-
-    .btn-warning {
-        color: #ffffff;
-        background-color: #be8040;
-        border-color: #be8040;
-        border-radius: 1px
-    }
-
-    .btn-warning:hover {
-        color: #ffffff;
-        background-color: #be8050;
-        border-color: #be8050;
-        border-radius: 1px
-    }
-    
-</style>
 
 <div class="container my-3 py-3" style="background-color:#6c757d">
+    <div class="row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 mb-3">
+            <a href="#" onclick="window.print()" class="btn btn-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                </svg>
+            <span>Print</span></a>
+        </div>
+    </div>
     <div class="row">
         <!-- Shopping cart table -->
         <div class="col-md-12">

@@ -19,7 +19,8 @@ $products = new ViewCartController();
         <?php
             // $pizzaId = $_GET['pizzaid'];
             $productID = $_GET['item_id'];
-            $product = $products->get_products($productID);
+            $product = $products->get_product($productID);
+            // var_dump($product);
             $productName = $product['name'];
             $productPrice = $product['price'];
             $productDesc = $product['description'];

@@ -35,6 +35,12 @@ class ViewCartController extends ViewCart
         return $results;
     }
 
+    public function get_product($productID)
+    {
+        $results  = parent::get_product($productID);
+        return $results;
+    }
+
     public function get_products()
     {
         $results  = parent::get_products();

@@ -26,7 +26,7 @@ class ViewCart
         $statement->bindParam(':status',$status);
 
         date_default_timezone_set("Asia/Yangon");
-        $date_now = date('d-m-y h:i:s');
+        $date_now = date("Y-m-d H:i:s");
         $statement->bindParam(':created_date',$date_now);
         $statement->bindParam(':updated_date',$date_now);
 
@@ -73,7 +73,7 @@ class ViewCart
         $statement->bindParam(':qty',$product_qty);
 
         date_default_timezone_set("Asia/Yangon");
-        $date_now = date('d-m-y h:i:s');
+        $date_now = date("Y-m-d H:i:s");
         $statement->bindParam(':created_date',$date_now);
         $statement->bindParam(':updated_date',$date_now);
 
@@ -119,13 +119,24 @@ class ViewCart
         return $results;
     }
 
+    public function get_product($productID)
+    {
+        $this->pdo=Database::connect();
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $sql='select * from products WHERE id = :productID';
+        $statement=$this->pdo->prepare($sql);
+        $statement->bindParam(":productID",$productID);
+        $statement->execute();
+        $products=$statement->fetch(PDO::FETCH_ASSOC);
+        return $products;
+    }
+
     public function get_products()
     {
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         $sql='select * from products';
         $statement=$this->pdo->prepare($sql);
-        // $statement->bindParam(":id",$productID);
         $statement->execute();
         $products=$statement->fetchAll(PDO::FETCH_ASSOC);
         return $products;
