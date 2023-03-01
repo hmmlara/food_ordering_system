@@ -33,6 +33,7 @@
 	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="fonts/fontawesome-free-6.1.2-web/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="js/jquery-3.6.1.min.js"></script>
 	<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script> -->
 </head>
@@ -92,13 +93,13 @@
             </a>
 					</li>
 
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.html">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/sales.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
+						<a class="sidebar-link" href="report.php">
+              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Report</span>
             </a>
 					</li>
 
-					<li class="sidebar-item">
+					<!--<li class="sidebar-item">
 						<a class="sidebar-link" href="ui-cards.html">
               <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
             </a>

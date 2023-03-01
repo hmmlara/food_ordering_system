@@ -3,11 +3,11 @@
     include_once "controller/order_controller.php";
 
     $orders=new OrderController();
-    $results=$orders->getOrderinfo();
+    $orders=$orders->getOrderinfo();
 
     if(isset($_POST["filter"])){
         
-        $results = array_values(array_filter($results,function($value){
+        $orders = array_values(array_filter($orders,function($value){
                 $date =  explode(' ',$value["created_date"])[0];
                 if(($value['delivery_id'] == $_POST["pickup_deli_filter"] || $_POST["pickup_deli_filter"] == 0)
                     && $_POST["start_date"] < $date && $date < $_POST["end_date"]){
@@ -74,22 +74,22 @@
                                 </thead>
                                 <tbody id="order_tbody">
                                     <?php
-                                        for($i=0;$i<count($results);$i++){
+                                        for($i=0;$i<count($orders);$i++){
                                             echo "<tr>";
                                             echo "<td>".$i+1 ."</td>";
-                                            echo "<td>od-".$results[$i]['id']."</td>";
-                                            echo "<td>".$results[$i]['cus_name']."</td>";
-                                            if($results[$i]['delivery_id']==1){
+                                            echo "<td>od-".$orders[$i]['id']."</td>";
+                                            echo "<td>".$orders[$i]['cus_name']."</td>";
+                                            if($orders[$i]['delivery_id']==1){
 
                                                 echo "<td>Pick Up</td>";
                                             }
-                                            if($results[$i]['delivery_id']==2){
+                                            if($orders[$i]['delivery_id']==2){
                                                 echo "<td>Delivery men</td>";
 
                                             }
-                                            // echo "<td>".$results[$i][end( explode('-',$results[$i]['status']))]."</td>";
-                                            echo "<td>".explode(" ",$results[$i]['created_date'])[0]."</td>";
-                                            echo "<td><a class='btn btn-sm btn-warning' href='order_details.php?id=".$results[$i]['id']."'>အသေးစိတ်</a></td>";
+                                            // echo "<td>".$orders[$i][end( explode('-',$orders[$i]['status']))]."</td>";
+                                            echo "<td>".explode(" ",$orders[$i]['created_date'])[0]."</td>";
+                                            echo "<td><a class='btn btn-sm btn-warning' href='order_details.php?id=".$orders[$i]['id']."'>အသေးစိတ်</a></td>";
                                             echo "</tr>";
                                         }
                                     ?>
