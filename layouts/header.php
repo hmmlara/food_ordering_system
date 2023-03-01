@@ -31,9 +31,10 @@
         // var_dump($db_session['user_session_id']);
         // var_dump($_SESSION['auth_user']['_token']);
         if($db_session['user_session_id'] != $_SESSION['auth_user']['_token']){
-            session_destroy();
-            // unset($_SESSION['user_array']);
-            // unset($_SESSION['cart']);
+            // session_destroy();
+            unset($_SESSION['user_array']);
+            unset($_SESSION['auth_user']);
+            unset($_SESSION['cart']);
             header('Location: login.php');
         }
     }
@@ -105,6 +106,7 @@
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
         <link rel="icon" href="./img/logo.jpg" />
+
         <title>Darli SNACKS & DRINKS</title>
     </head>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark"> <a class="navbar-brand" href="./index.php"><img class="rounded" src="./img/logo.jpg"></a>
@@ -149,7 +151,7 @@
                         </svg>
                         <span>".$_SESSION['user_array']['name']."</span>
                     </button>
-                    <ul class='dropdown-menu'>
+                    <ul class='dropdown-menu text-center'>
                             <li><a class='dropdown-item' href='profile.php'>Profile</a></li>
                             <li>
                                 <a class='dropdown-item' href='#'>

@@ -46,7 +46,7 @@ foreach ($orders_details as $key => $value) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title>Your Order</title>
     <link rel = "icon" href ="img/logo.jpg" type = "image/x-icon">
-    <style>
+    <!-- <style>
         .footer {
         position: fixed;
         bottom: 0;
@@ -160,7 +160,7 @@ foreach ($orders_details as $key => $value) {
         }
         
 
-    </style>
+    </style> -->
 
 </head>
 <body>
@@ -169,16 +169,12 @@ foreach ($orders_details as $key => $value) {
     if($_SESSION['user_array']){
     ?>
 
-    <div class="container mt-0 text-dark">
+    <div class="container mt-4 text-dark bg-white">
         <div class="table-wrapper" id="empty">
             <div class="table-title text-dark bg-white">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h2>Order <b>Details</b></h2>
-                    </div>
-                    <div class="col-sm-8">						
-                        <a href="" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
-                        <a href="#" onclick="window.print()" class="btn btn-info"><i class="material-icons">&#xE24D;</i> <span>Print</span></a>
+                <div class="row bg-dark text-center">
+                    <div class="col-sm-12">
+                        <h2 class="text-warning">Order <b>Details</b></h2>
                     </div>
                 </div>
             </div>
@@ -224,7 +220,12 @@ foreach ($orders_details as $key => $value) {
                                     <td>' . $amount . '</td>
                                     <td>' . $paymentMode . '</td>
                                     <td>' . $orderDate . '</td>
-                                    <td><a type="button" class="btn btn-primary" href="orderItemDetails.php?id=' . $orderID . '" class="view" title="View Details"><i class="material-icons">&#xE5C8;</i></a></td>
+                                    <td><a type="button" class="btn btn-warning" href="orderItemDetails.php?id=' . $orderID . '" class="view" title="View Details">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                    </a></td>
                                 </tr>';
                         }
                         
@@ -233,17 +234,15 @@ foreach ($orders_details as $key => $value) {
                         if($counter==0){
                             ?>
                             <script> document.getElementById("empty").innerHTML = 
-                            `<div class="col-md-12">
-                            <div class="card">
-                            <div class="card-body cart">
-                            <div class="col-sm-12 empty-cart-cls text-center"> 
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,0L0,0Z"></path></svg>                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                            </svg>                                
-                            <h3 class="mt-4"><strong>Your Cart is Empty</strong></h3>
-                            <a href="index.php" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a> 
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,320L0,320Z"></path></svg>                                
-                            </div></div></div></div>`</script>; 
+                                `<div class="col-md-12">
+                                <div class="card">
+                                <div class="card-body cart">
+                                <div class="col-sm-12 empty-cart-cls text-center"> 
+                                <h3 class="mt-4"><strong>You have not ordered any items.</strong></h3>
+                                <h5 class="mt-4"><strong>Please order to make me happy :)</strong></h5>
+                                <a href="index.php" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a> 
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,320L0,320Z"></path></svg>                                
+                                </div></div></div></div>`</script>
                             <?php
 
                         }
