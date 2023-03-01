@@ -1,9 +1,11 @@
 <?php
+    
     include_once "layouts/header.php";
     include_once "controller/order_controller.php";
 
     $orders=new OrderController();
     $results=$orders->getOrderinfo();
+    // var_dump($results);
     if(isset($_POST["filter"])){
             $results = array_values(array_filter($results,function($value){
                 $date =  explode(' ',$value["created_date"])[0];
@@ -53,9 +55,11 @@
                     }
                 }
             }));
+            var_dump($results);
     }
 
-
+    
+    
     
     
 ?>
@@ -154,6 +158,7 @@
                                         <th>အော်ဒါနံပါတ်</th>
                                         <th>စားသုံးသူအမည်</th>
                                         <th>အော်ဒါအမျိုးအစား</th>
+                                        <th>အော်ဒါအဆင့်</th>
                                         <th>အော်ဒါရက်စွဲ</th>
                                         <th>လုပ်ဆောင်ချက်များ</th>
                                     </tr>
@@ -173,7 +178,27 @@
                                                 echo "<td>Delivery men</td>";
 
                                             }
-                                            // echo "<td>".$results[$i][end( explode('-',$results[$i]['status']))]."</td>";
+                                            if($results[$i]['status']==0){
+                                                echo "<td>Order placed</td>";
+                                            }
+                                            else if($results[$i]['status']==1){
+                                                echo "<td>Order confirmed</td>";
+                                            }
+                                            else if($results[$i]['status']==2){
+                                                echo "<td>Preparing order</td>";
+                                            }
+                                            else if($results[$i]['status']==3){
+                                                echo "<td>Order on the way</td>";
+                                            }
+                                            else if($results[$i]['status']==4){
+                                                echo "<td>Order delivered</td>";
+                                            }
+                                            else if($results[$i]['status']==5){
+                                                echo "<td>Order cancelled</td>";
+                                            }
+                                            else if($results[$i]['status']==5){
+                                                echo "<td>Order denied</td>";
+                                            }
                                             echo "<td>".explode(" ",$results[$i]['created_date'])[0]."</td>";
                                             echo "<td><a class='btn btn-sm btn-warning' href='order_details.php?id=".$results[$i]['id']."'>အသေးစိတ်</a></td>";
                                             echo "</tr>";

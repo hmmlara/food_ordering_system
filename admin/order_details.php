@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     include_once "layouts/header.php";
     include_once "controller/order_controller.php";
     include_once "controller/product_controller.php";
@@ -7,16 +8,17 @@
 
     $order_details=$order->getOrderDetails($id);
     $orderinfo=$order->getSpecificOrder($id);
-
-    // $shipping=$order->getShipping();
-    // var_dump($shipping);
-    // var_dump($orderinfo['delivery_id']);
+    $orderStatus=$orderinfo['status'];
 
     $productController= new ProductController();
     $getproducts=$productController->getProducts();
-    // echo '<pre>';
-    // var_dump($order_details);
-    // echo '</pre>';
+
+    if(isset($_POST['updateStatus'])){
+        $status=$_POST['orderStatus'];
+
+        $result=$order->updateOrderStatus($status,$id);
+        header("Location:orders.php");
+    }
 
 ?>
         
@@ -34,25 +36,67 @@
                         <div class="row"  >
                             <div class="col-md-2"></div>
                             <div class="col-md-6 shadow">
-                                <h4 class="text-center">Darli Snacks & Drinks</h4>
-                                <div class="d-sm-flex align-items-center justify-content-between">
-                                    <p>Order no: <?php echo $order_details[0]['order_id']; ?></p>
-                                    <p>Date: <?php echo explode(" ",$order_details[0]['created_date'])[0]; ?></p>
+                                <h2 class="text-center">Darli Snacks & Drinks</h2>
+                                <div class="mt-3 d-sm-flex align-items-center justify-content-between">
+                                    <p>အော်ဒါနံပါတ်: <?php echo $order_details[0]['order_id']; ?></p>
+                                    <p>ရက်စွဲ: <?php echo explode(" ",$order_details[0]['created_date'])[0]; ?></p>
                                 </div>
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>နံပါတ်</th>
+                                            <th>စားသောက်ကုန်</th>
+                                            <th>အရေအတွက်</th>
+                                            <th>ကျသင့်ငွေ</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php
+                                            for($i=0;$i<count($order_details);$i++){
+                                                echo "<tr>";
+                                                echo "<td>".$i+1 ."</td>";
+                                                echo "<td>".$order_details[$i]['name']."</td>";
+                                                echo "<td>".$order_details[$i]['qty']."</td>";
+                                                echo "<td>".$order_details[$i]['product_price']*$order_details[$i]['qty']."</td>";
+                                                echo "</tr>";
+                                            }
+                                            echo "<tr>";
+                                            echo "<td colspan='3' class='text-end'>စုစုပေါင်းကုန်ကျငွေ</td>";
+                                            echo "<td>".$orderinfo['total_balance']."</td>";
+                                            echo "</tr>";
+                                        ?>
+                                    </tbody>
                                 </table>
+                                <div class="my-4">
+                                    <h5 class="text-center">ဝယ်ယူအားပေးမှုအတွက်ကျေးဇူးအထူးတင်ရှိပါသည်။</h5>
+                                </div>
                             </div>
-                            <div class="col-md-2"></div>
+                            <div class="col-md-2">
+                                <form method="post">
+                                    <div class="text-left">    
+                                        <div class="row">
+                                            <b><label for="name">Order Status</label></b>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col d-flex">
+                                                <input class="form-control" id="status" name="orderStatus" value="<?php echo $orderStatus; ?>" type="number" min="0" max="6" required>    
+                                                <button type="button" class="btn btn-secondary ml-1" class="btn btn-primary" title="0=Order Placed. 1=Order Confirmed. 2=Preparing your Order.3=Your order is on the way! 4=Order Delivered. 5=Order Denied. 6=Order Cancelled.">
+                                                    <i class="fas fa-info"></i>
+                                                </button>
+                                            </div>
+                                        
+                                        
+                                        </div>
+                                    </div>
+                                <!-- <input type="hidden" id="orderId" name="orderId" value="<?php echo $orderid; ?>"> -->
+                                    <button type="submit" class="btn btn-success mt-2" name="updateStatus">Update</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="col-md-4">
-                            <button class="btn  btn-primary" onclick="myprint()">ပရင့်ထုတ်မည်</button>
+                            <button class="btn  btn-info" onclick="myprint()">ပရင့်ထုတ်မည်</button>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -60,9 +104,17 @@
             </div>
             <!-- End of Main Content -->
 
+            <!-- <style>
+    .popover {
+        top: 77px !important;
+    }
+</style> -->
 
-
-
+            <!-- <script>
+                $(function () {
+                    $('[data-toggle="popover"]').popover();
+                });
+            </script> -->
     <?php
         include_once "layouts/footer.php";
     ?>
