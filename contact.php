@@ -1,10 +1,14 @@
 <?php 
 session_start();
 include_once "layouts/header.php";
-
+include_once "controller/contactreply_controller.php";
+include_once "controller/user_controller.php";
+$user_id = $_SESSION['user_array']['id'];
+// var_dump($user_id);  
 
 ?>
 
+    
 
       <div class="contact2 text-dark mt-4" style="background-image:url(img/map.jpg);height: 400px;" id="contact">
         <div class="container">
@@ -18,14 +22,6 @@ include_once "layouts/header.php";
                         <div class="col-lg-8">
                           <h4 class="title">Contact Us</h4>
                         </div>
-                        <?php if(isset($_SESSION['user_array'])){ ?>
-                          <div class="col-lg-4">
-                            <div class="icon-badge-container mx-1" style="padding-left: 167px;">
-                              <a href="#" data-toggle="modal" data-target="#adminReply"><i class="far fa-envelope icon-badge-icon"></i></a>
-                              <div class="icon-badge"><b><span id="totalMessage">0</span></b></div>
-                            </div>
-                          </div>
-                        <?php } ?>
                       </div>
                       <?php
                           $id=$_SESSION['user_array']['id'];
@@ -35,7 +31,7 @@ include_once "layouts/header.php";
                           $phone = $user['phone_number'];
                           
                       ?>
-                      <form action="partials/_manageContactUs.php" method="POST">
+                      <form action="manageContactUs.php" method="POST">
                         <div class="row">
                           <div class="col-lg-6">
                             <div class="form-group mt-3">
@@ -51,13 +47,13 @@ include_once "layouts/header.php";
                                 </div>
                             </div>
                           </div>
-                          <div class="col-lg-6">
+                          <!-- <div class="col-lg-6">
                             <div class="form-group mt-3">
                               <b><label for="orderId">Order Id:</label></b>
                               <input class="form-control" type="text" id="orderId" name="orderId" placeholder="Order Id" value="0">
                               <small id="orderIdHelp" class="form-text text-muted">If your problem is not related to the order(order id = 0).</small>
                             </div>
-                          </div>
+                          </div> -->
                           <div class="col-lg-6">
                             <div class="form-group mt-3">
                               <b><label for="password">Password:</label></b>
@@ -72,7 +68,6 @@ include_once "layouts/header.php";
                           <?php if(isset($_SESSION['user_array'])){ ?>
                             <div class="col-lg-12">
                               <button type="submit" class="btn btn-danger-gradiant mt-3 mb-3 text-white border-0 py-2 px-3"><span> SUBMIT NOW <i class="ti-arrow-right"></i></span></button>
-                              <button type="button" class="btn btn-danger-gradiant mt-3 mb-3 text-white border-0 py-2 px-3 mx-2" data-toggle="modal" data-target="#history"><span> HISTORY <i class="ti-arrow-right"></i></span></button>
                             </div>
                           <?php }else { ?>
                             <div class="col-lg-12">
@@ -105,101 +100,15 @@ include_once "layouts/header.php";
         </div>
       </div>
 
-      <!-- Message Modal -->
-      <div class="modal fade" id="adminReply" tabindex="-1" role="dialog" aria-labelledby="adminReply" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header" style="background-color: rgb(187 188 189);">
-              <h5 class="modal-title" id="adminReply">Admin Reply</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id="messagebd">
-              <table class="table-striped table-bordered col-md-12 text-center">
-                <thead style="background-color: rgb(111 202 203);">
-                    <tr>
-                        <th>Contact Id</th>
-                        <th>Reply Message</th>
-                        <th>datetime</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php 
-                    $user_id=$_SESSION['user_array']['id'];
-                    $contactreply = new ContactReplyController();
-                    $result = $contactreply->getContactReply($user_id);
-                    $count = 0;
-                    foreach ($result as $row) {
-                        $contactId = $row['contact_id'];
-                        $message = $row['message'];
-                        $datetime = $row['datetime'];
-                        $count++;
-                        echo '<tr>
-                                <td>' .$contactId. '</td>
-                                <td>' .$message. '</td>
-                                <td>' .$datetime. '</td>
-                              </tr>';
-                    }
-                    echo '<script>document.getElementById("totalMessage").innerHTML = "' .$count. '";</script>';
-                    if($count==0) {
-                      ?><script> document.getElementById("messagebd").innerHTML = '<div class="my-1">you have not recieve any message.</div>';</script> <?php
-                    }
-                ?>
-                </tbody>
-		          </table>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- history Modal -->
-      <div class="modal fade" id="history" tabindex="-1" role="dialog" aria-labelledby="history" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header" style="background-color: rgb(187 188 189);">
-              <h5 class="modal-title" id="history">Your Sent Message</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id="bd">
-              <table class="table-striped table-bordered col-md-12 text-center">
-                <thead style="background-color: rgb(111 202 203);">
-                    <tr>
-                        <th>Contact Id</th>
-                        <th>Order Id</th>
-                        <th>Message</th>
-                        <th>datetime</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php 
-                    $result = $contactreply->getContact($user_id);
-                    $count = 0;
-                    foreach ($result as $row){
-                        $contactId = $row['contact_id'];
-                        $orderId = $row['order_id'];
-                        $message = $row['message'];
-                        $datetime = $row['time'];
-                        $count++;
-                        echo '<tr>
-                                <td>' .$contactId. '</td>
-                                <td>' .$orderId. '</td>
-                                <td>' .$message. '</td>
-                                <td>' .$datetime. '</td>
-                              </tr>';
-                    }                
-                    if($count==0) {
-                      ?><script> document.getElementById("bd").innerHTML = '<div class="my-1">you have not contacted us.</div>';</script> <?php
-                    }    
-                ?>
-                </tbody>
-		          </table>
-            </div>
-          </div>
-        </div>
-      </div>
+
+          <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>         
+    <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+
 
     <?php
     include_once 'layouts/footer.php';

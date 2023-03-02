@@ -86,6 +86,11 @@
             			</a>
 						
 					</li>
+					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/contactManage.php')? 'active' : '' ;?>">
+						<a class="sidebar-link" href="contactManage.php">
+						<i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူထံမှ မတ်ဆေ့</span>
+						</a>
+					</li>
 					
 
 					<!-- <li class="sidebar-item">
