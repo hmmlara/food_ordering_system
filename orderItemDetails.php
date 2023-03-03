@@ -168,7 +168,7 @@ $tstatus = "Order Cancelled.";
                                 }
                             ?>
                             </div>
-                            <a href="contact.php" class="btn btn-warning" data-abc="true">Help <i class="fa fa-chevron-right"></i></a>
+                            <a href="contact.php" class="btn btn-warning mt-3" data-abc="true">Help <i class="fa fa-chevron-right"></i></a>
                         </div>
                     </article>
                 </div>

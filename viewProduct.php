@@ -14,7 +14,7 @@ $products = new ViewCartController();
 
 
 
-    <div class="container text-dark bg-white my-4" id="cont">
+    <div class="container text-dark bg-white my-4 text-center" id="cont">
         <div class="row jumbotron">
         <?php
             // $pizzaId = $_GET['pizzaid'];
@@ -31,16 +31,16 @@ $products = new ViewCartController();
         <script> document.getElementById("title").innerHTML = "<?php echo $productName; ?>"; </script> 
         <?php
         echo  ' <div class="col-md-4">
-                    <img src="img/product-'.$productID. '.jpg" width="249px" height="262px">
+                    <img class="w-75" src="img/product-'.$productID. '.jpg">
                 </div>
-                <div class="col-md-8 my-4">
-                    <h1 class="bg-warning w-50 text-center">' . $productName . '</h1>
+                <div class="col-md-8 my-4 text-center">
+                    <h2 class="w-100">' . $productName . '</h2>
                     <h5 class="mt-3">Price : '.$productPrice. ' MMK</h5>
      
                     <p class="mb-2">Description : ' .$productDesc .'</p>
                     <p class="mb-3">Status : ' .$productStatus .'</p>
                     <form action="manageCart.php" method="post">
-                        <div class=" d-flex justify-content-start">
+                        <div class=" d-flex justify-content-center">
                             <input type="number" name="pQty" class="form-control w-25 mt-2" value="1" min="1">
                             <input type="hidden" name="pId" value="'.$productID. '">
                             <input type="hidden" name="pName" value="'.$productName. '">
