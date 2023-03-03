@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
     if(isset($_POST['logout'])){
         // unset($_SESSION['admin_login']);
         session_destroy();
@@ -93,10 +95,16 @@
             </a>
 					</li>
 
-					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/sales.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
+					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/report.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
 						<a class="sidebar-link" href="report.php">
               <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Report</span>
-            </a>
+						</a>
+					</li>
+
+					<li class="sidebar-item <?php if($active_page == '/FOS/admin/month.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
+						<a class="sidebar-link" href="month.php">
+              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Monthly Report</span>
+						</a>
 					</li>
 
 					<!--<li class="sidebar-item">

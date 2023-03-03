@@ -16,10 +16,10 @@ class ReportController extends Report{
     public function getOrderDates(){
         return $this->getOrderDate();
     }
-    public function getPage($page){
-        $result=$this->getPages($page);
-        return $result;
-      }
+    // public function getPage($page){
+    //     $result=$this->getPages($page);
+    //     return $result;
+    //   }
 
     public function getMonths(){
         $month=$this->getMonth();

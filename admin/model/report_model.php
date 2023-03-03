@@ -20,12 +20,13 @@ class Report{
     public function getItems(){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $sql='select products.name,categories.id as category_id,products.price,order_details.created_date, SUM(qty) AS total_qty,
-        sum(products.price * order_details.qty) as total_price
+        $sql='select products.name,categories.id as category_id,products.price,order_details.created_date , SUM(qty) AS total_qty,
+        sum(products.price * order_details.qty) as total_price,monthname(max(order_details.created_date)) as month,
+         EXTRACT(YEAR FROM order_details.created_date) AS year
         from order_details join products
         on products.id=order_details.product_id
         join categories on categories.id = products.category_id
-        group by products.name, created_date';
+        group by products.name, created_date,month(order_details.created_date) ';
         $statement=$this->pdo->prepare($sql);
         $statement->execute();
         $item=$statement->fetchAll(PDO::FETCH_ASSOC);
@@ -64,24 +65,24 @@ class Report{
 
     }
 
-    public function getPages($page){
-            $limit=5;
-            $offset=($page - 1) * $limit;
-            $this->pdo=Database::connect();
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    // public function getPages($page){
+    //         $item_page=5;
+    //         $offset=($page - 1) * $item_page;
+    //         $this->pdo=Database::connect();
+    //         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         
-            $sql="SELECT products.name,order_details. created_date,monthname(max(order_details.created_date)) as month, SUM(qty) AS total_qty,
-            products.price,order_details.qty,categories.id
-            FROM order_details join products join categories
-            where products.id=order_details.product_id
-            and categories.id=products.category_id
-            GROUP BY month(order_details.created_date), products.name, created_date limit $offset,$limit";
-            $statement=$this->pdo->prepare($sql);
-            $statement->execute();
+    //         $sql="select products.name,categories.id as category_id,products.price,order_details.created_date, SUM(qty) AS total_qty,
+    //         sum(products.price * order_details.qty) as total_price,monthname(max(order_details.created_date)) as month
+    //         from order_details join products
+    //         on products.id=order_details.product_id
+    //         join categories on categories.id = products.category_id
+    //         group by products.name, created_date,month(order_details.created_date) limit  $offset,$item_page";
+    //         $statement=$this->pdo->prepare($sql);
+    //         $statement->execute();
            
-            $result=$statement->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }
+    //         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+    //         return $result;
+    //     }
 
         public function getMonth(){
             $this->pdo=Database::connect();

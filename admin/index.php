@@ -33,27 +33,27 @@ $cus_controller=new UserController();
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Categories<span class='badge bg-info'><?php echo count($results);  ?></span></div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-info stretched-link" href="categories.php">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between bg-white" >
+                                        <a class="small text-info stretched-link text-decoration-none" href="categories.php">View Details</a>
+                                        <div class="small text-info"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">Products<span class='badge bg-info'><?php echo count($products);?></span></div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-info stretched-link" href="products.php">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between bg-white">
+                                        <a class="small text-info stretched-link text-decoration-none" href="products.php">View Details</a>
+                                        <div class="small text-info "><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">Customer <span class='badge bg-info'><?php echo count($customers);?></span> </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-info stretched-link" href="customers.php">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between bg-white" >
+                                        <a class="small text-info stretched-link text-decoration-none" href="customers.php">View Details</a>
+                                        <div class="small text-info"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -61,9 +61,9 @@ $cus_controller=new UserController();
 							<div class="col-xl-3 col-md-6">
                                 <div class="card bg-info text-white mb-4">
                                     <div class="card-body">Orders <span class='badge bg-info'><?php echo count($orders);  ?></span></div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-info stretched-link" href="orders.php">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between bg-white">
+                                        <a class="small text-info stretched-link text-decoration-none" href="orders.php">View Details</a>
+                                        <div class="small text-info"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
