@@ -125,8 +125,6 @@
                     </li>
                     <li class="nav-item"> <a class="nav-link text-white" href="./index.php#about">About Us</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link text-white" href="./contact.php">Contant Us</a>
-                    </li>
                 </ul>
                 <?php
                     if(isset($_SESSION['user_array'])){
@@ -137,6 +135,8 @@
                         // echo $user['password'];
                         echo "
                         <ul class='navbar-nav mr-end'>
+                            <li class='nav-item'> <a class='nav-link text-white' href='./contact.php'>Contant Us</a>
+                            </li>
                             <li class='nav-item'> <a class='nav-link text-white' href='./myorders.php'>My Orders</a>
                             </li>
                             <li class='nav-item mt-1 mx-3'>

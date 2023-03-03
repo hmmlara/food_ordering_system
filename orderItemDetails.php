@@ -41,14 +41,19 @@ $tstatus = "Order Cancelled.";
 
 <div class="container my-3 py-3" style="background-color:#6c757d">
     <div class="row">
-        <div class="col-md-10"></div>
-        <div class="col-md-2 mb-3">
-            <a href="#" onclick="window.print()" class="btn btn-warning">
+        <div class="col-md-10">
+            <h5>Name : <?php echo $_SESSION['user_array']['name'] ?></h5>
+            <h6>Order ID : <?php echo $order_id ?></h6>
+            <h6>Phone Number : <?php echo $orderStatus['phone_number'] ?></h6>
+            <h6>Order Date : <?php echo $orderStatus['created_date'] ?></h6>
+        </div>
+        <div class="col-md-2 my-auto">
+            <a href="#" onclick="window.print()" class="btn btn-warning ml-lg-5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                 <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
                 <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
                 </svg>
-            <span>Print</span></a>
+            <span class="">Print</span></a>
         </div>
     </div>
     <div class="row">
@@ -116,7 +121,7 @@ $tstatus = "Order Cancelled.";
         <div class="container" style="padding-right: 0px;padding-left: 0px;">
                     <article class="card">
                         <div class="card-body">
-                            <h6><strong>Order ID:</strong> #<?php echo $order_id; ?></h6>
+                            <!-- <h6><strong>Order ID:</strong> #<?php echo $order_id; ?></h6> -->
                             <article class="card">
                                 <div class="card-body row">
                                     <div class="col"> <strong>Status:</strong> <br> <?php echo $tstatus; ?> </div>

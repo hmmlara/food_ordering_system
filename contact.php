@@ -7,7 +7,8 @@ $user_id = $_SESSION['user_array']['id'];
 // var_dump($user_id);  
 
 ?>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>    
 
       <div class="contact2 text-dark mt-4" style="background-image:url(img/map.jpg);height: 400px;" id="contact">
         <div class="container">
@@ -20,6 +21,7 @@ $user_id = $_SESSION['user_array']['id'];
                       <div class="row">
                         <div class="col-lg-8">
                           <h4 class="title">Contact Us</h4>
+                          <p>You can freely feedback to us</p>
                         </div>
                       </div>
                       <?php
@@ -53,12 +55,12 @@ $user_id = $_SESSION['user_array']['id'];
                               <small id="orderIdHelp" class="form-text text-muted">If your problem is not related to the order(order id = 0).</small>
                             </div>
                           </div> -->
-                          <div class="col-lg-6">
+                          <!-- <div class="col-lg-6">
                             <div class="form-group mt-3">
                               <b><label for="password">Password:</label></b>
                               <input class="form-control" id="password" name="password" placeholder="Enter Password" type="password" placeholder="Enter Your Password" required data-toggle="password">
                             </div>
-                          </div>
+                          </div> -->
                           <div class="col-lg-12">
                             <div class="form-group  mt-3">
                                 <textarea class="form-control" id="message" name="message" rows="2" required minlength="6" placeholder="How May We Help You ?"></textarea>
@@ -67,11 +69,6 @@ $user_id = $_SESSION['user_array']['id'];
                           <?php if(isset($_SESSION['user_array'])){ ?>
                             <div class="col-lg-12">
                               <button type="submit" class="btn btn-danger-gradiant mt-3 mb-3 text-white border-0 py-2 px-3"><span> SUBMIT NOW <i class="ti-arrow-right"></i></span></button>
-                            </div>
-                          <?php }else { ?>
-                            <div class="col-lg-12">
-                              <button type="submit" class="btn btn-danger-gradiant mt-3 text-white border-0 py-2 px-3" disabled><span> SUBMIT NOW <i class="ti-arrow-right"></i></span></button>
-                              <small class="form-text text-muted">First login to Contct with Us.</small>
                             </div>
                           <?php } ?>
                         </div>
@@ -102,6 +99,9 @@ $user_id = $_SESSION['user_array']['id'];
 
 
           <!-- Optional JavaScript -->
+          <!-- <script src="js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
