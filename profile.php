@@ -47,21 +47,33 @@ if(isset($_POST['updateBtn']))
 
     if($result)
     {
-        $_SESSION['expire_time'] = time() + (0.1 * 60);
-        $_SESSION['success_msg'] = "<script>swal('Good job!', 'Successfully Updated!', 'success');</script>";
-        header('location:profile.php');
+        // echo '<script> location.replace("profile.php"); </script>';
+        $_SESSION['updated_info_message'] = "Updated your info successfully!";
 
     }
 
-    if(time() < $_SESSION['expire_time'])
-    {
-        echo $_SESSION['success_msg'];
-    }
-    else
-    {
-        unset($_SESSION['success_msg']);
-        unset($_SESSION['expire_time']);
-    }
+    // if($result)
+    // {
+    //     $_SESSION['expire_time'] = time() + (0.1 * 60);
+    //     $_SESSION['success_msg'] = "
+    //     <script>  
+    //             alertify.set('notifier','position', 'bottom-right');
+    //             alertify.success('Updated Information!');
+    //     </script>";
+        
+    //     // header('location:profile.php');
+
+    // }
+
+    // if(time() < $_SESSION['expire_time'])
+    // {
+    //     echo $_SESSION['success_msg'];
+    // }
+    // else
+    // {
+    //     unset($_SESSION['success_msg']);
+    //     unset($_SESSION['expire_time']);
+    // }
 }
 
 //Read authentication userdata from database
@@ -82,7 +94,7 @@ if(isset($_POST['updateBtn']))
 ?>
    
     <body>
-        <div class="container-fluid mt-2 text-dark">
+        <div class="container-fluid mt-4 text-dark">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">

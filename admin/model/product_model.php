@@ -27,7 +27,7 @@ class Products{
         $statement->bindParam(":status",$size);
 
         date_default_timezone_set("Asia/Yangon");
-        $date_now=date('Y-m-d H:m:s');
+        $date_now=date('Y-m-d H:i:s');
         $statement->bindParam(":created_date",$date_now);
         $statement->bindParam(":updated_date",$date_now);
 
