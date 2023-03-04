@@ -77,28 +77,42 @@ ob_start();
             </a>
 					</li>
 
-					<li class="sidebar-item <?php if($active_page == '/FOS/admin/shipping.php' ||  $active_page == '/FOS/admin/create_shipping.php' || $active_page == '/FOS/admin/edit_shipping.php'){echo "active";}?>">
-						<a class="sidebar-link" href="shipping.php">
-						<i class="align-middle" data-feather="truck"></i> <span class="align-middle">မြို့နယ်များ</span>
-            </a>
-					</li>
-
 					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/customers.php')? 'active' : '' ;?>">
 						<a class="sidebar-link" href="customers.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူများ</span>
             </a>
 					</li>
-
-					<li class="sidebar-item <?php if($active_page == '/FOS/admin/orders.php' ||  $active_page == '/FOS/admin/order_details.php'){echo "active";}?>">
-						<a class="sidebar-link" href="orders.php">
-              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">အော်ဒါများ</span>
-            </a>
+					
+					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/order_by_phone.php' ||  $active_page == '/FOS/admin/order_phone_details.php'){echo "active";}?> ">
+						<a class="sidebar-link" href="order_by_phone.php">
+              				<i class="align-middle" data-feather="phone-incoming"></i> <span class="align-middle">ဖုန်းအော်ဒါများ</span>
+							  
+            			</a>
+						
 					</li>
 
 					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/report.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
 						<a class="sidebar-link" href="report.php">
               <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Report</span>
 						</a>
+					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/order_by_account.php' ||  $active_page == '/FOS/admin/order_acc_details.php'){echo "active";}?> ">
+						<a class="sidebar-link" href="order_by_account.php">
+              				<i class="align-middle" data-feather="smile"></i> <span class="align-middle">အကောင့်အော်ဒါများ</span>
+							  
+            			</a>
+						
+					</li>
+					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/contactManage.php')? 'active' : '' ;?>">
+						<a class="sidebar-link" href="contactManage.php">
+						<i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူထံမှ မတ်ဆေ့</span>
+						</a>
+					</li>
+					
+
+					<!-- <li class="sidebar-item">
+						<a class="sidebar-link" href="ui-forms.html">
+              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+            </a>
 					</li>
 
 					<li class="sidebar-item <?php if($active_page == '/FOS/admin/month.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">

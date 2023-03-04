@@ -1,3 +1,13 @@
+.navbar .navbar-nav {
+    /* display: inline-block; */
+    display: -webkit-inline-flex;
+    float: none;
+}
+.navbar .navbar-collapse {
+    text-align: center;
+   
+}
+
 body{
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
@@ -11,9 +21,225 @@ body{
 
 footer{
     margin-top: auto !important;
-<<<<<<< HEAD
-=======
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
->>>>>>> b6dad36a6d0e14d1644d47a6db5d32f1a4b20a9b
+}
+
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.10rem
+}
+
+.card-header:first-child {
+    border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.track {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px
+}
+
+.track .step {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+}
+
+.track .step.active:before {
+    background: #be8040
+}
+
+.track .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px
+}
+
+.track .step.active .icon {
+    background: #be8040;
+    color: #fff
+}
+
+.track .step.deactive:before {
+    background: #030303;
+}
+
+.track .step.deactive .icon {
+    background: #030303;
+    color: #fff
+}
+
+.track .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd
+}
+
+.track .step.active .text {
+    font-weight: 400;
+    color: #000
+}
+
+.track .text {
+    display: block;
+    margin-top: 7px
+}
+
+.btn-warning {
+    color: #ffffff;
+    background-color: #be8040;
+    border-color: #be8040;
+    border-radius: 1px
+}
+
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #be8050;
+    border-color: #be8050;
+    border-radius: 1px
+}
+
+/* contant css */
+.icon-badge-group .icon-badge-container {
+   display: inline-block;
+ 
+ }
+ .icon-badge-container {
+   
+   position: absolute;
+ }
+ .icon-badge-icon {
+   font-size: 30px;
+   color: rgb(0 0 0 / 50%);
+   position: relative;
+ }
+ .icon-badge {
+   background-color: #979797;;
+   font-size: 10px;
+   color: white;
+   text-align: center;
+   width: 15px;
+   height: 15px;
+   border-radius: 49%;
+   position: relative;
+   top: -35px;
+   left: 17px;
+ }
+.footer.container-fluid.bg-dark.text-light {
+   position:fixed;
+   bottom:0;
+}
+.contact2 {
+ font-family: "Montserrat", sans-serif;
+ color: #8d97ad;
+ font-weight: 300;
+ /* padding: 60px 0; */
+ /* margin-bottom: 170px; */
+ background-position: center top;
+}
+
+.contact2 h1,
+.contact2 h2,
+.contact2 h3,
+.contact2 h4,
+.contact2 h5,
+.contact2 h6 {
+ color: #3e4555;
+}
+
+.contact2 .font-weight-medium {
+ font-weight: 500;
+}
+
+.contact2 .subtitle {
+ color: #8d97ad;
+ line-height: 24px;
+}
+
+.contact2 .bg-image {
+ background-size: cover;
+ position: relative;
+ display: -webkit-box;
+ display: -webkit-flex;
+ display: -ms-flexbox;
+ display: flex;
+}
+
+.contact2 .card.card-shadow {
+   -webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+   box-shadow: 0px 0px 30px rgba(61, 109, 214, 0.774);
+}
+
+.contact2 .detail-box .round-social {
+ margin-top: 100px;
+}
+
+.contact2 .round-social a {
+ background: transparent;
+ margin: 0 7px;
+ padding: 11px 12px;
+}
+
+.contact2 .contact-container .links a {
+ color: #8d97ad;
+}
+
+.contact2 .contact-container {
+ position: relative;
+ /* top: 107px; */
+}
+
+.contact2 .btn-danger-gradiant {
+ background: #ff4d7e;
+ background: -webkit-linear-gradient(legacy-direction(to right), #ff4d7e 0%, #ff6a5b 100%);
+ background: -webkit-gradient(linear, left top, right top, from(#ff4d7e), to(#ff6a5b));
+ background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+ background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+ background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+}
+
+.contact2 .btn-danger-gradiant:hover {
+ background: #ff6a5b;
+ background: -webkit-linear-gradient(legacy-direction(to right), #ff6a5b 0%, #ff4d7e 100%);
+ background: -webkit-gradient(linear, left top, right top, from(#ff6a5b), to(#ff4d7e));
+ background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+ background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+ background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
 }
