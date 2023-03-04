@@ -22,7 +22,7 @@ class ViewCart
         $statement->bindParam(':phone_number',$phone);
         $statement->bindParam(':user_info_id',$user_id);
 
-        $status = "0";
+        $status = "1";
         $statement->bindParam(':status',$status);
 
         date_default_timezone_set("Asia/Yangon");
