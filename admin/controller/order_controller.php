@@ -24,5 +24,8 @@ class OrderController extends OrderModel{
     public function phoneOrderFilter($ordertype,$orderStatus,$start_date,$end_date){
         return $this->phone_order_filter($ordertype,$orderStatus,$start_date,$end_date);
     }
+    public function accOrderFilter($ordertype,$orderStatus,$start_date,$end_date){
+        return $this->acc_order_filter($ordertype,$orderStatus,$start_date,$end_date);
+    }
 }
 ?>

@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col d-flex">
-                                                <input class="form-control" id="status" name="orderStatus" value="<?php echo $orderStatus; ?>" type="number" min="1" max="5" required>    
+                                                <input class="form-control" id="status" name="orderStatus" value="<?php echo $orderStatus; ?>" type="number" min="<?php echo $orderStatus; ?>" max="5" required>    
                                                 <button type="button" class="btn btn-secondary ml-1" class="btn btn-primary" title="1=Order Placed. 2=Order Confirmed. 3=Preparing your Order.4=Your order is on the way! 5=Order Delivered.">
                                                     <i class="fas fa-info"></i>
                                                 </button>

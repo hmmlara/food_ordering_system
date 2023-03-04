@@ -5,21 +5,13 @@
 
     $orders=new OrderController();
     $results=$orders->getPhoneOrderinfo();
-    // $date_now=date('Y-m-d');
     if(isset($_POST['filter'])){
-        
-        // var_dump($results);
-        if($_POST['pickup_deli_filter']==0 && $_POST['order_status_filter']==0){
+        if($_POST['pickup_deli_filter']==0 && $_POST['order_status_filter']==0 && empty($_POST['start_date']) && empty($_POST['end_date'])){
             $results=$orders->getPhoneOrderinfo();
         }
         else{
-            $start_date=date('Y-m-d',strtotime($_POST['start_date']));
-            $end_date=date('Y-m-d',strtotime($_POST['end_date']));
-            $results=$orders->phoneOrderFilter($_POST['pickup_deli_filter'],$_POST['order_status_filter'],$start_date,$end_date);
+            $results=$orders->phoneOrderFilter($_POST['pickup_deli_filter'],$_POST['order_status_filter'],$_POST['start_date'],$_POST['end_date']);
         }
-        var_dump($start_date);
-        // var_dump($results);
-        var_dump($end_date);
     }
     if(isset($_POST['reset'])){
         header('location:'.$_SERVER['PHP_SELF']);

@@ -5,7 +5,17 @@
 
     $orders=new OrderController();
     $results=$orders->getAccOrderinfo();
-    
+    if(isset($_POST['filter'])){
+        if($_POST['pickup_deli_filter']==0 && $_POST['order_status_filter']==0 && empty($_POST['start_date']) && empty($_POST['end_date'])){
+            $results=$orders->getAccOrderinfo();
+        }
+        else{
+            $results=$orders->accOrderFilter($_POST['pickup_deli_filter'],$_POST['order_status_filter'],$_POST['start_date'],$_POST['end_date']);
+        }
+    }
+    if(isset($_POST['reset'])){
+        header('location:'.$_SERVER['PHP_SELF']);
+    }
 ?>
 
                 <!-- Begin Page Content -->
