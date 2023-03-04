@@ -1,4 +1,5 @@
 <?php
+	ob_start();
     if(isset($_POST['logout'])){
         // unset($_SESSION['admin_login']);
         session_destroy();
@@ -79,9 +80,18 @@
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူများ</span>
             </a>
 					</li>
-					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/orders.php' ||  $active_page == '/FOS/admin/order_details.php'){echo "active";}?> ">
-						<a class="sidebar-link" href="orders.php">
-              				<i class="align-middle" data-feather="align-left"></i> <span class="align-middle">အော်ဒါများ</span>
+					
+					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/order_by_phone.php' ||  $active_page == '/FOS/admin/order_phone_details.php'){echo "active";}?> ">
+						<a class="sidebar-link" href="order_by_phone.php">
+              				<i class="align-middle" data-feather="phone-incoming"></i> <span class="align-middle">ဖုန်းအော်ဒါများ</span>
+							  
+            			</a>
+						
+					</li>
+
+					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/order_by_account.php' ||  $active_page == '/FOS/admin/order_acc_details.php'){echo "active";}?> ">
+						<a class="sidebar-link" href="order_by_account.php">
+              				<i class="align-middle" data-feather="smile"></i> <span class="align-middle">အကောင့်အော်ဒါများ</span>
 							  
             			</a>
 						
