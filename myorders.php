@@ -169,7 +169,7 @@ foreach ($orders_details as $key => $value) {
     if($_SESSION['user_array']){
     ?>
 
-    <div class="container mt-4 text-dark bg-white">
+    <div class="container d-none d-md-block d-lg-block d-xl-block mt-4 text-dark bg-white">
         <div class="table-wrapper" id="empty">
             <div class="table-title text-dark bg-white">
                 <div class="row bg-dark text-center">
@@ -255,6 +255,100 @@ foreach ($orders_details as $key => $value) {
     <?php 
     }
     ?>
+
+<div class="mobile-view d-block d-md-none d-lg-none d-xl-none">
+    <h2 class="text-warning text-center">Order <b>Details</b></h2>
+
+    <?php 
+    if($_SESSION['user_array']){
+
+            $counter = 0;
+            foreach ($orders_details as $row) {
+                // $order_id = $row[$order_id'];
+                $orderID = $row['id'];
+                $address = $row['address'];
+                $phoneNo = $row['phone_number'];
+                $amount = $row['total_balance'];
+                $orderDate = $row['created_date'];
+                $paymentMode = $row['paymentMode'];
+                // if($paymentMode == 0) {
+                //     $paymentMode = "Cash on Delivery";
+                // }
+                // else {
+                //     $paymentMode = "Online";
+                // }
+                $orderStatus = $row['status'];
+                
+                $counter++;
+                
+                echo '
+                        <div class="mobile-item card"">
+                            <div class="card-body text-dark">
+                                <div class="my-2">
+                                    <span class="fw-bold">Order Id -</span>
+                                    <span class="mx-2 payStatus">'.$order_id.'</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="fw-bold">Address -</span>
+                                    <span class="mx-2 text-center">'.substr($address, 0, 20).'</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="fw-bold">Phone No -</span>
+                                    <span class="mx-2 text-center">'. $phoneNo .'</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="fw-bold">Amount -</span>
+                                    <span class="mx-2 text-center">'.$amount .'</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="fw-bold">Payment Mode -</span>
+                                    <span class="mx-2 text-center">'. $paymentMode .'</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="fw-bold">Order Date -</span>
+                                    <span class="mx-2 text-center">'. $orderDate .'</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="fw-bold">Details -</span>
+                                    <span class="mx-2 text-center">
+                                        <a type="button" class="btn btn-warning" href="orderItemDetails.php?id=' . $orderID . '" class="view" title="View Details">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                            </svg>
+                                        </a>
+                                    </span>
+                                </div>                    
+                            </div>
+                        </div>';
+            }
+                        
+
+
+            if($counter==0){
+                ?>
+                <script> document.getElementById("empty").innerHTML = 
+                    `<div class="col-md-12">
+                    <div class="card">
+                    <div class="card-body cart">
+                    <div class="col-sm-12 empty-cart-cls text-center"> 
+                    <h3 class="mt-4"><strong>You have not ordered any items.</strong></h3>
+                    <h5 class="mt-4"><strong>Please order to make me happy :)</strong></h5>
+                    <a href="index.php" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a> 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220"><path fill="#000000" fill-opacity="1" d="M0,320L1440,96L1440,320L0,320Z"></path></svg>                                
+                    </div></div></div></div>`</script>
+                <?php
+
+            }
+        ?>
+
+    <?php 
+    }
+    ?>
+
+</div>
+
+
 
 
     <?php 

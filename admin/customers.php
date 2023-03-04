@@ -3,7 +3,7 @@
     include_once "controller/adminuser_controller.php";
 
     $cus_controller=new UserController();
-    $results=$cus_controller->getCustomers();
+    $customers=$cus_controller->getCustomers();
 ?>
 
 
@@ -27,13 +27,13 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        for($i=0;$i<count($results);$i++){
+                                        for($i=0;$i<count($customers);$i++){
                                             echo "<tr>";
                                             echo "<td>".$i+1 ."</td>";
-                                            echo "<td>".$results[$i]['name']."</td>";
-                                            echo "<td>".$results[$i]['email']."</td>";
-                                            echo "<td>".$results[$i]['phone_number']."</td>";
-                                            echo "<td>".explode(" ",$results[$i]['created_date'])[0]."</td>";
+                                            echo "<td>".$customers[$i]['name']."</td>";
+                                            echo "<td>".$customers[$i]['email']."</td>";
+                                            echo "<td>".$customers[$i]['phone_number']."</td>";
+                                            echo "<td>".explode(" ",$customers[$i]['created_date'])[0]."</td>";
                                             echo "</tr>";
                                         }
                                     ?>

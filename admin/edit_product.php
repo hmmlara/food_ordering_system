@@ -77,10 +77,10 @@ if(isset($_POST['update'])){
                                 <?php
                                 for ($row=0; $row <count($results) ; $row++) { 
                                     if($results[$row]['parent']==0){
-                                        echo "<option vlaue='".$results[$row]['id']."' selected>".$results[$row]['name']."</option>";
+                                        echo "<option value='".$results[$row]['id']."' selected>".$results[$row]['name']."</option>";
                                     }
                                     else{
-                                        echo "<option vlaue='".$results[$row]['id']."'>".$results[$row]['name']."</option>";
+                                        echo "<option value='".$results[$row]['id']."'>".$results[$row]['name']."</option>";
                                     
 
                                     }

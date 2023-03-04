@@ -17,6 +17,12 @@ class ContactReplyController extends ContactReply
         return $result;
     }
 
+    public function addContact($user_id,$email,$phone_number,$message)
+    {
+        $result = parent::addContact($user_id,$email,$phone_number,$message);
+        return $result;
+
+    }
 
 
 }
