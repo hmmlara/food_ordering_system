@@ -46,17 +46,17 @@ if (isset($_POST['filter'])) {
             }
         }
 
-        if((!empty($_POST['month'])) && !empty($_POST['cat_filter'])){
+        if((!empty($_POST['month'])) && !empty($_POST['year'])){
             $search_month = $value['month'];
-            $search_cate =  $value['category_id'];
-            if($search_month == $_POST['month'] && $search_cate==$_POST['cat_filter']){
+            $search_year =  $value['year'];
+            if($search_month == $_POST['month'] && $search_year==$_POST['year']){
                 return $value;
             }
         }
 
-        if(( !empty($_POST['cat_filter']))){
-            $search_cate =  $value['category_id'];   
-            if($search_cate == $_POST['cat_filter']){
+        if(( !empty($_POST['year']))){
+            $search_year =  $value['year'];   
+            if($search_year == $_POST['year']){
                 return $value;
             }
         }  
@@ -68,6 +68,8 @@ if (isset($_POST['filter'])) {
 }
 if(isset($_POST['reset'])){
     unset($_SESSION['search_filter']);
+    unset($_POST['year']);
+    unset($_POST['month']);
 
     }
     ?>
@@ -101,7 +103,21 @@ if(isset($_POST['reset'])){
 
                 </select>
             </div>
-          
+          <div class="col-md-4">
+            <select name="year" id="" class="form-select">
+                <option value="">Choose Year</option>
+                <?php
+                for($year=2015;$year<=date(2115);$year++){
+                    if($_POST['year']==$year)
+                    echo "<option value='".$year."' selected>".$year."</option>";
+                    else
+                    echo "<option value='".$year."'>".$year."</option>";
+
+                }
+
+                ?>
+            </select>
+          </div>
 
          
 

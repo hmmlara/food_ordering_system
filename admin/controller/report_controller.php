@@ -27,10 +27,11 @@ class ReportController extends Report{
     }  
 
 
-    public function getAllResult(){
-        $all=$this->getAllResults();
-        return $all;
-    }  
+    public function getChats(){
+        $chat=$this->getChat();
+        return $chat;
+    }
+  
   
 }
 

@@ -77,6 +77,7 @@ if(!isset($_SESSION['search_filter'])){
 
 if(isset($_POST['reset'])){
 unset($_SESSION['search_filter']);
+unset($_POST['cat_filter']);
 }
 
 ?>

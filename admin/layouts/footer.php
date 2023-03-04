@@ -229,8 +229,7 @@
 				defaultDate: defaultDate
 			});
 		});
-	</script>
-
+	</script>	
 </body>
 
 </html>

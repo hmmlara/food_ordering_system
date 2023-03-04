@@ -42,10 +42,10 @@
                         <div class="col-md-6">
                             <div class="row">
                             <div class="col-md-6">
-                                <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date">
+                            <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date" value="<?php if(isset($_POST['filter'])){echo $_POST['start_date'];}?>">
                             </div>
                             <div class="col-md-6">
-                                <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date">
+                                <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date" value="<?php if(isset($_POST['filter'])){echo $_POST['end_date'];}?>">
                             </div>
                             </div>
                         </div>
