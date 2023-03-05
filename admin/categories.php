@@ -21,7 +21,7 @@ $results=$categories->getCategories();
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                         <a href="create_categories.php" class="btn btn-success my-2">အသစ်ထည့်မည်</a>
-                        <table class="table table-striped table-bordered" id="cate_table">
+                        <table class="table table-striped table-bordered" id="dataTable" style="border:1px solid #c4c3c2;">
                             <thead>
                                 <tr>
                                     <th>နံပါတ်</th>

@@ -29,7 +29,7 @@ $results=$categories->getcategories();
                     
                <div class="row my-2">
                 <div class="col-md">
-                    <table class='table table-striped table-bordered' id="product_table">
+                    <table class='table table-striped table-bordered mt-2' id="dataTable" style="border:1px solid #c4c3c2;">
                         <thead>
                             <tr>
                                 <th>နံပါတ်</th>
