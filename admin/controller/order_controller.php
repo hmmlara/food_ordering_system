@@ -5,6 +5,9 @@ class OrderController extends OrderModel{
     public function getAccOrderinfo(){
         return $this->get_acc_order_info();
     }
+    public function getOrderinfo(){
+        return $this->get_order_info();
+    }
     public function getPhoneOrderinfo(){
         return $this->get_phone_order_info();
     }

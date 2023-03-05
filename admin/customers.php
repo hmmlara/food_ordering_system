@@ -15,7 +15,7 @@
 
                     <div class="row my-3 ">
                         <div class="col-md">
-                            <table class="table table-striped table-bordered my-4" id="cus_table">
+                            <table class="table table-striped table-bordered my-4" id="dataTable" style="border:1px solid #c4c3c2;">
                                 <thead>
                                     <tr>
                                         <th>နံပါတ်</th>
