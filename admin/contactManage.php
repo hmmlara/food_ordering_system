@@ -11,7 +11,7 @@ include_once 'controller/contact_controller.php';
 	<div class="row">
 		<div class="card col-lg-12">
 			<div class="card-body">
-				<table class="table-striped table-bordered col-md-12 text-center">
+				<table class="table-striped table-bordered col-md-12 text-center" id="dataTable">
                     <thead">
                         <tr>
                             <th>နံပါတ်</th>

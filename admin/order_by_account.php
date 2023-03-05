@@ -71,13 +71,14 @@
                     </form>
                     <div class="row mt-3" id="order_by_account">
                         <div class="col-md">
-                            <table class="table table-striped table-bordered" id="order_table">
+                            <table class="table table-striped table-bordered" id="dataTable"  style="border:1px solid #c4c3c2;">
                                 <thead>
                                     <tr>
                                         <th>နံပါတ်</th>
                                         <th>အော်ဒါနံပါတ်</th>
                                         <th>စားသုံးသူအမည်</th>
                                         <th>အော်ဒါအမျိုးအစား</th>
+                                        <th>ငွေပေးချေမှု</th>
                                         <th>အော်ဒါအဆင့်</th>
                                         <th>အော်ဒါရက်စွဲ</th>
                                         <th>လုပ်ဆောင်ချက်များ</th>
@@ -98,6 +99,7 @@
                                                 echo "<td>Delivery men</td>";
 
                                             }
+                                            echo "<td>".explode("=",$results[$i]['paymentMode'])[1]."</td>";
                                             if($results[$i]['status']==1){
                                                 echo "<td>Order placed</td>";
                                             }
