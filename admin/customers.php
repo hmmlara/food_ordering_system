@@ -11,7 +11,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">စားသုံးသူများ</h1>
+                    <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 40px;">စားသုံးသူများ</h1>
 
                     <div class="row my-3 ">
                         <div class="col-md">

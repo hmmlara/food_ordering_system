@@ -1,10 +1,4 @@
 $(document).ready(function(){
-    // console.log('hello')
-    // $('#cate_table').DataTable();
-    // $('#product_table').DataTable();
-    // $('#cus_table').DataTable();
-    // $('#order_phone_table').DataTable();
-    // $('#order_account_table').DataTable();
 
     //category table delete
     $('#category_table .delete').click(function(){

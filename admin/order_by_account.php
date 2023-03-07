@@ -24,13 +24,7 @@
                     <!-- Page Heading -->
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 ">
-                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အကောင့်အော်ဒါများ</h1>
-                        <div class="col-md-6 me-4">
-                            <p id="order_type_name"></p>
-                            <?php
-                                
-                            ?>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 40px;">အကောင့်အော်ဒါများ</h1>
                     </div>
                     
                     <form action="" method="post" id="myForm">

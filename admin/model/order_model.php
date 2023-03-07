@@ -44,10 +44,10 @@ class OrderModel{
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
-    public function get_deli_type(){
+    public function get_deli_type($id){
         $this->pdo=Database::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $query="select * from deliveries";
+        $query="select * from orders where id=$id";
         $statement=$this->pdo->prepare($query);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);

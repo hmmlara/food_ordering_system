@@ -31,12 +31,13 @@ ob_start();
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	
-	<link href="css/app.css" rel="stylesheet">
+	
 	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="fonts/fontawesome-free-6.1.2-web/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
 	<script src="js/jquery-3.6.1.min.js"></script>
 	<script src="js/datatables-demo.js"></script>
 	<script src="js/datatables/jquery.dataTables.min.js"></script>

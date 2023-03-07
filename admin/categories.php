@@ -12,14 +12,14 @@ $results=$categories->getCategories();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အမျိုးအစားများ</h1>
+                        <h2 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 40px;">အမျိုးအစားများ</h2>
                         
                     </div>
                     
 
                     <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <!-- <div class="col-md-1"></div> -->
+                        <div class="col-md-12">
                         <a href="create_categories.php" class="btn btn-success my-2">အသစ်ထည့်မည်</a>
                         <table class="table table-striped table-bordered" id="dataTable" style="border:1px solid #c4c3c2;">
                             <thead>
@@ -62,7 +62,7 @@ $results=$categories->getCategories();
                
 
                 </div>
-                <div class="col-md-1"></div>
+                <!-- <div class="col-md-1"></div> -->
                 <!-- /.container-fluid -->
 
             </div>
