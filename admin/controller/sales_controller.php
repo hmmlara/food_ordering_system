@@ -40,8 +40,13 @@ class SalesController extends Sales{
     public function getSellingProducts(){
         $selling_product=$this->getSellingProduct();
         return $selling_product;
-    } 
-  
+    }
+    public function getChatsYearFilter($year){
+        return $this->get_chart_year($year);
+    }
+    public function getBestsellingProducts($year){
+        return $this->get_best_selling_products($year);
+    }
 }
 
 ?>

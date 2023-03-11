@@ -72,17 +72,3 @@ function myprint(){
     window.print();
     document.getElementById('body').innerHTML = body;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
