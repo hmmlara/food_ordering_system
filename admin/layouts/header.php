@@ -92,10 +92,7 @@ ob_start();
 						
 					</li>
 
-					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/report.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
-						<a class="sidebar-link" href="report.php">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Report</span>
-						</a>
+				
 					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/order_by_account.php' ||  $active_page == '/FOS/admin/order_acc_details.php'){echo "active";}?> ">
 						<a class="sidebar-link" href="order_by_account.php">
               				<i class="align-middle" data-feather="smile"></i> <span class="align-middle">အကောင့်အော်ဒါများ</span>
@@ -109,7 +106,11 @@ ob_start();
 						</a>
 					</li>
 					
-
+					<li class="sidebar-item <?php if($active_page == '/FOS/admin/report.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
+						<a class="sidebar-link" href="report.php">
+             				 <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">အစီရင်ခံချက်</span>
+						</a>
+					</li>
 					<!-- <li class="sidebar-item">
 						<a class="sidebar-link" href="ui-forms.html">
               <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>

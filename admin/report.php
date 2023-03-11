@@ -38,31 +38,24 @@ if (isset($_POST['filter'])) {
     unset($_SESSION['search_filter']);
 
     $item = array_values(array_filter($item, function ($value) {;
-       
-        if((!empty($_POST['start_date']) && !empty($_POST['end_date'])) ){
-            $search_date =  date('Y-m-d', strtotime($value['created_date']));
+        $search_date =  date('Y-m-d', strtotime($value['created_date']));
             $start_date = date('Y-m-d', strtotime($_POST['start_date']));
             $end_date = date('Y-m-d', strtotime($_POST['end_date']));
-
-            if($search_date >= $start_date && $search_date <= $end_date){
+            $search_cate =  $value['category_id'];  
+            if((empty($_POST['cat_filter'])) && !empty($_POST['start_date']) && !empty($_POST['end_date'])){
+                if($search_date >= $start_date && $search_date <= $end_date){
                return $value;
             }
         }
 
 
-        if(( !empty($_POST['cat_filter']))){
-            $search_cate =  $value['category_id'];   
+        if(( !empty($_POST['cat_filter'])) && empty($_POST['start_date']) && empty($_POST['end_date'])){ 
             if($search_cate == $_POST['cat_filter']){
                 return $value;
             }
         }    
 
-        if(( !empty($_POST['cat_filter'])) && (!empty($_POST['start_date']) && !empty($_POST['end_date']))){
-            $search_cate =  $value['category_id'];   
-            $search_date =  date('Y-m-d', strtotime($value['created_date']));
-            $start_date = date('Y-m-d', strtotime($_POST['start_date']));
-            $end_date = date('Y-m-d', strtotime($_POST['end_date']));
-
+        if(( !empty($_POST['cat_filter'])) && !empty($_POST['start_date']) && !empty($_POST['end_date'])){
             if($search_date >= $start_date && $search_date <= $end_date && $search_cate == $_POST['cat_filter']){
                 return $value;
             }
@@ -86,23 +79,10 @@ unset($_POST['cat_filter']);
 
 
 <div class="container">
-    <h2>Report</h2>
+    <h2>အစီရင်ခံချက်များ</h2>
+    <br>
     <form action="" method="post">
         <div class="row my-3">
-            <!-- <div class="col-md-2">
-                <select name="month" class="form-select" id="month">
-                    <option value="0" selected hidden>Choose Month</option>
-                    <?php
-                    foreach (range(1, 12) as $month) {
-                        // echo date('F',mktime(0,0,0,$month,10))."</br>";
-                        $monthname = date('F', mktime(0, 0, 0, $month, 10));
-                        $monthval = substr(date('F', mktime(0, 0, 0, $month, 10)), 0, 3); //Jan ,Feb
-                        echo "<option value='" . $monthname . "'>" . $monthname . "</option>";
-                    }
-                    ?>
-
-                </select>
-            </div> -->
             <div class="col-md-3">
                 <select name="cat_filter" class="form-select">
                     <?php
@@ -123,11 +103,11 @@ unset($_POST['cat_filter']);
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date" >
+                        <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date" value="<?php if(isset($_POST['filter'])){echo $_POST['start_date'];}?>" >
 
                     </div>
                     <div class="col-md-6">
-                        <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date">
+                        <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date" value="<?php if(isset($_POST['filter'])){echo $_POST['end_date'];}?>">
 
                     </div>
                 </div>
@@ -137,6 +117,7 @@ unset($_POST['cat_filter']);
 
                 <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
                 <button id="filter" class="btn btn-sm btn-danger" name="reset">ပြန်စမည်</button>
+                <a href="month.php" class="btn btn-sm btn btn-primary">နောက်သို့</a>
 
             </div>
     </form>
@@ -150,12 +131,12 @@ unset($_POST['cat_filter']);
         <table class="table table-striped table-bordered" id="order_table">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Order Date</th>
-                    <th>Item Name</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
+                    <th>နံပါတ်</th>
+                    <th> အော်ဒါရက်စွဲ</th>
+                    <th>အမျိုးအစား</th>
+                    <th>အရေအတွက်</th>
+                    <th>စျေးနှုန်း</th>
+                    <th>စုစုပေါင်းစျေးနှုန်း</th>
 
 
                 </tr>
@@ -194,7 +175,7 @@ unset($_POST['cat_filter']);
 
                 echo "<tr>";
                 echo "<td colspan='2'></td>";
-                echo "<td>Total</td>";
+                echo "<td><b>စုစုပေါင်း</b></td>";
                 echo "<td colspan='2'>" . $total_qty . "</td>";
                 echo "<td>" . $total_price . "</td>";
 

@@ -37,42 +37,45 @@ if (isset($_POST['filter'])) {
     unset($_SESSION['search_filter']);
 
     $item= array_values(array_filter($item, function ($value) {
+        $search_month = $value['month'];
+        $search_year =  $value['year'];
 
-
-        if((!empty($_POST['month']))){
-            $search_month = $value['month'];
+        if(!empty($_POST['month']) && empty($_POST['year'])){
             if($search_month == $_POST['month']){
                 return $value;
             }
         }
 
         if((!empty($_POST['month'])) && !empty($_POST['year'])){
-            $search_month = $value['month'];
-            $search_year =  $value['year'];
             if($search_month == $_POST['month'] && $search_year==$_POST['year']){
                 return $value;
             }
         }
 
-        if(( !empty($_POST['year']))){
-            $search_year =  $value['year'];   
+        if(!empty($_POST['year']) && empty($_POST['month'])){
             if($search_year == $_POST['year']){
                 return $value;
             }
         }  
     }));
 
-    if(!isset($_SESSION['search_filter'])){
+    // var_dump($item);
+
+    // if(!isset($_SESSION['search_filter'])){
+    //     $_SESSION['search_filter'] = $item;
+    // }
+    if(isset($_SESSION['search_filter'])){
         $_SESSION['search_filter'] = $item;
     }
 }
+
 if(isset($_POST['reset'])){
     unset($_SESSION['search_filter']);
     unset($_POST['year']);
     unset($_POST['month']);
 
     }
-    ?>
+?>
 
 
 
@@ -80,7 +83,6 @@ if(isset($_POST['reset'])){
 
 
 <div class="container">
-    <h2>Monthly Report</h2>
     <form action="" method="post">
         <div class="row my-3">
             <div class="col-md-4">
@@ -121,10 +123,11 @@ if(isset($_POST['reset'])){
 
          
 
-            <div class="col-md-2">
+            <div class="col-md-4">
 
                 <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
                 <button id="filter" class="btn btn-sm btn-danger" name="reset">ပြန်စမည်</button>
+                <a href="report.php" class="btn btn-sm btn-primary">ရှေ့သို့</a>
 
             </div>
     </form>
@@ -138,12 +141,12 @@ if(isset($_POST['reset'])){
         <table class="table table-striped table-bordered" id="order_table">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Order Date</th>
-                    <th>Item Name</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
+                <th>နံပါတ်</th>
+                    <th> အော်ဒါရက်စွဲ</th>
+                    <th>အမျိုးအစား</th>
+                    <th>အရေအတွက်</th>
+                    <th>စျေးနှုန်း</th>
+                    <th>စုစုပေါင်းစျေးနှုန်း</th>
 
 
                 </tr>
@@ -184,7 +187,7 @@ if(isset($_POST['reset'])){
 
                 echo "<tr>";
                 echo "<td colspan='2'></td>";
-                echo "<td>Total</td>";
+                echo "<td><b>စုစုပေါင်း</b></td>";
                 echo "<td colspan='2'>" . $total_qty . "</td>";
                 echo "<td>" . $total_price . "</td>";
 

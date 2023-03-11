@@ -27,17 +27,7 @@ $cus_controller=new UserController();
     $report = new ReportController();
 $item = $report->getItem();
 $chats=$report->getChats();
-// var_dump($chats);
-// Prepare data for the chart
-$labels = []; // Array of labels for each bar
-$totalBalances = []; // Array of total balances for each bar
-$bestSellingProducts = []; // Array of best-selling products for each bar
 
-foreach ($chats as $row) {
-    $labels[] = $row['month'] . '/' . $row['year'];
-    $totalBalances[] = $row['total'];
-    $bestSellingProducts[] = $row['name'];
-}
 ?>
 
 			<main class="content">
@@ -84,10 +74,13 @@ foreach ($chats as $row) {
                                 </div>
                             </div>
 
+                          
+                            </div>
+
                             <div class="col-xl-4 col-md-6">
                             <canvas id="myChart" width="500" height="400"></canvas>
 
-                        </div>
+                    </div>
 
 					
 
@@ -97,43 +90,7 @@ foreach ($chats as $row) {
                
 			</main>
 
-            <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: <?php echo json_encode($labels); ?>,
-                datasets: [{
-                    label: 'Total Balance',
-                    data: <?php echo json_encode($totalBalances); ?>,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }, {
-                    label: 'Best-Selling Products',
-                    data: <?php echo json_encode($bestSellingProducts); ?>,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    width:70,
-                    height:70
-                }]
-            },
-            options: {
-                responsive:false,
-                maintainAspectRatio:false,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
-
-            
+         
 			<?php
 				require "layouts/footer.php";
 			?>
