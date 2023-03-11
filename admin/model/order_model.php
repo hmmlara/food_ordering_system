@@ -7,7 +7,11 @@ class OrderModel{
     public function get_order_info(){
         $this->pdo=DataBase::connect();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+<<<<<<< HEAD
         $query="select orders.*,users_info.name as cus_name
+=======
+        $query="select orders.*,users_info.name as cus_name,users_info.email 
+>>>>>>> bedbef8232768e37a12a0dd24f4ad6f2704a0406
         FROM orders JOIN users_info 
         WHERE users_info.id=orders.user_info_id order by id DESC";
         $statement=$this->pdo->prepare($query);

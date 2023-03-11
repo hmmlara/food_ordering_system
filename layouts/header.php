@@ -135,7 +135,7 @@
                         // echo $user['password'];
                         echo "
                         <ul class='navbar-nav mr-end'>
-                            <li class='nav-item'> <a class='nav-link text-white' href='./contact.php'>Contant Us</a>
+                            <li class='nav-item'> <a class='nav-link text-white' href='./contact.php'>Contact Us</a>
                             </li>
                             <li class='nav-item'> <a class='nav-link text-white' href='./myorders.php'>My Orders</a>
                             </li>
