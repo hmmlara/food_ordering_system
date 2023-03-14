@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-if(isset($_SESSION['reportExcel'])){
-    $results = $_SESSION['reportExcel'];
+if(isset($_SESSION['month_excel'])){
+    $results = $_SESSION['month_excel'];
 }  
             $data = [];
             $output =' 
@@ -36,8 +36,8 @@ if(isset($_SESSION['reportExcel'])){
             }
             $output .= '</tbody></table>';
             header('Content-Type:application/xls');
-            header('Content-Disposition:attachment;filename=report.xls');
+            header('Content-Disposition:attachment;filename=Monthreport.xls');
             echo $output    ;
-            unset($_SESSION['reportExcel']);
+            unset($_SESSION['month_excel']);
             exit();
 ?>

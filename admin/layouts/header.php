@@ -4,8 +4,8 @@ ob_start();
 
 
     if(isset($_POST['logout'])){
-        // unset($_SESSION['admin_login']);
-        session_destroy();
+        unset($_SESSION['admin_login']);
+        // session_destroy();
         echo "<script>
             window.location.href = 'http://localhost/FOS/admin/admin_login.php';
             </script>";
@@ -109,9 +109,9 @@ ob_start();
 						
 					</li>
 
-					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/report.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
+					 <li class="sidebar-item <?php if($active_page == '/FOS/admin/report.php' ||  $active_page == '/FOS/admin/sales.php'  ||  $active_page == '/FOS/admin/month.php'){echo "active";}?>">
 						<a class="sidebar-link" href="report.php">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Report</span>
+              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">အစီရင်ခံချက်များ</span>
 						</a>
 					
 						<li class="sidebar-header" id='order'>

@@ -62,15 +62,15 @@ if(isset($_POST['reset_filter'])){
 }
 ?>
 
-			<main class="content">
-				<div class="container-fluid p-0">
+			<main class="content pt-3">
+				<div class="container-fluid">
 
-					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+					<h1><strong>Analytics</strong> Dashboard</h1>
 
 					<div class="row">
                             <div class="col-xl-3 col-md-6" title="Categories">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">အမျိုးအစားများ <span class='badge bg-info'><?php echo count($results);  ?></span></div>
+                                    <div class="card-body">အမျိုးအစားများ <span class='badge bg-dark'><?php echo count($results);  ?></span></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between bg-white" >
                                         <a class="small text-info stretched-link text-decoration-none" href="categories.php">အသေးစိတ်ကြည့်ရန်</a>
                                         <div class="small text-info"><i class="fas fa-angle-right"></i></div>
@@ -79,7 +79,7 @@ if(isset($_POST['reset_filter'])){
                             </div>
                             <div class="col-xl-3 col-md-6" title="Products">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">စားသောက်ကုန်များ <span class='badge bg-info'><?php echo count($products);?></span></div>
+                                    <div class="card-body">စားသောက်ကုန်များ <span class='badge bg-dark'><?php echo count($products);?></span></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between bg-white">
                                         <a class="small text-info stretched-link text-decoration-none" href="products.php">အသေးစိတ်ကြည့်ရန်</a>
                                         <div class="small text-info "><i class="fas fa-angle-right"></i></div>
@@ -88,7 +88,7 @@ if(isset($_POST['reset_filter'])){
                             </div>
                             <div class="col-xl-3 col-md-6" title="Customers">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">စားသုံးသူများ <span class='badge bg-info'><?php echo count($customers);?></span> </div>
+                                    <div class="card-body">စားသုံးသူများ <span class='badge bg-dark'><?php echo count($customers);?></span> </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between bg-white" >
                                         <a class="small text-info stretched-link text-decoration-none" href="customers.php">အသေးစိတ်ကြည့်ရန်</a>
                                         <div class="small text-info"><i class="fas fa-angle-right"></i></div>
@@ -98,7 +98,7 @@ if(isset($_POST['reset_filter'])){
 
 							<div class="col-xl-3 col-md-6" title="Orders">
                                 <div class="card bg-info text-white mb-4">
-                                    <div class="card-body">အော်ဒါများ <span class='badge bg-info'><?php echo count($orders);  ?></span></div>
+                                    <div class="card-body">အော်ဒါများ <span class='badge bg-dark'><?php echo count($orders);  ?></span></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between bg-white">
                                         <a class="small text-info stretched-link text-decoration-none" href="order_by_phone.php">အသေးစိတ်ကြည့်ရန်</a>
                                         <div class="small text-info"><i class="fas fa-angle-right"></i></div>

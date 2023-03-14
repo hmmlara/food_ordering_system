@@ -33,7 +33,9 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 } else {
     $page = 1;
 }
-
+if(!isset($_SESSION['reportExcel'])){
+    $_SESSION['reportExcel'] =[];
+}
 if (isset($_POST['filter'])) {
     unset($_SESSION['search_filter']);
 
@@ -75,8 +77,9 @@ if(!isset($_SESSION['search_filter'])){
     $_SESSION['search_filter'] = $item;
 }
 
-if(!isset($_SESSION['reportExcel'])){
-    if($_SESSION['search_filter']) {
+if(isset($_SESSION['reportExcel'])){
+    if(isset($_POST['filter']))
+    {
         $_SESSION['reportExcel'] = $_SESSION['search_filter'];
     }
     else{
@@ -86,6 +89,7 @@ if(!isset($_SESSION['reportExcel'])){
 
 if(isset($_POST['reset'])){
 unset($_SESSION['search_filter']);
+header('location:'.$_SERVER['PHP_SELF']);
 }
 
 ?>
@@ -94,7 +98,7 @@ unset($_SESSION['search_filter']);
 
 
 <div class="container">
-    <h2>Report</h2>
+    <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 40px;">အစီရင်ခံချက်များ</h1>
     <form action="" method="post">
         <div class="row my-3">
             <!-- <div class="col-md-2">
@@ -111,7 +115,7 @@ unset($_SESSION['search_filter']);
 
                 </select>
             </div> -->
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <select name="cat_filter" class="form-select">
                     <?php
                     echo "<option hidden>Categories Type</option>";
@@ -128,7 +132,7 @@ unset($_SESSION['search_filter']);
                 </select>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-6">
                         <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date" >
@@ -141,10 +145,11 @@ unset($_SESSION['search_filter']);
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
 
                 <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
                 <button id="filter" class="btn btn-sm btn-danger" name="reset">ပြန်စမည်</button>
+                <a href="month.php" class="btn btn-sm btn btn-primary">လ/နှစ်အလိုက်</a>
                 <a href="reportExcel.php" class="btn btn-success btn-sm">Excelထုတ်မည်</a>
             </div>
     </form>
@@ -158,12 +163,12 @@ unset($_SESSION['search_filter']);
         <table class="table table-striped table-bordered" id="order_table">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Order Date</th>
-                    <th>Item Name</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Total Price</th>
+                    <th>နံပါတ်</th>
+                    <th>အော်ဒါရက်စွဲ</th>
+                    <th>အမျိုးအစား</th>
+                    <th>အရေအတွက်</th>
+                    <th>စျေးနှုန်း</th>
+                    <th>စုစုပေါင်းစျေးနှုန်း</th>
 
 
                 </tr>
