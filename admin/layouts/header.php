@@ -1,5 +1,7 @@
 <?php
 ob_start();
+// session_start();// scable code
+
 
     if(isset($_POST['logout'])){
         // unset($_SESSION['admin_login']);

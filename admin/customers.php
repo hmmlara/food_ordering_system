@@ -1,9 +1,15 @@
 <?php
+    session_start();
     include_once "layouts/header.php";
     include_once "controller/adminuser_controller.php";
-
+    if(!isset($_SESSION['user_acc'])){
+        $_SESSION['user_acc'] = [];
+    }
     $cus_controller=new UserController();
     $customers=$cus_controller->getCustomers();
+    if(isset($_SESSION['user_acc'])){
+        $_SESSION['user_acc'] = $customers;
+    }
 ?>
 
 
@@ -12,7 +18,11 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 40px;">စားသုံးသူများ</h1>
-
+                    <div class="row mt-3">
+                        <div class="col-md-2">
+                            <a href="user_excel.php" class="btn btn-success btn-sm">Excelထုတ်မည်</a>
+                        </div>
+                    </div>
                     <div class="row my-3 ">
                         <div class="col-md">
                             <table class="table table-striped table-bordered my-4" id="dataTable" style="border:1px solid #c4c3c2;">

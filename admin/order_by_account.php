@@ -1,16 +1,26 @@
 <?php
-    
+    session_start();
     include_once "layouts/header.php";
     include_once "controller/order_controller.php";
 
+
+    if(!isset($_SESSION['order_by_acc'])){
+        $_SESSION['order_by_acc'] = [];
+    }
     $orders=new OrderController();
     $results=$orders->getAccOrderinfo();
+    if(isset($_SESSION['order_by_acc'])){
+        $_SESSION['order_by_acc'] = $results;
+    }
     if(isset($_POST['filter'])){
         if($_POST['pickup_deli_filter']==0 && $_POST['order_status_filter']==0 && empty($_POST['start_date']) && empty($_POST['end_date'])){
             $results=$orders->getAccOrderinfo();
         }
         else{
             $results=$orders->accOrderFilter($_POST['pickup_deli_filter'],$_POST['order_status_filter'],$_POST['start_date'],$_POST['end_date']);
+            if(isset($_SESSION['order_by_acc'])){
+                $_SESSION['order_by_acc'] = $results;
+            }
         }
     }
     if(isset($_POST['reset'])){
@@ -60,6 +70,7 @@
                             <div class="col-md-4">
                                 <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
                                 <button id="reset" class="btn btn-sm btn-danger" name="reset">ပြန်စမည်</button>
+                                <a href="orderAcc_excel.php" class="btn btn-success btn-sm">Excelထုတ်မည်</a>
                             </div>
                         </div>
                     </form>
