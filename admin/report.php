@@ -75,6 +75,15 @@ if(!isset($_SESSION['search_filter'])){
     $_SESSION['search_filter'] = $item;
 }
 
+if(!isset($_SESSION['reportExcel'])){
+    if($_SESSION['search_filter']) {
+        $_SESSION['reportExcel'] = $_SESSION['search_filter'];
+    }
+    else{
+        $_SESSION['reportExcel'] = $item;
+    }
+}
+
 if(isset($_POST['reset'])){
 unset($_SESSION['search_filter']);
 }
@@ -136,7 +145,7 @@ unset($_SESSION['search_filter']);
 
                 <button id="filter" class="btn btn-sm btn-info" name="filter">စီစစ်မည်</button>
                 <button id="filter" class="btn btn-sm btn-danger" name="reset">ပြန်စမည်</button>
-
+                <a href="reportExcel.php" class="btn btn-success btn-sm">Excelထုတ်မည်</a>
             </div>
     </form>
 </div>

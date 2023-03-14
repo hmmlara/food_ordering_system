@@ -17,8 +17,8 @@ class OrderController extends OrderModel{
     public function getSpecificOrder($id){
        return $this-> get_specific_order($id);
     }
-    public function getDeliType(){
-        return $this-> get_deli_type();
+    public function getDeliType($id){
+        return $this-> get_deli_type($id);
     }
     
     public function updateOrderStatus($status,$order_id){

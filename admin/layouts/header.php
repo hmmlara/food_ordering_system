@@ -1,5 +1,7 @@
 <?php
 ob_start();
+// session_start();// scable code
+
 
     if(isset($_POST['logout'])){
         // unset($_SESSION['admin_login']);
@@ -24,23 +26,27 @@ ob_start();
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+	<link rel="shortcut icon" href="img/icons/logo.jpg" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 	<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css"> -->
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	
-	<link href="css/app.css" rel="stylesheet">
+	
 	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="fonts/fontawesome-free-6.1.2-web/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="js/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+	
 	<script src="js/jquery-3.6.1.min.js"></script>
 	<script src="js/datatables-demo.js"></script>
 	<script src="js/datatables/jquery.dataTables.min.js"></script>
-    <script src="js/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/datatables/dataTables.bootstrap4.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script> -->
 </head>
 
@@ -59,14 +65,15 @@ ob_start();
         </a> -->
 
 				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Pages
-					</li>
 
 					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/index.php')? 'active' : '' ;?>">
 						<a class="sidebar-link" href="index.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
+					</li>
+
+					<li class="sidebar-header" id='order'>
+						Products & Categories
 					</li>
 
 					<li class="sidebar-item <?php if($active_page == '/FOS/admin/categories.php' ||  $active_page == '/FOS/admin/create_categories.php' || $active_page == '/FOS/admin/edit_categories.php' ){echo "active";}?>">
@@ -81,12 +88,11 @@ ob_start();
             </a>
 					</li>
 
-					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/customers.php')? 'active' : '' ;?>">
-						<a class="sidebar-link" href="customers.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူများ</span>
-            </a>
-					</li>
 					
+					<li class="sidebar-header" id='order'>
+						Orders and Report
+					</li>
+
 					<li class="sidebar-item  <?php if($active_page == '/FOS/admin/order_by_phone.php' ||  $active_page == '/FOS/admin/order_phone_details.php'){echo "active";}?> ">
 						<a class="sidebar-link" href="order_by_phone.php">
               				<i class="align-middle" data-feather="phone-incoming"></i> <span class="align-middle">ဖုန်းအော်ဒါများ</span>
@@ -108,58 +114,24 @@ ob_start();
               <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Report</span>
 						</a>
 					
+						<li class="sidebar-header" id='order'>
+						Customers and Messages
+					</li>
+
+						<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/customers.php')? 'active' : '' ;?>">
+						<a class="sidebar-link" href="customers.php">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူများ</span>
+            </a>
+					</li>
+
 					<li class="sidebar-item <?php echo ($active_page == '/FOS/admin/contactManage.php')? 'active' : '' ;?>">
 						<a class="sidebar-link" href="contactManage.php">
-						<i class="align-middle" data-feather="user"></i> <span class="align-middle">စားသုံးသူထံမှ မတ်ဆေ့</span>
+						<i class="align-middle" data-feather="message-circle"></i> <span class="align-middle">စားသုံးသူထံမှ မတ်ဆေ့</span>
 						</a>
 					</li>
 					
 
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.html">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item <?php if($active_page == '/FOS/admin/month.php' ||  $active_page == '/FOS/admin/sales.php'){echo "active";}?>">
-						<a class="sidebar-link" href="month.php">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Monthly Report</span>
-						</a>
-					</li>
-
-					<!--<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-cards.html">
-              <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-typography.html">
-              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.html">
-              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-            </a>
-					</li>
-
-					<li class="sidebar-header">
-						Plugins & Addons
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="charts-chartjs.html">
-              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="maps-google.html">
-              <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-            </a>
-					</li> -->
+					
 				</ul>
 			</div>
 		</nav>

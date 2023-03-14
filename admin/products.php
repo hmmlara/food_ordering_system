@@ -18,7 +18,7 @@ $results=$categories->getcategories();
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 50px;">အစားအသောက်များ</h1>
+                        <h1 class="h3 mb-0 text-gray-800 my-4 mx-2" style="font-size: 40px;">အစားအသောက်များ</h1>
                         
                     </div>
                     <div class="row">
