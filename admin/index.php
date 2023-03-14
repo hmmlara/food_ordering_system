@@ -57,7 +57,9 @@ foreach ($lineCharts as $value){
 }
 //  var_dump($product_name);
 
-
+if(isset($_POST['reset_filter'])){
+    header('location:'.$_SERVER['PHP_SELF']);
+}
 ?>
 
 			<main class="content">
@@ -116,9 +118,10 @@ foreach ($lineCharts as $value){
                            
                             
                     </div>
-                    <div class="row">
                     <form action="" method="post">
-                        <div class="col-md-4">
+                    <div class="row">
+                    
+                        <div class="col-md-3">
                             <select name="year" id="year" class="form-select">
                                 <option value="">Choose Year</option>
                                 <?php
@@ -134,10 +137,12 @@ foreach ($lineCharts as $value){
                             </select>
                         </div>
                         <div class="col-md-2">
-                        <button type="submit" class="btn btn-sm btn-primary mt-2" name='year_filter'>စီစစ်မည်</button>
+                            <button type="submit" class="btn btn-sm btn-primary" name='year_filter'>စီစစ်မည်</button>
+                            <button class="btn btn-sm btn-danger" name="reset_filter">ပြန်စမည်</button>
                         </div>
-                        </form>
+                        
                     </div>
+                    </form>
                     <div class="row">
                         <div class="col-md-6">
                             <canvas id="myChart1" width="500" height="400"></canvas>

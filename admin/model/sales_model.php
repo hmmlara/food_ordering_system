@@ -128,7 +128,7 @@ class Sales{
             year (order_details.created_date) as year,sum(products.price * order_details.qty) as total,
            (products.name) as name, COALESCE(count(*),0) as count 
             from order_details join products
-            where products.id=order_details.product_id
+            where products.id=order_details.product_id AND YEAR(order_details.created_date) = 2023
             group by year(order_details.created_date),month(order_details.created_date)
             order by year(order_details.created_date),month(order_details.created_date)
                        ";
@@ -145,22 +145,20 @@ class Sales{
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         
             $sql="SELECT
-            YEAR(orders.created_date) AS year,
-            MONTHNAME(orders.created_date) AS month,
             products.name,
-            SUM(order_details.qty) AS total_quantity
-          FROM
-            orders 
-            JOIN order_details  ON orders.id = order_details.order_id
-            JOIN products  ON order_details.product_id = products.id
-          GROUP BY
-            YEAR(orders.created_date),
-            MONTH(orders.created_date),
-           products.id
-          ORDER BY
-            YEAR(orders.created_date),
-            MONTH(orders.created_date),
-            total_quantity DESC
+             MONTHNAME(orders.created_date) as month,
+              year (order_details.created_date) as year,
+             SUM(order_details.qty) as total_quantity
+         FROM
+             products  
+             INNER JOIN order_details ON products.id = order_details.product_id AND YEAR(order_details.created_date) = 2023
+             INNER JOIN orders  ON order_details.order_id = orders.id
+         GROUP BY
+             products.name,
+             MONTH(orders.created_date)
+         ORDER BY
+             MONTH(orders.created_date),
+             total_quantity DESC
            ";
             $statement=$this->pdo->prepare($sql);
             $statement->execute();
@@ -193,7 +191,7 @@ class Sales{
 
             $sql="SELECT
             products.name,
-             MONTH(orders.created_date) as month,
+             MONTHNAME(orders.created_date) as month,
               year (order_details.created_date) as year,
              SUM(order_details.qty) as total_quantity
          FROM

@@ -116,6 +116,15 @@
                                     ?>
                                 </tbody>
                             </table>
+                            <form action="order_excel.php" method="post">
+                                <div class="row mb-5">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-sm btn-success" name="order_acc_excel">Download Excel</button>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </form>
                         </div>
                     </div>
 

@@ -37,11 +37,13 @@ ob_start();
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="js/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 	<link href="css/app.css" rel="stylesheet">
+	
 	<script src="js/jquery-3.6.1.min.js"></script>
 	<script src="js/datatables-demo.js"></script>
 	<script src="js/datatables/jquery.dataTables.min.js"></script>
-    <script src="js/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/datatables/dataTables.bootstrap4.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script> -->
 </head>
