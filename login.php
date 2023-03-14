@@ -14,7 +14,7 @@ if(isset($_POST['loginBtn']))
 
     $loginController = new LoginController();
     $user_result = $loginController->getUser($email,$password);
-    if($user_result['email'] == $email && $user_result['password'] == $password)
+    if($user_result && $user_result['email'] == $email && $user_result['password'] == $password)
     {
         $_SESSION['user_array']=$user_result;
         session_regenerate_id();
@@ -32,7 +32,13 @@ if(isset($_POST['loginBtn']))
         header('location:index.php');
         
     }
-
+    else{
+        ?>
+            <script>
+                alert('invalid email or password');
+            </script>
+        <?php
+    }
 }
 
 ?>
@@ -50,6 +56,7 @@ if(isset($_POST['loginBtn']))
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="stylesheet" href="./css/customize.css" />
         <script src="./js/jquery.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
         <style>
             /* width */
             ::-webkit-scrollbar {
@@ -177,7 +184,22 @@ if(isset($_POST['loginBtn']))
             </div>
         </div>
 
+        <script>  
+        <?php
+            if(isset($_SESSION['order_meg_success']))
+            {
+                ?>
+                
+                alertify.set('notifier','position', 'bottom-right');
+                alertify.success('<?= $_SESSION['order_meg_success']; ?>');
+                
+                <?php
+                unset($_SESSION['order_meg_success']);
+               
 
+            } 
+        ?>
+        </script>
 <?php
 
 include_once "layouts/footer.php";
