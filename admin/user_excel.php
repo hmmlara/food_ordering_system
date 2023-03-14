@@ -4,7 +4,6 @@ session_start();
 if(isset($_SESSION['user_acc'])){
     $results = $_SESSION['user_acc'];
 }  
-            $data = [];
             $output =' 
                 <table border="1">
                     <thead>
